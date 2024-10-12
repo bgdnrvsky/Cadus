@@ -1,5 +1,5 @@
 import Carousel from "../components/Carousel";
-import Button from "../components/Button";
+import Heading from "../components/Heading";
 
 
 export default function PageHelp() {
@@ -12,9 +12,15 @@ export default function PageHelp() {
 
     return (
         <>
-            <Carousel images={images} infinite={true}></Carousel>
-            <h1>Nous aider</h1>
-            <Button onClick={() => { console.log("Button1 clicked"); }} text="Demander une formation"/>
+            <Carousel images={images} infinite={true}/>
+
+            <div>
+                <Heading
+                    title="Devenir bénévole"
+                    description="Envie de consacrer quelques heures à l'écoute des bénéficiaires ? Ils ont besoin de vous."
+                    descriptionUnderline="vous"
+                />
+            </div>
         </>
     );
 }
