@@ -14,7 +14,7 @@ function NavLinkItem({ path, name }: {path: string; name: string } ) {
 
 export default function Navbar() {
     return (
-        <nav className="bg-[#94BFA7] p-4">
+        <nav className="bg-cadus-green p-4">
             <div className="flex flex-wrap items-center justify-between">
                 <div className="text-white font-bold text-xl">
                     <img src={cadusLogo} className="rounded-full h-14" alt="Logo Cadus"/>

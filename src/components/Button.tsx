@@ -22,7 +22,7 @@ export default function Button(props: ButtonProps) {
     return (
         <button
             onClick={onClick}
-            className={`bg-[#94BFA7] hover:bg-[#9dc7b0] hover:shadow-2xl px-6 h-14 text-white font-semibold rounded-full ${styles}`}
+            className={`bg-cadus-green hover:bg-cadus-green-hover hover:shadow-2xl px-6 h-14 text-white font-semibold rounded-full ${styles}`}
         >
             {text}
         </button>

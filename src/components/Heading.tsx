@@ -31,8 +31,8 @@ export default function Heading(props: HeadingProps) {
 
     return (
         <div>
-            <p className="mt-4 text-6xl text-center text-[#1E1E1E] font-extrabold">{title}</p>
-            <p className="text-4xl text-center text-[#757575]">{getUnderlinedDescription()}</p>
+            <p className="mt-4 text-6xl text-center text-cadus-black font-extrabold">{title}</p>
+            <p className="text-4xl text-center text-cadus-grey">{getUnderlinedDescription()}</p>
         </div>
     );
 }
