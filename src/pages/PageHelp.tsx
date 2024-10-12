@@ -1,4 +1,6 @@
 import Carousel from "../components/Carousel";
+import Button from "../components/Button";
+
 
 export default function PageHelp() {
 
@@ -12,6 +14,7 @@ export default function PageHelp() {
         <>
             <Carousel images={images} infinite={true}></Carousel>
             <h1>Nous aider</h1>
+            <Button onClick={() => { console.log("Button1 clicked"); }} text="Demander une formation"/>
         </>
     );
 }
