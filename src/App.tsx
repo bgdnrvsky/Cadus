@@ -8,12 +8,12 @@ import PageHelp from "./pages/PageHelp";
 import PageBook from "./pages/PageBook";
 import PageThanks from "./pages/PageThanks";
 
-import Navbar from './components/Navbar';
+import NavBar from './components/NavBar';
 
 export default function App() {
   return (
       <BrowserRouter>
-          <Navbar/>
+          <NavBar/>
 
           <Routes>
               <Route path="/" element={<PageHome/>} />
