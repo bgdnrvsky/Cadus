@@ -6,7 +6,7 @@ function NavLinkItem({ path, name }: {path: string; name: string } ) {
     return (
         <NavLink to={path}
                  style={({isActive}) => ({textDecoration: isActive ? "underline" : "",})}
-                 className="font-medium p-4 text-white underline-offset-8">
+                 className="font-medium p-4 text-white hover:underline underline-offset-8">
             {name}
         </NavLink>
     );
