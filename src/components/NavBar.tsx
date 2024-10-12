@@ -12,7 +12,7 @@ function NavLinkItem({ path, name }: {path: string; name: string } ) {
     );
 }
 
-export default function Navbar() {
+export default function NavBar() {
     return (
         <nav className="bg-cadus-green p-4">
             <div className="flex flex-wrap items-center justify-between">
