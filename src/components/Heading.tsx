@@ -6,7 +6,7 @@ interface HeadingProps {
     title: string;
 
     /* */
-    description: string;
+    descriptionLines: string[];
 
     /* */
     descriptionUnderline?: string;
@@ -14,15 +14,15 @@ interface HeadingProps {
 
 
 export default function Heading(props: HeadingProps) {
-    const { title, description, descriptionUnderline } = props;
+    const { title, descriptionLines, descriptionUnderline } = props;
 
 
-    const getUnderlinedDescription = () => {
+    const getUnderlinedDescription = (line: string) => {
         if (!descriptionUnderline) {
-            return description;
+            return line;
         }
 
-        const parts = description.split(new RegExp(`(${descriptionUnderline})`));
+        const parts = line.split(new RegExp(`(${descriptionUnderline})`));
 
         return parts.map((part, index) =>
             part === descriptionUnderline ? (<span key={index} className="underline underline-offset-4">{part}</span>) : (part)
@@ -32,7 +32,14 @@ export default function Heading(props: HeadingProps) {
     return (
         <div>
             <p className="mt-4 text-6xl text-center text-cadus-black font-extrabold">{title}</p>
-            <p className="text-4xl text-center text-cadus-grey">{getUnderlinedDescription()}</p>
+
+            <div className="pt-4 text-4xl text-center text-wrap text-cadus-grey">
+                {
+                    descriptionLines.map((line, index) =>
+                        <p key={index}>{getUnderlinedDescription(line)}</p>
+                    )
+                }
+            </div>
         </div>
     );
 }
