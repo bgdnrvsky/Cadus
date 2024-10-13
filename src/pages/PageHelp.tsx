@@ -35,7 +35,7 @@ export default function PageHelp() {
                     <Heading
                         title="Devenir bénévole"
                         descriptionLines={descriptionVolunteer}
-                        descriptionUnderline="vous"
+                        underlineSelectors={new Set<string>(["bénéficiaires", "vous"])}
                     />
 
                     <div className="flex justify-evenly m-16 space-x-24">
@@ -49,7 +49,7 @@ export default function PageHelp() {
                     <Heading
                         title="Parler de nous"
                         descriptionLines={descriptionPromote}
-                        descriptionUnderline="vos"
+                        underlineSelectors={new Set<string>(["vos"])}
                     />
                 </div>
 
@@ -57,7 +57,7 @@ export default function PageHelp() {
                     <Heading
                         title="Donner"
                         descriptionLines={descriptionDonate}
-                        descriptionUnderline="Votre"
+                        underlineSelectors={new Set<string>(["Votre", "elle"])}
                     />
                 </div>
             </div>

@@ -1,6 +1,6 @@
 
 interface CardProps {
-    /* */
+    /* Quote displayed in the card */
     quote: string;
 }
 
