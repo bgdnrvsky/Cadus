@@ -20,7 +20,7 @@ export default function NavBar() {
                     <img src={cadusLogo} className="rounded-full h-14" alt="Logo Cadus"/>
                 </div>
 
-                <div className="flex flex-row">
+                <div className="flex">
                     <NavLinkItem path="/" name="L'association"/>
                     <NavLinkItem path="/nousaider" name="Nous aider"/>
                     <NavLinkItem path="/livredor" name="Livre d'or"/>
