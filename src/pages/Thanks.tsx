@@ -1,5 +1,5 @@
 
-export default function PageThanks() {
+export default function Thanks() {
     return (
         <h1>Remerciements</h1>
     );

@@ -3,7 +3,7 @@ import Heading from "../components/Heading";
 import Card from "../components/Card";
 
 
-export default function PageHelp() {
+export default function Help() {
 
     const images = [
         'https://via.placeholder.com/2000x400/ff5733/fff',
