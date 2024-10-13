@@ -15,12 +15,10 @@ function NavLinkItem({ path, name }: {path: string; name: string } ) {
 export default function NavBar() {
     return (
         <nav className="bg-cadus-green p-4">
-            <div className="flex flex-wrap items-center justify-between">
-                <div className="text-white font-bold text-xl">
-                    <img src={cadusLogo} className="rounded-full h-14" alt="Logo Cadus"/>
-                </div>
+            <div className="flex flex-wrap justify-between max-sm:justify-center">
+                <img src={cadusLogo} className="rounded-full h-14" alt="Logo Cadus"/>
 
-                <div className="flex flex-row">
+                <div className="flex">
                     <NavLinkItem path="/" name="L'association"/>
                     <NavLinkItem path="/nousaider" name="Nous aider"/>
                     <NavLinkItem path="/livredor" name="Livre d'or"/>
