@@ -25,6 +25,7 @@ module.exports = {
       'cadus-grey': '#757575',
       'cadus-green': '#94BFA7',
       'cadus-green-hover': '#9dc7b0',
+      'cadus-card': '#FFF4FF',
     }
   },
   plugins: [],

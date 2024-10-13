@@ -1,5 +1,6 @@
 import Carousel from "../components/Carousel";
 import Heading from "../components/Heading";
+import Card from "../components/Card";
 
 
 export default function PageHelp() {
@@ -36,6 +37,12 @@ export default function PageHelp() {
                         descriptionLines={descriptionVolunteer}
                         descriptionUnderline="vous"
                     />
+
+                    <div className="flex justify-evenly m-16 space-x-24">
+                        <Card quote={"Je ne me sentais plus seule et sans défense grâce à Cadus"}/>
+                        <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
+                        <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
+                    </div>
                 </div>
 
                 <div>
