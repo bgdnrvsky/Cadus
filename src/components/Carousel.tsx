@@ -43,6 +43,8 @@ export default function Carousel(props: CarouselProps) {
             newIndex = infinite ? 0 : images.length - 1;
         }
 
+        console.log("image slide next");
+
         setCurrentImgIndex(newIndex);
     }
 
@@ -69,7 +71,7 @@ export default function Carousel(props: CarouselProps) {
                     transform: `translateX(-${currentImgIndex * 100}%)`,
                 }}
             >
-                {images.map((image) => <img src={image}/>)}
+                {images.map((image) => <img src={image} alt=""/>)}
             </div>
 
             <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
