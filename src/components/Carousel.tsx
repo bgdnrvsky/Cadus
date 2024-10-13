@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 /**
@@ -10,9 +10,6 @@ interface CarouselProps {
 
     /* Should clicking prev/next button get you back to last/first image correspondingly ? */
     infinite: boolean;
-
-    /* Auto-scroll frequency, in ms*/
-    freq?: number
 }
 
 /**
@@ -20,7 +17,7 @@ interface CarouselProps {
  * @constructor
  */
 export default function Carousel(props: CarouselProps) {
-    const { images, infinite, freq } = props;
+    const { images, infinite } = props;
     const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
     /**
@@ -49,9 +46,17 @@ export default function Carousel(props: CarouselProps) {
         setCurrentImgIndex(newIndex);
     }
 
-    if (freq) {
-        setTimeout(imageSlideNext, freq)
-    }
+    /**
+     * without useEffect, the interval would be created on every render
+     * and never cleaned up, resulting in multiple interval stacking up
+     */
+    useEffect(() => {
+        /* Called when the component is added to the DOM */
+        const interval = setInterval(imageSlideNext, 4000);
+
+        /* Cleanup callback when it is removed */
+        return () => clearInterval(interval);
+    });
 
     /**
      * Renders the carousel

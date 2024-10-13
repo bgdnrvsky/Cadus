@@ -2,7 +2,6 @@ import Carousel from "../components/Carousel";
 import Heading from "../components/Heading";
 import Card from "../components/Card";
 
-
 export default function Help() {
 
     const images = [
@@ -28,7 +27,7 @@ export default function Help() {
 
     return (
         <>
-            <Carousel images={images} infinite={true} freq={1500}/>
+            <Carousel images={images} infinite={true}/>
 
             <div className="space-y-96">
                 <div>
