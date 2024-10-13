@@ -1,6 +1,7 @@
 import Carousel from "../components/Carousel";
 import Heading from "../components/Heading";
 import Card from "../components/Card";
+import Button from "../components/Button";
 
 
 export default function PageHelp() {
@@ -26,6 +27,11 @@ export default function PageHelp() {
         "Aidez une victime à obtenir l'indemnisation qu'elle mérite"
     ];
 
+
+    const onAskFormationClick = () => {
+        console.log("Formation demandée, amener l'utilisateur sur la page de contact");
+    }
+
     return (
         <>
             <Carousel images={images} infinite={true}/>
@@ -43,6 +49,8 @@ export default function PageHelp() {
                         <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
                         <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
                     </div>
+
+                    <Button text="Demander une formation" onClick={onAskFormationClick} className="m-auto block"/>
                 </div>
 
                 <div>

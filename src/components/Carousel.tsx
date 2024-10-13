@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 /**
@@ -19,7 +19,6 @@ interface CarouselProps {
 export default function Carousel(props: CarouselProps) {
     const { images, infinite } = props;
     const [currentImgIndex, setCurrentImgIndex] = useState(0);
-
 
     /**
      * Go to previous image in the slide
@@ -44,8 +43,22 @@ export default function Carousel(props: CarouselProps) {
             newIndex = infinite ? 0 : images.length - 1;
         }
 
+        console.log("image slide next");
+
         setCurrentImgIndex(newIndex);
     }
+
+    /**
+     * without useEffect, the interval would be created on every render
+     * and never cleaned up, resulting in multiple interval stacking up
+     */
+    useEffect(() => {
+        /* Called when the component is added to the DOM */
+        const interval = setInterval(imageSlideNext, 4000);
+
+        /* Cleanup callback when it is removed */
+        return () => clearInterval(interval);
+    });
 
     /**
      * Renders the carousel
@@ -58,7 +71,7 @@ export default function Carousel(props: CarouselProps) {
                     transform: `translateX(-${currentImgIndex * 100}%)`,
                 }}
             >
-                {images.map((image) => <img src={image}/>)}
+                {images.map((image) => <img src={image} alt=""/>)}
             </div>
 
             <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
