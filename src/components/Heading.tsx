@@ -61,7 +61,7 @@ const getUnderlinedDescription = (line: string, underlineSelectors: Set<string> 
  * @param separators A collection of separators to split on
  * @return An array of string containing each separator split from the rest of the string (in the same order as the original string)
  */
-function splitMulti(text: string, separators: string[]): string[] {
+function splitMulti(text: string, separators: Set<string>): string[] {
     let result = [];
     let currentWord = "";
     let i = 0;
