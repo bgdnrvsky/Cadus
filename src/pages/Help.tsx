@@ -28,7 +28,7 @@ export default function Help() {
 
     return (
         <>
-            <Carousel images={images} infinite={true}/>
+            <Carousel images={images} infinite={true} freq={1500}/>
 
             <div className="space-y-96">
                 <div>

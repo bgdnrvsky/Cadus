@@ -10,6 +10,9 @@ interface CarouselProps {
 
     /* Should clicking prev/next button get you back to last/first image correspondingly ? */
     infinite: boolean;
+
+    /* Auto-scroll frequency, in ms*/
+    freq?: number
 }
 
 /**
@@ -17,9 +20,8 @@ interface CarouselProps {
  * @constructor
  */
 export default function Carousel(props: CarouselProps) {
-    const { images, infinite } = props;
+    const { images, infinite, freq } = props;
     const [currentImgIndex, setCurrentImgIndex] = useState(0);
-
 
     /**
      * Go to previous image in the slide
@@ -45,6 +47,10 @@ export default function Carousel(props: CarouselProps) {
         }
 
         setCurrentImgIndex(newIndex);
+    }
+
+    if (freq) {
+        setTimeout(imageSlideNext, freq)
     }
 
     /**
