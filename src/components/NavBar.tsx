@@ -13,10 +13,9 @@ function NavLinkItem({ path, name }: {path: string; name: string } ) {
 }
 
 export default function NavBar() {
-    // TODO: When NavBar wraps, put the logo in the center above the links
     return (
         <nav className="bg-cadus-green p-4">
-            <div className="flex flex-wrap justify-between max-md:justify-center">
+            <div className="flex flex-wrap justify-between max-sm:justify-center">
                 <img src={cadusLogo} className="rounded-full h-14" alt="Logo Cadus"/>
 
                 <div className="flex">

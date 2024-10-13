@@ -29,28 +29,30 @@ export default function PageHelp() {
         <>
             <Carousel images={images} infinite={true}/>
 
-            <div className="mt-40">
-                <Heading
-                    title="Devenir bénévole"
-                    descriptionLines={descriptionVolunteer}
-                    descriptionUnderline="vous"
-                />
-            </div>
+            <div className="space-y-96">
+                <div>
+                    <Heading
+                        title="Devenir bénévole"
+                        descriptionLines={descriptionVolunteer}
+                        descriptionUnderline="vous"
+                    />
+                </div>
 
-            <div className="mt-96">
-                <Heading
-                    title="Parler de nous"
-                    descriptionLines={descriptionPromote}
-                    descriptionUnderline="vos"
-                />
-            </div>
+                <div>
+                    <Heading
+                        title="Parler de nous"
+                        descriptionLines={descriptionPromote}
+                        descriptionUnderline="vos"
+                    />
+                </div>
 
-            <div className="mt-96">
-                <Heading
-                    title="Donner"
-                    descriptionLines={descriptionDonate}
-                    descriptionUnderline="Votre"
-                />
+                <div>
+                    <Heading
+                        title="Donner"
+                        descriptionLines={descriptionDonate}
+                        descriptionUnderline="Votre"
+                    />
+                </div>
             </div>
         </>
     );

@@ -30,10 +30,10 @@ export default function Heading(props: HeadingProps) {
     };
 
     return (
-        <div>
-            <p className="mt-4 text-6xl text-center text-cadus-black font-extrabold">{title}</p>
+        <div className="font-display">
+            <p className="mt-4 text-center text-cadus-black font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">{title}</p>
 
-            <div className="pt-4 text-4xl text-center text-wrap text-cadus-grey">
+            <div className="pt-4 text-center text-wrap text-cadus-grey text-1xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
                 {
                     descriptionLines.map((line, index) =>
                         <p key={index}>{getUnderlinedDescription(line)}</p>
