@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
-import cadusLogo from "../assets/logo.jpg";
-
+import cadusLogo from "../assets/cadus.svg"
 
 function NavLinkItem({ path, name }: {path: string; name: string } ) {
     return (
@@ -16,7 +15,7 @@ export default function NavBar() {
     return (
         <nav className="bg-cadus-green p-4">
             <div className="flex flex-wrap justify-between max-sm:justify-center">
-                <img src={cadusLogo} className="rounded-full h-14" alt="Logo Cadus"/>
+                <img src={cadusLogo} className="rounded-full h-14 bg-white" alt="Logo Cadus"/>
 
                 <div className="flex">
                     <NavLinkItem path="/" name="L'association"/>
