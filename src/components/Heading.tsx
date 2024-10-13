@@ -54,7 +54,7 @@ const getUnderlinedDescription = (line: string, underlineSelectors: Set<string> 
  *
  * Example:
  * splitMulti("Aren't you a little short for a Stormtrooper ?", ["you", "short", "?"])
- * => ["Aren't ", "you", "a little ", "short", " for a ", "Stormtrooper" ]
+ * => ["Aren't ", "you", "a little ", "short", " for a ", "Stormtrooper", "?" ]
  *
  * 
  * @param text Text to be split
