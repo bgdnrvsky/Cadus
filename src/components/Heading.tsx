@@ -1,15 +1,9 @@
 /**
  * Properties for the Heading component
  */
-interface HeadingProps {
+interface HeadingProps extends HeadingDescriptionProps {
     /* Title of the section */
     title: string;
-
-    /* Lets the user choose how lines are separated in the description for line breaks */
-    descriptionLines: string[];
-
-    /* Lets the user choose what words to apply underline effect on */
-    underlineSelectors?: Set<string>;
 }
 
 
@@ -20,13 +14,41 @@ export default function Heading(props: HeadingProps) {
         <div className="font-display">
             <p className="mt-4 text-center text-cadus-black font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">{title}</p>
 
-            <div className="pt-4 text-center text-wrap text-cadus-grey text-1xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-                {
-                    descriptionLines.map((line, index) => <p key={index}>{getUnderlinedDescription(line, underlineSelectors)}</p>)
-                }
-            </div>
+            <HeadingDescription descriptionLines={descriptionLines} underlineSelectors={underlineSelectors}></HeadingDescription>
         </div>
     );
+}
+
+interface HeadingDescriptionProps {
+    /* Lets the user choose how lines are separated in the description for line breaks */
+    descriptionLines?: string[];
+
+    /* Lets the user choose what words to apply underline effect on */
+    underlineSelectors?: Set<string>;
+}
+
+function HeadingDescription(props: HeadingDescriptionProps) {
+    const { descriptionLines, underlineSelectors } = props;
+
+    if (descriptionLines) {
+        return (
+            <div
+                className="pt-4 text-center text-wrap text-cadus-grey text-1xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                {
+                    descriptionLines.map(
+                        (line, index) =>
+                            <p key={index}>
+                                { getUnderlinedDescription(line, underlineSelectors) }
+                            </p>
+                    )
+                }
+            </div>
+        );
+    } else {
+        return (
+          <div></div> // Since HeadingDescription return Element | undefined, can't use it as a block without else branch
+        );
+    }
 }
 
 /**
