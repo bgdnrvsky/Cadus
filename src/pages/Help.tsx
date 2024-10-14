@@ -59,9 +59,9 @@ export default function Help() {
                         underlineSelectors={new Set<string>(["vos"])}
                     />
 
-                    <form action="" method="POST" className="border-2 border-cadus-green rounded-md shadow-lg p-6">
-                        <TextInput type="email" id="promote-email" label="Email address" placeholder="jean@bon.fr"/>
-                        <TextInput type="text"  id="promote-other" label="Autre" placeholder="De plus..."/>
+                    <form action="" method="POST" className="rounded-md shadow-lg p-6">
+                        <TextInput type="email" id="promote-email" label="Email address"/>
+                        <TextInput type="text"  id="promote-other" label="Autre"/>
                         <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
                     </form>
                 </div>
