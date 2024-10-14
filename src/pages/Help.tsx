@@ -2,6 +2,7 @@ import Carousel from "../components/Carousel";
 import Heading from "../components/Heading";
 import Card from "../components/Card";
 import Button from "../components/Button";
+import TextInput from "../components/TextInput";
 
 export default function Help() {
 
@@ -27,9 +28,8 @@ export default function Help() {
     ];
 
 
-    const onAskFormationClick = () => {
-        console.log("Formation demandée, amener l'utilisateur sur la page de contact");
-    }
+    const onAskFormationClick = () => console.log("User asked for a formation")
+    const onOfferHelpClick = () => console.log("User offered help");
 
     return (
         <>
@@ -58,6 +58,12 @@ export default function Help() {
                         descriptionLines={descriptionPromote}
                         underlineSelectors={new Set<string>(["vos"])}
                     />
+
+                    <form action="" method="POST" className="border-2 border-cadus-green rounded-md shadow-lg p-6">
+                        <TextInput type="email" id="promote-email" label="Email address" placeholder="jean@bon.fr"/>
+                        <TextInput type="text"  id="promote-other" label="Autre" placeholder="De plus..."/>
+                        <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
+                    </form>
                 </div>
 
                 <div>
