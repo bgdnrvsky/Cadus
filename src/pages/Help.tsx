@@ -2,7 +2,7 @@ import Carousel from "../components/Carousel";
 import Heading from "../components/Heading";
 import Card from "../components/Card";
 import Button from "../components/Button";
-import TextInput from "../components/TextInput";
+import TextInput, {InputType} from "../components/TextInput";
 
 export default function Help() {
 
@@ -60,8 +60,8 @@ export default function Help() {
                     />
 
                     <form action="" method="POST" className="rounded-md shadow-lg p-6">
-                        <TextInput type="email" id="promote-email" label="Email address"/>
-                        <TextInput type="text"  id="promote-other" label="Autre"/>
+                        <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
+                        <TextInput type={InputType.Text}  id="promote-other" label="Autre"/>
                         <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
                     </form>
                 </div>

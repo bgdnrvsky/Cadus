@@ -9,16 +9,21 @@ interface TextInputProps {
     label: string;
 
     /* input type, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input */
-    type: string;
+    type: InputType;
 }
 
+export enum InputType {
+    Email,
+    Tel,
+    Text,
+}
 
 export default function TextInput(props: TextInputProps) {
     const {id, label, type} = props;
 
     return (
         <div className="relative mt-3.5">
-            <input id={id} type={type}
+            <input id={id} type={InputType[type].toLowerCase()}
                    className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-cadus-green"
                    placeholder="placeholder"/>
             <label htmlFor={id}
