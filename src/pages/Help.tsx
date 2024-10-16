@@ -1,6 +1,8 @@
 import Carousel from "../components/Carousel";
 import Heading from "../components/Heading";
 import Card from "../components/Card";
+import Button from "../components/Button";
+import TextInput, {InputType} from "../components/TextInput";
 
 export default function Help() {
 
@@ -25,6 +27,10 @@ export default function Help() {
         "Aidez une victime à obtenir l'indemnisation qu'elle mérite"
     ];
 
+
+    const onAskFormationClick = () => console.log("User asked for a formation")
+    const onOfferHelpClick = () => console.log("User offered help");
+
     return (
         <>
             <Carousel images={images} infinite={true}/>
@@ -42,6 +48,8 @@ export default function Help() {
                         <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
                         <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
                     </div>
+
+                    <Button text="Demander une formation" onClick={onAskFormationClick} className="m-auto block"/>
                 </div>
 
                 <div>
@@ -50,6 +58,12 @@ export default function Help() {
                         descriptionLines={descriptionPromote}
                         underlineSelectors={new Set<string>(["vos"])}
                     />
+
+                    <form action="" method="POST" className="rounded-md shadow-lg p-6">
+                        <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
+                        <TextInput type={InputType.Text}  id="promote-other" label="Autre"/>
+                        <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
+                    </form>
                 </div>
 
                 <div>

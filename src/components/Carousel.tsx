@@ -52,7 +52,7 @@ export default function Carousel(props: CarouselProps) {
      */
     useEffect(() => {
         /* Called when the component is added to the DOM */
-        const interval = setInterval(imageSlideNext, 4000);
+        const interval = setInterval(imageSlideNext, 3000);
 
         /* Cleanup callback when it is removed */
         return () => clearInterval(interval);
@@ -69,7 +69,7 @@ export default function Carousel(props: CarouselProps) {
                     transform: `translateX(-${currentImgIndex * 100}%)`,
                 }}
             >
-                {images.map((image) => <img src={image}/>)}
+                {images.map((image) => <img src={image} alt=""/>)}
             </div>
 
             <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
