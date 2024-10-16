@@ -43,8 +43,6 @@ export default function Carousel(props: CarouselProps) {
             newIndex = infinite ? 0 : images.length - 1;
         }
 
-        console.log("image slide next");
-
         setCurrentImgIndex(newIndex);
     }
 
@@ -54,7 +52,7 @@ export default function Carousel(props: CarouselProps) {
      */
     useEffect(() => {
         /* Called when the component is added to the DOM */
-        const interval = setInterval(imageSlideNext, 4000);
+        const interval = setInterval(imageSlideNext, 3000);
 
         /* Cleanup callback when it is removed */
         return () => clearInterval(interval);
