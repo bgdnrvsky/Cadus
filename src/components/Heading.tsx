@@ -5,8 +5,8 @@ interface HeadingProps {
     /* Title of the section */
     title: string;
 
-    /* Lets the user choose how lines are separated in the description for line breaks */
-    descriptionLines?: string[];
+    /*  */
+    description: string;
 
     /* Lets the user choose what words to apply underline effect on */
     underlineSelectors?: Set<string>;
@@ -14,21 +14,13 @@ interface HeadingProps {
 
 
 export default function Heading(props: HeadingProps) {
-    let { title, descriptionLines, underlineSelectors } = props;
-    descriptionLines = descriptionLines || [];
+    let { title, description, underlineSelectors } = props;
 
     return (
         <div className="font-display text-center md:text-left">
             <p className="mt-4 text-cadus-black font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl">{title}</p>
             <div className="pt-4 text-wrap text-cadus-grey text-1xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-                {
-                    descriptionLines.map(
-                        (line, index) =>
-                            <p key={index}>
-                                {getUnderlinedDescription(line, underlineSelectors)}
-                            </p>
-                    )
-                }
+                <p>{getUnderlinedDescription(description, underlineSelectors)}</p>
             </div>
         </div>
     );
@@ -37,15 +29,15 @@ export default function Heading(props: HeadingProps) {
 /**
  * Applies an underlined style to words that match one of the underline selectors
  *
- * @param line The line to be modified
+ * @param description The text to be modified
  * @param underlineSelectors Collection of sequences to underline
  */
-const getUnderlinedDescription = (line: string, underlineSelectors: Set<string> | undefined) => {
+const getUnderlinedDescription = (description: string, underlineSelectors: Set<string> | undefined) => {
     if (!underlineSelectors) {
-        return line;
+        return description;
     }
 
-    const parts = splitMulti(line, underlineSelectors);
+    const parts = splitMulti(description, underlineSelectors);
 
     return parts.map((part, index) =>
         underlineSelectors.has(part) ? (<span key={index} className="underline underline-offset-4">{part}</span>) : (part)

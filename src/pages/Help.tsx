@@ -12,21 +12,9 @@ export default function Help() {
         'https://via.placeholder.com/2000x400/5733ff/fff',
     ];
 
-    const descriptionVolunteer = [
-        "Envie de consacrer quelques heures à l'écoute des bénéficiaires ?",
-        "N'attendez pas, ils ont besoin de vous !"
-    ];
-
-    const descriptionPromote = [
-        "Vous êtes artiste, designer, ou imprimeur ?",
-        "Cadus a besoin de vos talents de communication afin d'accroître sa visibilité"
-    ];
-
-    const descriptionDonate = [
-        "Votre soutien fera la différence.",
-        "Aidez une victime à obtenir l'indemnisation qu'elle mérite"
-    ];
-
+    const descriptionVolunteer = "Envie de consacrer quelques heures à l'écoute des bénéficiaires ? N'attendez pas, ils ont besoin de vous !";
+    const descriptionPromote = "Vous êtes artiste, designer, ou imprimeur ? Cadus a besoin de vos talents de communication afin d'accroître sa visibilité";
+    const descriptionDonate = "Votre soutien fera la différence. Aidez une victime à obtenir l'indemnisation qu'elle mérite";
 
     const onAskFormationClick = () => console.log("User asked for a formation")
     const onOfferHelpClick = () => console.log("User offered help");
@@ -37,11 +25,11 @@ export default function Help() {
                 <Carousel images={images} infinite={true}/>
             </div>
 
-           <div className="h-screen w-full bg-emerald-200">
+           <div className="h-screen w-full">
                <div className="sm:flex sm:items-center">
                    <Heading
                        title="Devenir bénévole"
-                       descriptionLines={descriptionVolunteer}
+                       description={descriptionVolunteer}
                        underlineSelectors={new Set<string>(["bénéficiaires", "vous"])}
                    />
 
@@ -54,10 +42,10 @@ export default function Help() {
                <Button text="Demander une formation" onClick={onAskFormationClick} className="m-auto block"/>
            </div>
 
-           <div className="h-screen w-full bg-emerald-300">
+           <div className="h-screen w-full">
                <Heading
                    title="Parler de nous"
-                   descriptionLines={descriptionPromote}
+                   description={descriptionPromote}
                    underlineSelectors={new Set<string>(["vos"])}
                />
 
@@ -68,10 +56,10 @@ export default function Help() {
                </form>
            </div>
 
-           <div className="h-screen w-full bg-emerald-400">
+           <div className="h-screen w-full">
                <Heading
                    title="Donner"
-                   descriptionLines={descriptionDonate}
+                   description={descriptionDonate}
                    underlineSelectors={new Set<string>(["Votre", "elle"])}
                />
            </div>
