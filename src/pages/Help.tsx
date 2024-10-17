@@ -33,7 +33,7 @@ export default function Help() {
 
     return (
         <div className="h-screen overflow-y-scroll">
-            <div className="h-screen w-full">
+            <div className="w-full">
                 <Carousel images={images} infinite={true}/>
             </div>
 
