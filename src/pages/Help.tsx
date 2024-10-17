@@ -37,18 +37,19 @@ export default function Help() {
 
             <div className="space-y-96">
                 <div>
-                    <Heading
-                        title="Devenir bénévole"
-                        descriptionLines={descriptionVolunteer}
-                        underlineSelectors={new Set<string>(["bénéficiaires", "vous"])}
-                    />
+                    <div className="sm:flex sm:items-center">
+                        <Heading
+                            title="Devenir bénévole"
+                            descriptionLines={descriptionVolunteer}
+                            underlineSelectors={new Set<string>(["bénéficiaires", "vous"])}
+                        />
 
-                    <div className="flex justify-evenly m-16 space-x-24">
-                        <Card quote={"Je ne me sentais plus seule et sans défense grâce à Cadus"}/>
-                        <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
-                        <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
+                        <div className="flex flex-col p-8 space-y-8">
+                            <Card quote={"Je ne me sentais plus seule et sans défense grâce à Cadus"}/>
+                            <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
+                            <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
+                        </div>
                     </div>
-
                     <Button text="Demander une formation" onClick={onAskFormationClick} className="m-auto block"/>
                 </div>
 

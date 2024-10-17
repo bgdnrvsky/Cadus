@@ -18,9 +18,9 @@ export default function Heading(props: HeadingProps) {
     descriptionLines = descriptionLines || [];
 
     return (
-        <div className="font-display">
-            <p className="mt-4 text-center text-cadus-black font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">{title}</p>
-            <div className="pt-4 text-center text-wrap text-cadus-grey text-1xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+        <div className="font-display text-center md:text-left">
+            <p className="mt-4 text-cadus-black font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl">{title}</p>
+            <div className="pt-4 text-wrap text-cadus-grey text-1xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
                 {
                     descriptionLines.map(
                         (line, index) =>
