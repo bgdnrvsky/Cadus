@@ -32,49 +32,49 @@ export default function Help() {
     const onOfferHelpClick = () => console.log("User offered help");
 
     return (
-        <>
-            <Carousel images={images} infinite={true}/>
-
-            <div className="space-y-96">
-                <div>
-                    <div className="sm:flex sm:items-center">
-                        <Heading
-                            title="Devenir bénévole"
-                            descriptionLines={descriptionVolunteer}
-                            underlineSelectors={new Set<string>(["bénéficiaires", "vous"])}
-                        />
-
-                        <div className="flex flex-col p-8 space-y-8">
-                            <Card quote={"Je ne me sentais plus seule et sans défense grâce à Cadus"}/>
-                            <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
-                            <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
-                        </div>
-                    </div>
-                    <Button text="Demander une formation" onClick={onAskFormationClick} className="m-auto block"/>
-                </div>
-
-                <div>
-                    <Heading
-                        title="Parler de nous"
-                        descriptionLines={descriptionPromote}
-                        underlineSelectors={new Set<string>(["vos"])}
-                    />
-
-                    <form action="" method="POST" className="rounded-md shadow-lg p-6">
-                        <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
-                        <TextInput type={InputType.Text}  id="promote-other" label="Autre"/>
-                        <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
-                    </form>
-                </div>
-
-                <div>
-                    <Heading
-                        title="Donner"
-                        descriptionLines={descriptionDonate}
-                        underlineSelectors={new Set<string>(["Votre", "elle"])}
-                    />
-                </div>
+        <div className="h-screen overflow-y-scroll">
+            <div className="h-screen w-full">
+                <Carousel images={images} infinite={true}/>
             </div>
-        </>
+
+           <div className="h-screen w-full bg-emerald-200">
+               <div className="sm:flex sm:items-center">
+                   <Heading
+                       title="Devenir bénévole"
+                       descriptionLines={descriptionVolunteer}
+                       underlineSelectors={new Set<string>(["bénéficiaires", "vous"])}
+                   />
+
+                   <div className="flex flex-col p-8 space-y-8">
+                       <Card quote={"Je ne me sentais plus seule et sans défense grâce à Cadus"}/>
+                       <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
+                       <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
+                   </div>
+               </div>
+               <Button text="Demander une formation" onClick={onAskFormationClick} className="m-auto block"/>
+           </div>
+
+           <div className="h-screen w-full bg-emerald-300">
+               <Heading
+                   title="Parler de nous"
+                   descriptionLines={descriptionPromote}
+                   underlineSelectors={new Set<string>(["vos"])}
+               />
+
+               <form action="" method="POST" className="rounded-md shadow-lg p-6">
+                   <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
+                   <TextInput type={InputType.Text}  id="promote-other" label="Autre"/>
+                   <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
+               </form>
+           </div>
+
+           <div className="h-screen w-full bg-emerald-400">
+               <Heading
+                   title="Donner"
+                   descriptionLines={descriptionDonate}
+                   underlineSelectors={new Set<string>(["Votre", "elle"])}
+               />
+           </div>
+        </div>
     );
 }
