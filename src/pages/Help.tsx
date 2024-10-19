@@ -21,25 +21,27 @@ export default function Help() {
                 <Carousel images={images} infinite={true}/>
             </div>
 
-           <div className="h-screen w-full">
-               <div className="font-display text-center">
-                   <p className="mt-4 text-cadus-black font-bold text-5xl">Devenir bénévole</p>
-                   <p className="pt-4 text-wrap text-cadus-grey text-1xl">
-                       Vous avez envie de changer les choses et d'apporter votre soutien à ceu qui en ont besoin ?
-                       En devenant bénévole, vous contribuerez à améliorer la vie de nombreux bénéficiaires.
-                   </p>
-               </div>
+           <div className="h-screen w-full flex flex-col justify-center">
+               <div className="space-y-20">
+                   <div className="font-display text-center">
+                       <p className="mt-4 text-cadus-black font-bold text-5xl">Devenir bénévole</p>
+                       <p className="pt-4 text-wrap text-cadus-grey text-1xl">
+                           Vous avez envie de changer les choses et d'apporter votre soutien à ceu qui en ont besoin ?
+                           En devenant bénévole, vous contribuerez à améliorer la vie de nombreux bénéficiaires.
+                       </p>
+                   </div>
 
-               <div className="flex m-10 space-x-4">
-                   <Card quote={"Je ne me sentais plus seule et sans défense grâce à Cadus"}/>
-                   <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
-                   <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
-               </div>
+                   <div className="flex m-10 space-x-4">
+                       <Card quote={"Je ne me sentais plus seule et sans défense grâce à Cadus"}/>
+                       <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
+                       <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
+                   </div>
+                   <Button text="Demander une formation" onClick={onAskFormationClick} className="m-auto block"/>
 
-               <Button text="Demander une formation" onClick={onAskFormationClick} className="m-auto block"/>
+               </div>
            </div>
 
-           <div className="h-screen w-full">
+           <div className="h-screen w-full flex">
                <div className="flex items-center">
                    <div className="font-display w-1/2">
                        <p className="ml-32 font-bold mt-4 text-cadus-black text-5xl">Parler de nous</p>
@@ -68,7 +70,7 @@ export default function Help() {
                </div>
            </div>
 
-            <div className="h-screen w-full">
+            <div className="h-screen w-full flex">
                 <div className="flex items-center flex-row-reverse">
                     <div className="font-display w-1/2">
                         <p className="mr-32 font-bold mt-4 text-cadus-black text-5xl">Donner</p>
