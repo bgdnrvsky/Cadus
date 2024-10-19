@@ -16,7 +16,7 @@ export default function Help() {
     const onOfferHelpClick = () => console.log("User offered help");
 
     return (
-        <div className="h-screen overflow-y-scroll">
+        <div className="h-screen">
             <div className="w-full">
                 <Carousel images={images} infinite={true}/>
             </div>
