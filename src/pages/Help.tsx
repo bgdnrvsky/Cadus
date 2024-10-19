@@ -40,29 +40,31 @@ export default function Help() {
            </div>
 
            <div className="h-screen w-full">
-               <div className="flex items-center justify-around">
-                   <div className="font-display">
-                       <p className="font-bold mt-4 text-cadus-black text-5xl">Parler de nous</p>
-                       <p className="pt-4 text-left text-wrap text-cadus-grey max-w-2xl text-1xl">Êtes-vous artiste, designer ou imprimeur ? Souhaitez-vous mettre votre talent au service d’une cause qui a du sens ? Nous vous invitons à rejoindre Cadus, une initiative qui soutient les personnes confrontées à des injustices médicales.</p>
-                       <p className="pt-4 text-left text-wrap text-cadus-grey max-w-2xl text-1xl">Votre créativité et votre expertise pourraient faire une réelle différence. Que vous souhaitiez collaborer directement ou que vous ayez des idées pour promouvoir notre mission, chaque contribution compte. Que ce soit par le biais de vos réseaux, de vos créations ou d'autres initiatives, votre aide serait précieuse.</p>
-                       <p className="pt-4 text-left text-wrap text-cadus-grey max-w-2xl text-1xl">Si vous êtes intéressé(e) à offrir votre soutien pour la promotion de Cadus d’une manière ou d’une autre, n’hésitez pas à nous contacter dès maintenant. Ensemble, nous pouvons créer un impact positif et faire avancer cette cause importante !
+               <div className="flex items-center">
+                   <div className="font-display w-1/2">
+                       <p className="ml-32 font-bold mt-4 text-cadus-black text-5xl">Parler de nous</p>
+                       <p className="ml-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Êtes-vous artiste, designer ou imprimeur ? Souhaitez-vous mettre votre talent au service d’une cause qui a du sens ? Nous vous invitons à rejoindre Cadus, une initiative qui soutient les personnes confrontées à des injustices médicales.</p>
+                       <p className="ml-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Votre créativité et votre expertise pourraient faire une réelle différence. Que vous souhaitiez collaborer directement ou que vous ayez des idées pour promouvoir notre mission, chaque contribution compte. Que ce soit par le biais de vos réseaux, de vos créations ou d'autres initiatives, votre aide serait précieuse.</p>
+                       <p className="ml-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Si vous êtes intéressé(e) à offrir votre soutien pour la promotion de Cadus d’une manière ou d’une autre, n’hésitez pas à nous contacter dès maintenant. Ensemble, nous pouvons créer un impact positif et faire avancer cette cause importante !
                        </p>
                    </div>
 
-                   <form action="" method="POST" className="w-1/3 space-y-6 rounded-md shadow-lg p-6">
-                       <ComboBox id={"cbx-help-type"} label="Type d'aide">
-                           <ComboBoxOption value="printing">Impression</ComboBoxOption>
-                           <ComboBoxOption value="design">Design</ComboBoxOption>
-                           <ComboBoxOption value="ads">Publicité</ComboBoxOption>
-                           <ComboBoxOption value="partnership">Partenariat</ComboBoxOption>
-                           <ComboBoxOption value="other">Autre</ComboBoxOption>
-                       </ComboBox>
+                   <div className="flex-1 flex justify-center">
+                       <form action="" method="POST" className="w-1/2 space-y-6 rounded-md shadow-lg p-6">
+                           <ComboBox id={"cbx-help-type"} label="Type d'aide">
+                               <ComboBoxOption value="printing">Impression</ComboBoxOption>
+                               <ComboBoxOption value="design">Design</ComboBoxOption>
+                               <ComboBoxOption value="ads">Publicité</ComboBoxOption>
+                               <ComboBoxOption value="partnership">Partenariat</ComboBoxOption>
+                               <ComboBoxOption value="other">Autre</ComboBoxOption>
+                           </ComboBox>
 
-                       <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
-                       <TextInput type={InputType.Text}  id="promote-other" label="Autre"/>
+                           <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
+                           <TextInput type={InputType.Text}  id="promote-other" label="Autre"/>
 
-                       <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
-                   </form>
+                           <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
+                       </form>
+                   </div>
                </div>
            </div>
 
