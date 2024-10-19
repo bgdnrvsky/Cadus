@@ -68,9 +68,33 @@ export default function Help() {
                </div>
            </div>
 
-           <div className="h-screen w-full">
+            <div className="h-screen w-full">
+                <div className="flex items-center flex-row-reverse">
+                    <div className="font-display w-1/2">
+                        <p className="mr-32 font-bold mt-4 text-cadus-black text-5xl">Donner</p>
+                        <p className="mr-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Chez Cadus, nous nous engageons à soutenir les victimes d'injustice médicale, qui souffrent souvent en silence. Grâce à votre don, nous pouvons offrir des consultations juridiques, un soutien psychologique et des campagnes de sensibilisation pour faire entendre leur voix. Chaque euro compte et peut transformer des vies.</p>
+                        <p className="mr-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Votre contribution permet également de plaider pour des changements essentiels dans le système de santé. En nous aidant, vous participez à la défense des droits des victimes et à l’amélioration des pratiques médicales. Ensemble, nous pouvons apporter une aide concrète à ceux qui en ont besoin.</p>
+                        <p className="mr-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Faites un don aujourd'hui pour faire la différence. Votre générosité montre que chaque vie mérite d’être protégée et respectée. Merci de votre soutien dans cette lutte pour la justice et l’espoir.</p>
+                    </div>
 
-           </div>
+                    <div className="flex-1 flex justify-center">
+                        <form action="" method="POST" className="w-1/2 space-y-6 rounded-md shadow-lg p-6">
+                            <ComboBox id={"cbx-help-type"} label="Type d'aide">
+                                <ComboBoxOption value="printing">Impression</ComboBoxOption>
+                                <ComboBoxOption value="design">Design</ComboBoxOption>
+                                <ComboBoxOption value="ads">Publicité</ComboBoxOption>
+                                <ComboBoxOption value="partnership">Partenariat</ComboBoxOption>
+                                <ComboBoxOption value="other">Autre</ComboBoxOption>
+                            </ComboBox>
+
+                            <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
+                            <TextInput type={InputType.Text} id="promote-other" label="Autre"/>
+
+                            <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
