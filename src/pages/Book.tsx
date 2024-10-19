@@ -4,7 +4,9 @@ import Card from "../components/Card";
 export default function Book() {
     return (
         <>
-            <Heading title="Livre d'or"></Heading>
+            <div className="font-display">
+                <p className="mt-4 text-center text-cadus-black font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">Livre d'or</p>
+            </div>
 
             <div className="mx-4 mt-1.5 grid grid-flow-dense grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
                 <Card quote="Mme H., je tiens à vous remercier du fond du coeur de votre soutien, de votre patience, de votre persévérance et de votre écoute durant ces longues années de combat."/>
