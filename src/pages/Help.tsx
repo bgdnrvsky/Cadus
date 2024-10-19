@@ -3,6 +3,7 @@ import Heading from "../components/Heading";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import TextInput, {InputType} from "../components/TextInput";
+import ComboBox, {ComboBoxOption} from "../components/ComboBox";
 
 export default function Help() {
 
@@ -50,8 +51,15 @@ export default function Help() {
                />
 
                <form action="" method="POST" className="rounded-md shadow-lg p-6">
+                   <ComboBox id={"cbx-help-type"} label="Type d'aide">
+                       <ComboBoxOption value="partnership">Partenariat</ComboBoxOption>
+                       <ComboBoxOption value="ads">Publicité</ComboBoxOption>
+                       <ComboBoxOption value="other">Autre</ComboBoxOption>
+                   </ComboBox>
+
                    <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
                    <TextInput type={InputType.Text}  id="promote-other" label="Autre"/>
+
                    <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
                </form>
            </div>
