@@ -34,7 +34,7 @@ export default function NavBar() {
             }
         </ul>
 
-        <svg className="sm:max-2xl:hidden" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className="sm:hidden" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g stroke-width="0"></g>
             <g stroke-linecap="round" stroke-linejoin="round"></g>
             <g>
