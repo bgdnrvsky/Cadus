@@ -17,12 +17,12 @@ export default function Help() {
     const onOfferHelpClick = () => console.log("User offered help");
 
     return (
-        <div className="h-screen">
-            <div className="w-full">
+        <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+            <div className="snap-start h-screen w-full">
                 <Carousel images={images} infinite={true}/>
             </div>
 
-           <div className="h-screen w-full flex flex-col justify-center">
+           <div className="snap-start h-screen w-full flex flex-col justify-center">
                <div className="space-y-20">
                    <div className="font-display text-center">
                        <p className="mt-4 text-cadus-black font-bold text-5xl">Devenir bénévole</p>
@@ -42,7 +42,7 @@ export default function Help() {
                </div>
            </div>
 
-           <div className="h-screen w-full flex">
+           <div className="snap-start h-screen w-full flex">
                <div className="flex items-center">
                    <div className="font-display w-1/2">
                        <p className="ml-32 font-bold mt-4 text-cadus-black text-5xl">Parler de nous</p>
@@ -71,7 +71,7 @@ export default function Help() {
                </div>
            </div>
 
-            <div className="h-screen w-full flex">
+            <div className="snap-start h-screen w-full flex">
                 <div className="flex items-center flex-row-reverse">
                     <div className="font-display w-1/2">
                         <p className="mr-32 font-bold mt-4 text-cadus-black text-5xl">Donner</p>
@@ -82,23 +82,6 @@ export default function Help() {
 
                     <div className="flex-1 flex justify-center">
                         <DonationForm/>
-
-                        {
-                        // <form action="" method="POST" className="w-1/2 space-y-6 rounded-md shadow-lg p-6">
-                        //     <ComboBox id={"cbx-help-type"} label="Type d'aide">
-                        //         <ComboBoxOption value="printing">Impression</ComboBoxOption>
-                        //         <ComboBoxOption value="design">Design</ComboBoxOption>
-                        //         <ComboBoxOption value="ads">Publicité</ComboBoxOption>
-                        //         <ComboBoxOption value="partnership">Partenariat</ComboBoxOption>
-                        //         <ComboBoxOption value="other">Autre</ComboBoxOption>
-                        //     </ComboBox>
-
-                        //     <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
-                        //     <TextInput type={InputType.Text} id="promote-other" label="Autre"/>
-
-                        //     <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
-                        // </form>
-                        }
                     </div>
                 </div>
             </div>
