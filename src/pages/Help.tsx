@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import Button from "../components/Button";
 import TextInput, {InputType} from "../components/TextInput";
 import ComboBox, {ComboBoxOption} from "../components/ComboBox";
+import DonationForm from "../components/DonationForm";
 
 export default function Help() {
 
@@ -26,7 +27,7 @@ export default function Help() {
                    <div className="font-display text-center">
                        <p className="mt-4 text-cadus-black font-bold text-5xl">Devenir bénévole</p>
                        <p className="pt-4 text-wrap text-cadus-grey text-1xl">
-                           Vous avez envie de changer les choses et d'apporter votre soutien à ceu qui en ont besoin ?
+                           Vous avez envie de changer les choses et d'apporter votre soutien à ceux qui en ont besoin ?
                            En devenant bénévole, vous contribuerez à améliorer la vie de nombreux bénéficiaires.
                        </p>
                    </div>
@@ -80,20 +81,24 @@ export default function Help() {
                     </div>
 
                     <div className="flex-1 flex justify-center">
-                        <form action="" method="POST" className="w-1/2 space-y-6 rounded-md shadow-lg p-6">
-                            <ComboBox id={"cbx-help-type"} label="Type d'aide">
-                                <ComboBoxOption value="printing">Impression</ComboBoxOption>
-                                <ComboBoxOption value="design">Design</ComboBoxOption>
-                                <ComboBoxOption value="ads">Publicité</ComboBoxOption>
-                                <ComboBoxOption value="partnership">Partenariat</ComboBoxOption>
-                                <ComboBoxOption value="other">Autre</ComboBoxOption>
-                            </ComboBox>
+                        <DonationForm/>
 
-                            <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
-                            <TextInput type={InputType.Text} id="promote-other" label="Autre"/>
+                        {
+                        // <form action="" method="POST" className="w-1/2 space-y-6 rounded-md shadow-lg p-6">
+                        //     <ComboBox id={"cbx-help-type"} label="Type d'aide">
+                        //         <ComboBoxOption value="printing">Impression</ComboBoxOption>
+                        //         <ComboBoxOption value="design">Design</ComboBoxOption>
+                        //         <ComboBoxOption value="ads">Publicité</ComboBoxOption>
+                        //         <ComboBoxOption value="partnership">Partenariat</ComboBoxOption>
+                        //         <ComboBoxOption value="other">Autre</ComboBoxOption>
+                        //     </ComboBox>
 
-                            <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
-                        </form>
+                        //     <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
+                        //     <TextInput type={InputType.Text} id="promote-other" label="Autre"/>
+
+                        //     <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
+                        // </form>
+                        }
                     </div>
                 </div>
             </div>
