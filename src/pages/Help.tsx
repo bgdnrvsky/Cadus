@@ -38,7 +38,7 @@ export default function Help() {
                             </p>
                         </div>
 
-                        <div className="flex m-10 space-x-4">
+                        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 m-10">
                             <Card quote={"Je ne me sentais plus seule et sans défense grâce à Cadus"}/>
                             <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
                             <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
