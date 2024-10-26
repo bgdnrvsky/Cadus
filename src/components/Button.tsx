@@ -1,21 +1,23 @@
+import React from "react";
+
 
 /**
  * Properties given to the Button component
  */
 interface ButtonProps {
-    /* Text displayed on the button */
-    text: string;
-
     /* Callback function when the button is clicked */
     onClick: () => void;
 
     /* Additional css class' to apply on the button */
     className?: string;
+
+    /* Children HTML elements */
+    children: React.ReactNode;
 }
 
 
 export default function Button(props: ButtonProps) {
-    const { text, onClick, className} = props;
+    const { onClick, className, children } = props;
 
     const styles = className ?? '';
 
@@ -24,7 +26,7 @@ export default function Button(props: ButtonProps) {
             onClick={onClick}
             className={`bg-cadus-green hover:bg-cadus-green-hover hover:shadow-2xl px-6 h-14 text-white font-semibold rounded-full ${styles}`}
         >
-            {text}
+            {children}
         </button>
     );
 }

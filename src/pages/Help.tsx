@@ -43,7 +43,7 @@ export default function Help() {
                             <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
                             <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
                         </div>
-                        <Button text="Demander une formation" onClick={onAskFormationClick} className="m-auto block"/>
+                        <Button onClick={onAskFormationClick} className="m-auto block">Demander une formation</Button>
                     </div>
                 </div>
 
@@ -83,7 +83,7 @@ export default function Help() {
                             <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
                             <TextInput type={InputType.Text} id="promote-other" label="Autre"/>
 
-                            <Button text="Proposer mon aide" onClick={onOfferHelpClick}/>
+                            <Button onClick={onOfferHelpClick}>Proposer mon aide</Button>
                         </form>
                     </div>
                 </div>
