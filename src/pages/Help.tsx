@@ -5,6 +5,7 @@ import TextInput, {InputType} from "../components/TextInput";
 import ComboBox, {ComboBoxOption} from "../components/ComboBox";
 import DonationForm from "../components/DonationForm";
 import ScrollIndicator from "../components/ScrollIndicator";
+import NavBar from "../components/NavBar";
 
 export default function Help() {
 
@@ -20,10 +21,13 @@ export default function Help() {
     return (
         <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
             <div className="snap-start h-screen w-full">
+                <NavBar/>
                 <Carousel images={images} infinite={true}/>
+
+                { /* <ScrollIndicator targetId="volunteer-section"/> */ }
             </div>
 
-            <div className="snap-start h-screen w-full flex flex-col justify-center">
+            <div id="volunteer-section" className="snap-start h-screen w-full flex flex-col justify-center">
                 <div className="flex flex-grow items-center">
                     <div className="space-y-20">
                         <div className="font-display text-center">

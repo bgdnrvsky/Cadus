@@ -1,6 +1,11 @@
+import NavBar from "../components/NavBar";
+
 
 export default function Book() {
     return (
-        <h1>Livre d'or</h1>
+        <>
+            <NavBar/>
+            <h1>Livre d'or</h1>
+        </>
     );
 }

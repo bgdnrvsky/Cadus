@@ -8,13 +8,10 @@ import Help from "./pages/Help";
 import Book from "./pages/Book";
 import Thanks from "./pages/Thanks";
 
-import NavBar from './components/NavBar';
 
 export default function App() {
   return (
       <BrowserRouter>
-          <NavBar/>
-
           <Routes>
               <Route path="/" element={<Home/>} />
               <Route path="/nousaider" element={<Help/>} />

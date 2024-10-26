@@ -1,6 +1,10 @@
+import NavBar from "../components/NavBar";
 
 export default function Thanks() {
     return (
-        <h1>Remerciements</h1>
+        <>
+            <NavBar/>
+            <h1>Remerciements</h1>
+        </>
     );
 }
