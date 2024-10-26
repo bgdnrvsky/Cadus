@@ -47,7 +47,7 @@ export default function Help() {
                     </div>
                 </div>
 
-                <ScrollIndicator targetId="promote-section"/>
+                <ScrollIndicator targetId="#promote-section"/>
             </div>
 
             <div id="promote-section" className="snap-start h-screen w-full flex flex-col justify-center">
@@ -88,7 +88,7 @@ export default function Help() {
                     </div>
                 </div>
 
-                <ScrollIndicator targetId={"donate-section"}/>
+                <ScrollIndicator targetId={"#donate-section"}/>
             </div>
 
             <div id="donate-section" className="snap-start h-screen w-full flex">
