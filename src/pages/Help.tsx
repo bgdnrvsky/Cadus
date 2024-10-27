@@ -15,7 +15,7 @@ export default function Help() {
 
     return (
         <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
-            <div className="snap-start h-screen w-full">
+            <div className="snap-start h-full w-full flex flex-col">
                 <NavBar/>
                 <Carousel infinite={true}>
                     <CarouselSlide image={require("../assets/volunteer.jpg")}>

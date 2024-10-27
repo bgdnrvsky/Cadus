@@ -77,7 +77,7 @@ export default function Carousel(props: CarouselProps) {
      * Renders the carousel
      */
     return (
-        <div className="overflow-hidden relative h-2/3">
+        <div className="overflow-hidden relative flex-1">
             <div
                 className="flex transition ease-out duration-1000 w-full h-full"
                 style={{
