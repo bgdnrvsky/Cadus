@@ -18,7 +18,7 @@ export default function Help() {
             <div className="snap-start h-screen w-full">
                 <NavBar/>
                 <Carousel infinite={true}>
-                    <CarouselSlide image={require("../assets/aide-bandeau.jpg")}>
+                    <CarouselSlide image={require("../assets/volunteer.jpg")}>
                         <div className="flex flex-col items-start space-y-6">
                             <h1 className="text-6xl text-white font-bold">Rejoindre Cadus.</h1>
                             <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
@@ -26,7 +26,7 @@ export default function Help() {
                         </div>
                     </CarouselSlide>
 
-                    <CarouselSlide image={require("../assets/communication.jpg")}>
+                    <CarouselSlide image={require("../assets/promote.jpg")}>
                         <div className="flex flex-col items-start space-y-6">
                             <h1 className="text-6xl text-white font-bold">Promouvoir Cadus.</h1>
                             <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
@@ -34,7 +34,7 @@ export default function Help() {
                         </div>
                     </CarouselSlide>
 
-                    <CarouselSlide image={require("../assets/donation.jpg")}>
+                    <CarouselSlide image={require("../assets/donate.jpg")}>
                         <div className="flex flex-col items-start space-y-6">
                             <h1 className="text-6xl text-white font-bold">Soutenir Cadus.</h1>
                             <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop
