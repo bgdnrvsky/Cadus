@@ -9,9 +9,9 @@ export default function DonationForm() {
     }
 
     return (
-        <div className="group flex rounded-[30px] shadow-lg overflow-hidden">
+        <div className="group flex rounded-md shadow-lg overflow-hidden">
             <div className="flex-none w-48 relative">
-                <img src={require("../assets/patient.jpg")} alt="patient" className="absolute rounded-l-[30px] inset-0 w-full h-full object-cover  transition-transform duration-300 group-hover:scale-110"
+                <img src={require("../assets/patient.jpg")} alt="patient" className="absolute rounded-l-md inset-0 w-full h-full object-cover  transition-transform duration-300 group-hover:scale-110"
                      loading="lazy"/>
             </div>
             <form className="flex-auto p-6">
