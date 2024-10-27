@@ -15,7 +15,7 @@ export default function NavBar() {
     return (
         <nav className="bg-cadus-green p-4">
             <div className="flex flex-wrap justify-between max-sm:justify-center">
-                <img src={cadusLogo} className="rounded-full h-14 bg-white" alt="Logo Cadus"/>
+                <NavLink to="/"><img src={cadusLogo} className="rounded-full h-14 bg-white" alt="Logo Cadus"/></NavLink>
 
                 <div className="flex">
                     <NavLinkItem path="/" name="L'association"/>
