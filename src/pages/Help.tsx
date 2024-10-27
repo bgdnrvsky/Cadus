@@ -19,22 +19,30 @@ export default function Help() {
                 <NavBar/>
                 <Carousel infinite={true}>
                     <CarouselSlide image={require("../assets/aide-bandeau.jpg")}>
-                        Volunteer
-                        <Button onClick={() => {}}>Volunteer</Button>
+                        <div className="flex flex-col items-start space-y-6">
+                            <h1 className="text-6xl text-white font-bold">Rejoindre Cadus.</h1>
+                            <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
+                            <Button onClick={() => {}}>En savoir plus</Button>
+                        </div>
                     </CarouselSlide>
 
                     <CarouselSlide image={require("../assets/communication.jpg")}>
-                        Communicate
-                        <Button onClick={() => {}}>Communicate</Button>
+                        <div className="flex flex-col items-start space-y-6">
+                            <h1 className="text-6xl text-white font-bold">Promouvoir Cadus.</h1>
+                            <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
+                            <Button onClick={() => {}}>Comment faire ?</Button>
+                        </div>
                     </CarouselSlide>
 
                     <CarouselSlide image={require("../assets/donation.jpg")}>
-                        Donate
-                        <Button onClick={() => {}}>Donate</Button>
+                        <div className="flex flex-col items-start space-y-6">
+                            <h1 className="text-6xl text-white font-bold">Soutenir Cadus.</h1>
+                            <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop
+                                located in the Boathouse District in Oklahoma City.</p>
+                            <Button onClick={() => {}}>J'apporte mon soutien</Button>
+                        </div>
                     </CarouselSlide>
                 </Carousel>
-
-                <ScrollIndicator targetId="#volunteer-section"/>
             </div>
 
             <div id="volunteer-section" className="snap-start h-screen w-full flex flex-col justify-center">
