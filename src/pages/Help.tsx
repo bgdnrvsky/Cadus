@@ -1,4 +1,4 @@
-import Carousel from "../components/Carousel";
+import Carousel, {CarouselSlide} from "../components/Carousel";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import TextInput, {InputType} from "../components/TextInput";
@@ -7,13 +7,8 @@ import DonationForm from "../components/DonationForm";
 import ScrollIndicator from "../components/ScrollIndicator";
 import NavBar from "../components/NavBar";
 
-export default function Help() {
 
-    const images = [
-        'https://via.placeholder.com/2000x400/ff5733/fff',
-        'https://via.placeholder.com/2000x400/33ff57/fff',
-        'https://via.placeholder.com/2000x400/5733ff/fff',
-    ];
+export default function Help() {
 
     const onAskFormationClick = () => console.log("User asked for a formation")
     const onOfferHelpClick = () => console.log("User offered help");
@@ -22,9 +17,24 @@ export default function Help() {
         <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
             <div className="snap-start h-screen w-full">
                 <NavBar/>
-                <Carousel images={images} infinite={true}/>
+                <Carousel infinite={true}>
+                    <CarouselSlide image={require("../assets/aide-bandeau.jpg")}>
+                        Volunteer
+                        <Button onClick={() => {}}>Volunteer</Button>
+                    </CarouselSlide>
 
-                { /* <ScrollIndicator targetId="volunteer-section"/> */ }
+                    <CarouselSlide image={require("../assets/communication.jpg")}>
+                        Communicate
+                        <Button onClick={() => {}}>Communicate</Button>
+                    </CarouselSlide>
+
+                    <CarouselSlide image={require("../assets/donation.jpg")}>
+                        Donate
+                        <Button onClick={() => {}}>Donate</Button>
+                    </CarouselSlide>
+                </Carousel>
+
+                <ScrollIndicator targetId="#volunteer-section"/>
             </div>
 
             <div id="volunteer-section" className="snap-start h-screen w-full flex flex-col justify-center">
