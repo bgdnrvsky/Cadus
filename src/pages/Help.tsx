@@ -51,7 +51,8 @@ export default function Help() {
                         <div className="font-display text-center">
                             <p className="mt-4 text-cadus-black font-bold text-5xl">Devenir bénévole</p>
                             <p className="pt-4 text-wrap text-cadus-grey text-1xl">
-                                Vous avez envie de changer les choses et d'apporter votre soutien à ceux qui en ont besoin ?
+                                Vous avez envie de changer les choses et d'apporter votre soutien à ceux qui en ont
+                                besoin ?
                                 En devenant bénévole, vous contribuerez à améliorer la vie de nombreux bénéficiaires.
                             </p>
                         </div>
@@ -61,7 +62,8 @@ export default function Help() {
                             <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
                             <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
                         </div>
-                        <Button onClick={onAskFormationClick} className="m-auto block text-cadus-green">Demander une formation</Button>
+                        <Button onClick={onAskFormationClick} className="m-auto block text-cadus-green">Demander une
+                            formation</Button>
                     </div>
                 </div>
 
@@ -71,7 +73,7 @@ export default function Help() {
             <div id="promote-section" className="snap-start h-screen w-full flex flex-col justify-center">
                 <div className="flex flex-grow items-center">
                     <div className="font-display w-1/2">
-                        <p className="ml-32 font-bold mt-4 text-cadus-black text-5xl">Parler de nous</p>
+                        <p className="ml-32 mb-6 mt-4 max-w-[340px] font-bold text-cadus-black text-5xl">Parler de nous</p>
                         <p className="ml-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Êtes-vous artiste,
                             designer ou imprimeur ? Souhaitez-vous mettre votre talent au service d’une cause qui a du
                             sens ? Nous vous invitons à rejoindre Cadus, une initiative qui soutient les personnes
@@ -112,7 +114,7 @@ export default function Help() {
             <div id="donate-section" className="snap-start h-screen w-full flex">
                 <div className="flex items-center flex-row-reverse">
                     <div className="font-display w-1/2">
-                        <p className="mr-32 font-bold mt-4 text-cadus-black text-5xl">Donner</p>
+                        <p className="mr-32 mb-6 mt-4 font-bold text-cadus-black text-5xl brush-underline">Donner</p>
                         <p className="mr-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Chez Cadus, nous nous
                             engageons à soutenir les victimes d'injustice médicale, qui souffrent souvent en silence.
                             Grâce à votre don, nous pouvons offrir des consultations juridiques, un soutien
