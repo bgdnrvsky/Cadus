@@ -98,7 +98,7 @@ export default function Help() {
                                 <ComboBoxOption value="other">Autre</ComboBoxOption>
                             </ComboBox>
 
-                            <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
+                            <TextInput type={InputType.Email} id="promote-email" label="Adresse e-mail"/>
                             <TextInput type={InputType.Text} id="promote-other" label="Autre"/>
 
                             <Button className="mx-auto block" onClick={onOfferHelpClick}>Proposer mon aide</Button>
