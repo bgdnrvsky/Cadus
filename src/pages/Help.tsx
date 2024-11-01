@@ -22,7 +22,7 @@ export default function Help() {
                         <div className="flex flex-col items-start space-y-6">
                             <h1 className="text-6xl text-white font-bold">Rejoindre Cadus.</h1>
                             <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
-                            <Button onClick={() => {}}>En savoir plus</Button>
+                            <Button className="text-white" onClick={() => {}}>En savoir plus</Button>
                         </div>
                     </CarouselSlide>
 
@@ -30,7 +30,7 @@ export default function Help() {
                         <div className="flex flex-col items-start space-y-6">
                             <h1 className="text-6xl text-white font-bold">Promouvoir Cadus.</h1>
                             <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
-                            <Button onClick={() => {}}>Comment faire ?</Button>
+                            <Button className="text-white" onClick={() => {}}>Comment faire ?</Button>
                         </div>
                     </CarouselSlide>
 
@@ -39,7 +39,7 @@ export default function Help() {
                             <h1 className="text-6xl text-white font-bold">Soutenir Cadus.</h1>
                             <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop
                                 located in the Boathouse District in Oklahoma City.</p>
-                            <Button onClick={() => {}}>J'apporte mon soutien</Button>
+                            <Button className="text-white" onClick={() => {}}>J'apporte mon soutien</Button>
                         </div>
                     </CarouselSlide>
                 </Carousel>
@@ -101,7 +101,7 @@ export default function Help() {
                             <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
                             <TextInput type={InputType.Text} id="promote-other" label="Autre"/>
 
-                            <Button className="text-cadus-green" onClick={onOfferHelpClick}>Proposer mon aide</Button>
+                            <Button onClick={onOfferHelpClick}>Proposer mon aide</Button>
                         </form>
                     </div>
                 </div>

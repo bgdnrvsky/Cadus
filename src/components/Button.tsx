@@ -24,7 +24,7 @@ export default function Button(props: ButtonProps) {
     return (
         <button
             onClick={onClick}
-            className={`text-white bg-transparent border-2 border-cadus-green hover:text-white hover:bg-cadus-green transition hover:shadow-2xl px-6 h-14 font-semibold rounded-full ${styles}`}
+            className={`text-cadus-green bg-transparent border-2 border-cadus-green hover:text-white hover:bg-cadus-green transition hover:shadow-2xl px-6 h-14 font-semibold rounded-full ${styles}`}
         >
             {children}
         </button>
