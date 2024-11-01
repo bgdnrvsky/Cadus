@@ -101,7 +101,7 @@ export default function Help() {
                             <TextInput type={InputType.Email} id="promote-email" label="Email address"/>
                             <TextInput type={InputType.Text} id="promote-other" label="Autre"/>
 
-                            <Button onClick={onOfferHelpClick}>Proposer mon aide</Button>
+                            <Button className="mx-auto block" onClick={onOfferHelpClick}>Proposer mon aide</Button>
                         </form>
                     </div>
                 </div>
