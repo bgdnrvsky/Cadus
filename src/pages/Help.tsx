@@ -91,7 +91,7 @@ export default function Help() {
                     </div>
 
                     <div className="relative flex-1 flex justify-center">
-                        <div className="bg-cadus-green absolute inset-x-0 top-1/2 transform -translate-y-1/2 translate-x-16 rotate-3 w-[101%] h-[120%] -z-10"></div>
+                        <div className="bg-cadus-green rounded-l-xl absolute inset-x-0 top-1/2 transform -translate-y-1/2 translate-x-16 rotate-3 w-[101%] h-[120%] -z-10"></div>
                         <form action="" method="POST" className="w-1/2 bg-white space-y-6 rounded-md shadow-lg p-6">
                             <ComboBox id={"cbx-help-type"} label="Type d'aide">
                                 <ComboBoxOption value="printing">Impression</ComboBoxOption>
