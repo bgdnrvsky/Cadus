@@ -14,7 +14,7 @@ export default function Help() {
     const onOfferHelpClick = () => console.log("User offered help");
 
     return (
-        <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+        <div className="h-screen overflow-y-scroll overflow-x-hidden snap-y snap-mandatory scroll-smooth">
             <div className="snap-start h-full w-full flex flex-col">
                 <NavBar/>
                 <Carousel infinite={true}>
