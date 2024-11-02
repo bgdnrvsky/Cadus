@@ -131,7 +131,8 @@ export default function Help() {
                             respectée. Merci de votre soutien dans cette lutte pour la justice et l’espoir.</p>
                     </div>
 
-                    <div className="flex-1 flex justify-center">
+                    <div className="relative flex-1 flex justify-center">
+                        <div className="bg-cadus-green rounded-r-xl absolute -rotate-3 inset-x-0 top-1/2 transform -translate-y-1/2 -translate-x-16 w-[101%] h-[120%] -z-10"></div>
                         <DonationForm/>
                     </div>
                 </div>
