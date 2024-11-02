@@ -10,9 +10,6 @@ import NavBar from "../components/NavBar";
 
 export default function Help() {
 
-    const onAskFormationClick = () => console.log("User asked for a formation")
-    const onOfferHelpClick = () => console.log("User offered help");
-
     return (
         <div className="h-screen overflow-y-scroll overflow-x-hidden snap-y snap-mandatory scroll-smooth">
             <div className="snap-start h-full w-full flex flex-col">
@@ -22,7 +19,7 @@ export default function Help() {
                         <div className="flex flex-col items-start space-y-6">
                             <h1 className="text-6xl text-white font-bold">Rejoindre Cadus.</h1>
                             <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
-                            <Button className="text-white" onClick={() => {}}>En savoir plus</Button>
+                            <a href="#volunteer-section"><Button className="text-white">En savoir plus</Button></a>
                         </div>
                     </CarouselSlide>
 
@@ -30,7 +27,7 @@ export default function Help() {
                         <div className="flex flex-col items-start space-y-6">
                             <h1 className="text-6xl text-white font-bold">Promouvoir Cadus.</h1>
                             <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
-                            <Button className="text-white" onClick={() => {}}>Comment faire ?</Button>
+                            <a href="#promote-section"><Button className="text-white">Comment faire ?</Button></a>
                         </div>
                     </CarouselSlide>
 
@@ -39,7 +36,7 @@ export default function Help() {
                             <h1 className="text-6xl text-white font-bold">Soutenir Cadus.</h1>
                             <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop
                                 located in the Boathouse District in Oklahoma City.</p>
-                            <Button className="text-white" onClick={() => {}}>J'apporte mon soutien</Button>
+                            <a href="#donate-section"><Button className="text-white">J'apporte mon soutien</Button></a>
                         </div>
                     </CarouselSlide>
                 </Carousel>
@@ -62,7 +59,7 @@ export default function Help() {
                             <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
                             <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
                         </div>
-                        <Button onClick={onAskFormationClick} className="m-auto block text-cadus-green">Demander une
+                        <Button className="m-auto block text-cadus-green">Demander une
                             formation</Button>
                     </div>
                 </div>
@@ -104,7 +101,7 @@ export default function Help() {
                             <TextInput type={InputType.Email} id="promote-email" label="Adresse e-mail"/>
                             <TextInput type={InputType.Text} id="promote-other" label="Autre"/>
 
-                            <Button className="mx-auto block" onClick={onOfferHelpClick}>Proposer mon aide</Button>
+                            <Button className="mx-auto block">Proposer mon aide</Button>
                         </form>
                     </div>
                 </div>

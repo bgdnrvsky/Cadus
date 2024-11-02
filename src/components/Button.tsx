@@ -6,7 +6,7 @@ import React from "react";
  */
 interface ButtonProps {
     /* Callback function when the button is clicked */
-    onClick: () => void;
+    onClick?: () => void;
 
     /* Additional css class' to apply on the button */
     className?: string;
