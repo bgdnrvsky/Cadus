@@ -44,9 +44,9 @@ export default function Help() {
                     />
 
                     <div className="flex justify-evenly m-16 space-x-24">
-                        <Card quote={"Je ne me sentais plus seule et sans défense grâce à Cadus"}/>
-                        <Card quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
-                        <Card quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
+                        <Card path="../assets/profile_pictures/avatar7.jpg" quote={"Je ne me sentais plus seule et sans défense grâce à Cadus"}/>
+                        <Card path="../assets/profile_pictures/avatar8.jpg" quote={"Soutenir un bénéficiaire était une expérience très enrichissante"}/>
+                        <Card path="../assets/profile_pictures/avatar9.jpg" quote={"Je n'aurais pas réussi à obtenir justice sans Cadus"}/>
                     </div>
 
                     <Button text="Demander une formation" onClick={onAskFormationClick} className="m-auto block"/>
