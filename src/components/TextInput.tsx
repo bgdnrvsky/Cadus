@@ -10,6 +10,8 @@ interface TextInputProps {
 
     /* input type, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input */
     type: InputType;
+
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export enum InputType {
@@ -19,11 +21,11 @@ export enum InputType {
 }
 
 export default function TextInput(props: TextInputProps) {
-    const {id, label, type} = props;
+    const {id, label, type, onChange} = props;
 
     return (
         <div className="relative mt-3.5">
-            <input id={id} type={InputType[type].toLowerCase()}
+            <input id={id} onChange={onChange} type={InputType[type].toLowerCase()}
                    className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-cadus-green"
                    placeholder="placeholder"/>
             <label htmlFor={id}

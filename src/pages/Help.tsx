@@ -1,11 +1,10 @@
 import Carousel, {CarouselSlide} from "../components/Carousel";
 import Card from "../components/Card";
 import Button from "../components/Button";
-import TextInput, {InputType} from "../components/TextInput";
-import ComboBox, {ComboBoxOption} from "../components/ComboBox";
-import DonationForm from "../components/DonationForm";
 import ScrollIndicator from "../components/ScrollIndicator";
 import NavBar from "../components/NavBar";
+import PromoteForm from "../components/PromoteForm";
+import DonationForm from "../components/DonationForm";
 
 
 export default function Help() {
@@ -89,20 +88,7 @@ export default function Help() {
 
                     <div className="relative flex-1 flex justify-center">
                         <div className="bg-cadus-green rounded-l-xl absolute inset-x-0 top-1/2 transform -translate-y-1/2 translate-x-16 rotate-3 w-[101%] h-[120%] -z-10"></div>
-                        <form action="" method="POST" className="w-1/2 bg-white space-y-6 rounded-md shadow-lg p-6">
-                            <ComboBox id={"cbx-help-type"} label="Type d'aide">
-                                <ComboBoxOption value="printing">Impression</ComboBoxOption>
-                                <ComboBoxOption value="design">Design</ComboBoxOption>
-                                <ComboBoxOption value="ads">Publicité</ComboBoxOption>
-                                <ComboBoxOption value="partnership">Partenariat</ComboBoxOption>
-                                <ComboBoxOption value="other">Autre</ComboBoxOption>
-                            </ComboBox>
-
-                            <TextInput type={InputType.Email} id="promote-email" label="Adresse e-mail"/>
-                            <TextInput type={InputType.Text} id="promote-other" label="Autre"/>
-
-                            <Button className="mx-auto block">Proposer mon aide</Button>
-                        </form>
+                        <PromoteForm/>
                     </div>
                 </div>
 
