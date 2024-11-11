@@ -29,18 +29,26 @@ interface ComboBoxProps {
     /* Label that will be displayed on top of the combo-box */
     label: string;
 
+    onChange?: (value: string) => void;
+
     /* Children HTML elements */
     children: React.ReactNode;
 }
 
 export default function ComboBox(props: ComboBoxProps) {
-    const { id, label, children } = props;
+    const { id, label, children, onChange } = props;
+
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        if (onChange) {
+            onChange(e.target.value);
+        }
+    }
 
     return (
         <div>
             <label htmlFor={id} className="text-gray-600 text-sm">{label}</label>
 
-            <select id={id} className="block py-1 px-0 w-full bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-cadus-green peer">
+            <select id={id} onChange={handleChange} className="block py-1 px-0 w-full bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-cadus-green peer">
                     {
                         React.Children.map(children, (child) =>
                             (React.isValidElement(child) ? React.cloneElement(child, {}) : null)
