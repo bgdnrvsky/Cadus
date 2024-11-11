@@ -9,6 +9,8 @@ export default function DonationForm() {
         likeColor !== 'red' ? setLikeColor('red') : setLikeColor('grey');
     }
 
+    const amounts: number[] = [1, 2, 5, 10, 20];
+
     return (
         <div className="group flex rounded-md shadow-lg overflow-hidden bg-white">
             <div className="flex-none w-48 relative">
@@ -16,41 +18,9 @@ export default function DonationForm() {
             </div>
             <form className="flex-auto p-6">
                 <div className="flex justify-between mt-4 mb-6 pb-6 border-b border-slate-200 text-sm">
-                    <label>
-                        <input className="sr-only peer" name="size" type="radio" value="1"/>
-                        <div
-                            className="w-9 h-9 rounded-full flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-cadus-green peer-checked:text-white">
-                            1 €
-                        </div>
-                    </label>
-                    <label>
-                        <input className="sr-only peer" name="size" type="radio" value="2"/>
-                        <div
-                            className="w-9 h-9 rounded-full flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-cadus-green peer-checked:text-white">
-                            2 €
-                        </div>
-                    </label>
-                    <label>
-                        <input className="sr-only peer" name="size" type="radio" value="5"/>
-                        <div
-                            className="w-9 h-9 rounded-full flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-cadus-green peer-checked:text-white">
-                            5 €
-                        </div>
-                    </label>
-                    <label>
-                        <input className="sr-only peer" name="size" type="radio" value="10"/>
-                        <div
-                            className="w-9 h-9 rounded-full flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-cadus-green peer-checked:text-white">
-                            10 €
-                        </div>
-                    </label>
-                <label>
-                    <input className="sr-only peer" name="size" type="radio" value="20"/>
-                    <div
-                        className="w-9 h-9 rounded-full flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-cadus-green peer-checked:text-white">
-                        20 €
-                    </div>
-                </label>
+                    {
+                        amounts.map((amount) => <AmountRadioButton amount={amount}/>)
+                    }
                 </div>
                 <div className="flex space-x-4 mb-6 text-sm font-medium">
 
@@ -68,5 +38,18 @@ export default function DonationForm() {
                 </p>
             </form>
         </div>
+    );
+}
+
+function AmountRadioButton(props : {amount: number}) {
+    const { amount } = props;
+    return (
+        <label key={amount}>
+            <input className="sr-only peer" name="size" type="radio" value={amount.toString()}/>
+            <div
+                className="w-9 h-9 rounded-full flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-cadus-green peer-checked:text-white">
+                {amount} €
+            </div>
+        </label>
     );
 }
