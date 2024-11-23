@@ -1,9 +1,12 @@
 import Heading from "../components/Heading";
 import Card from "../components/Card";
+import NavBar from "../components/NavBar";
 
 export default function Book() {
     return (
         <>
+            <NavBar/>
+
             <div className="font-display">
                 <p className="mt-4 text-center text-cadus-black font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">Livre d'or</p>
             </div>
