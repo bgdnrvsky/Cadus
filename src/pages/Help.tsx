@@ -54,17 +54,17 @@ export default function Help() {
                         </div>
 
                         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 m-10">
-                            <Card image={require("../assets/profile_pictures/avatar9.jpg")}
-                                  text="Marie"
-                                  subtext="Bénéficiaire"
+                            <Card avatar={require("../assets/profile_pictures/avatar9.jpg")}
+                                  name="Marie"
+                                  status="Bénéficiaire"
                                   quote="Je ne me sentais plus seule et sans défense grâce à Cadus"/>
-                            <Card image={require("../assets/profile_pictures/avatar10.jpg")}
-                                  text="Sylvain"
-                                  subtext="Bénévole"
+                            <Card avatar={require("../assets/profile_pictures/avatar10.jpg")}
+                                  name="Sylvain"
+                                  status="Bénévole"
                                   quote="Soutenir un bénéficiaire était une expérience très enrichissante"/>
-                            <Card image={require("../assets/profile_pictures/avatar8.jpg")}
-                                  text="Joe"
-                                  subtext="Bénéficiaire"
+                            <Card avatar={require("../assets/profile_pictures/avatar8.jpg")}
+                                  name="Joe"
+                                  status="Bénéficiaire"
                                   quote="Je n'aurais pas réussi à obtenir justice sans Cadus"/>
                         </div>
                         <Button className="m-auto block text-cadus-green">Demander une
