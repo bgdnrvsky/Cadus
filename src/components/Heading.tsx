@@ -1,68 +1,43 @@
 /**
  * Properties for the Heading component
  */
-interface HeadingProps extends HeadingDescriptionProps {
+interface HeadingProps {
     /* Title of the section */
     title: string;
-}
 
-
-export default function Heading(props: HeadingProps) {
-    const { title, descriptionLines, underlineSelectors } = props;
-
-    return (
-        <div className="font-display">
-            <p className="mt-4 text-center text-cadus-black font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">{title}</p>
-
-            <HeadingDescription descriptionLines={descriptionLines} underlineSelectors={underlineSelectors}></HeadingDescription>
-        </div>
-    );
-}
-
-interface HeadingDescriptionProps {
-    /* Lets the user choose how lines are separated in the description for line breaks */
-    descriptionLines?: string[];
+    /*  */
+    description: string;
 
     /* Lets the user choose what words to apply underline effect on */
     underlineSelectors?: Set<string>;
 }
 
-function HeadingDescription(props: HeadingDescriptionProps) {
-    const { descriptionLines, underlineSelectors } = props;
 
-    if (descriptionLines) {
-        return (
-            <div
-                className="pt-4 text-center text-wrap text-cadus-grey text-1xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-                {
-                    descriptionLines.map(
-                        (line, index) =>
-                            <p key={index}>
-                                { getUnderlinedDescription(line, underlineSelectors) }
-                            </p>
-                    )
-                }
+export default function Heading(props: HeadingProps) {
+    let { title, description, underlineSelectors } = props;
+
+    return (
+        <div className="font-display text-center md:text-left">
+            <p className="mt-4 text-cadus-black font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl">{title}</p>
+            <div className="pt-4 text-wrap text-cadus-grey text-1xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                <p>{getUnderlinedDescription(description, underlineSelectors)}</p>
             </div>
-        );
-    } else {
-        return (
-          <div></div> // Since HeadingDescription return Element | undefined, can't use it as a block without else branch
-        );
-    }
+        </div>
+    );
 }
 
 /**
  * Applies an underlined style to words that match one of the underline selectors
  *
- * @param line The line to be modified
+ * @param description The text to be modified
  * @param underlineSelectors Collection of sequences to underline
  */
-const getUnderlinedDescription = (line: string, underlineSelectors: Set<string> | undefined) => {
+const getUnderlinedDescription = (description: string, underlineSelectors: Set<string> | undefined) => {
     if (!underlineSelectors) {
-        return line;
+        return description;
     }
 
-    const parts = splitMulti(line, underlineSelectors);
+    const parts = splitMulti(description, underlineSelectors);
 
     return parts.map((part, index) =>
         underlineSelectors.has(part) ? (<span key={index} className="underline underline-offset-4">{part}</span>) : (part)

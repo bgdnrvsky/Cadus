@@ -1,0 +1,17 @@
+
+.brush-underline {
+    @apply relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -0.7rem;
+        left: -0.5rem;
+        right: -0.5rem;
+        height: 0.75rem;
+        z-index: -1;
+        background-image: url("./assets/brushUnderline.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}

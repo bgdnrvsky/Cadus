@@ -1,30 +1,39 @@
+import React from "react";
+
 
 /**
  * Properties given to the Button component
  */
 interface ButtonProps {
-    /* Text displayed on the button */
-    text: string;
-
     /* Callback function when the button is clicked */
-    onClick: () => void;
+    onClick?: () => void;
 
     /* Additional css class' to apply on the button */
     className?: string;
+
+    /* Children HTML elements */
+    children: React.ReactNode;
+
+    disabled?: boolean;
 }
 
 
 export default function Button(props: ButtonProps) {
-    const { text, onClick, className} = props;
+    const { onClick, className, children, disabled } = props;
 
     const styles = className ?? '';
 
     return (
         <button
+            disabled={disabled}
             onClick={onClick}
-            className={`bg-cadus-green hover:bg-cadus-green-hover hover:shadow-2xl px-6 h-14 text-white font-semibold rounded-full ${styles}`}
+            className={`${
+                disabled 
+                    ? "cursor-not-allowed bg-gray-300"
+                    : "bg-transparent hover:text-white hover:bg-cadus-green transition hover:shadow-2xl"
+            } text-cadus-green border-2 border-cadus-green  px-6 h-14 font-semibold rounded-full ${styles}`}
         >
-            {text}
+            {children}
         </button>
     );
 }

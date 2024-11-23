@@ -1,3 +1,5 @@
+import {FormEvent} from "react";
+
 /**
  * Properties for the TextInput component
  */
@@ -10,6 +12,8 @@ interface TextInputProps {
 
     /* input type, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input */
     type: InputType;
+
+    onChange?: (value: string) => void;
 }
 
 export enum InputType {
@@ -19,11 +23,24 @@ export enum InputType {
 }
 
 export default function TextInput(props: TextInputProps) {
-    const {id, label, type} = props;
+    const {id, label, type, onChange} = props;
+
+    /**
+     * Accept both FormEvent and KeyboardEvent to react to change when removing a CTRL+LEFT selection as well
+     */
+    const handleChange = (e: FormEvent<HTMLInputElement> | KeyboardEvent) => {
+        const target = e.target as HTMLInputElement | null;
+
+        if (target && onChange) {
+            onChange(target.value);
+        }
+    }
 
     return (
         <div className="relative mt-3.5">
-            <input id={id} type={InputType[type].toLowerCase()}
+            <input id={id}
+                   onInput={handleChange}
+                   onKeyUp={handleChange} type={InputType[type].toLowerCase()}
                    className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-cadus-green"
                    placeholder="placeholder"/>
             <label htmlFor={id}

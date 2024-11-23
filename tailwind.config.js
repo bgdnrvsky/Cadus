@@ -20,6 +20,7 @@ module.exports = {
       neutral: colors.trueGray,
       gray: colors.coolGray,
       slate: colors.blueGray,
+      blue: colors.blue,
 
       'cadus-black': '#1E1E1E',
       'cadus-grey': '#757575',
