@@ -1,6 +1,6 @@
-import ComboBox, {ComboBoxOption} from "./ComboBox";
-import TextInput, {InputType} from "./TextInput";
-import Button from "./Button";
+import ComboBox, {ComboBoxOption} from "../components/ComboBox";
+import TextInput, {InputType} from "../components/TextInput";
+import Button from "../components/Button";
 import {ChangeEvent, useState} from "react";
 
 

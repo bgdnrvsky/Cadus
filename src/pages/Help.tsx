@@ -3,8 +3,8 @@ import Card from "../components/Card";
 import Button from "../components/Button";
 import ScrollIndicator from "../components/ScrollIndicator";
 import NavBar from "../components/NavBar";
-import PromoteForm from "../components/PromoteForm";
-import DonationForm from "../components/DonationForm";
+import PromoteForm from "../forms/PromoteForm";
+import DonationForm from "../forms/DonationForm";
 
 
 export default function Help() {
