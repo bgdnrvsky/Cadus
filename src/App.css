@@ -1,4 +1,3 @@
-
 .brush-underline {
     @apply relative;
 
@@ -14,4 +13,43 @@
         background-size: cover;
         background-repeat: no-repeat;
     }
+}
+
+.home-logo {
+    height: 400px;
+    width: 300px;
+}
+
+.home-img {
+    height: 450px;
+}
+
+.btn1-custom {
+    background-color: #bea2be;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn1-custom:hover {
+    background-color: #a88ca3;
+    transform: scale(1.05);
+
+}
+
+.btn2-custom {
+    background-color: #94bfa7;
+    color: white;
+    transition: background-color 0.3s;
+
+}
+
+.btn2-custom:hover {
+    background-color: #7aa890;
+    transform: scale(1.05);
+}
+
+.cases:hover{
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(128, 0, 128, 0.2);
+
 }
