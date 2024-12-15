@@ -1,5 +1,3 @@
-import Heading from "../components/Heading";
-import Card from "../components/Card";
 import Footer from "../components/Footer";
 import cadusLogo from "../assets/cadus.svg";
 import img1 from "../assets/home/img1.png";
