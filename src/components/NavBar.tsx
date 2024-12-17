@@ -21,7 +21,7 @@ export default function NavBar() {
                     <NavLinkItem path="/" name="L'association"/>
                     <NavLinkItem path="/nousaider" name="Nous aider"/>
                     <NavLinkItem path="/livredor" name="Livre d'or"/>
-                    <NavLinkItem path="/remerciements" name="Remerciements"/>
+                    <NavLinkItem path="/remerciements" name="Nos actions"/>
                 </div>
             </div>
         </nav>
