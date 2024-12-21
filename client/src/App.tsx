@@ -8,6 +8,7 @@ import Help from "./pages/Help";
 import Book from "./pages/Book";
 import Thanks from "./pages/Thanks";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 
 export default function App() {
@@ -19,8 +20,8 @@ export default function App() {
               <Route path="/livredor" element={<Book/>} />
               <Route path="/remerciements" element={<Thanks/>} />
               <Route path="/login" element={<Login/>} />
+              <Route path="/register" element={<Register/>} />
           </Routes>
-
       </BrowserRouter>
   );
 }
