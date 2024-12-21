@@ -43,7 +43,7 @@ export default function Help() {
 
             <div id="volunteer-section" className="snap-start h-screen w-full flex flex-col justify-center">
                 <div className="flex flex-grow items-center">
-                    <div className="space-y-20">
+                    <div className="space-y-5 md:space-y-20">
                         <div className="font-display text-center">
                             <p className="mt-4 text-cadus-black font-bold text-5xl inline-block brush-underline">S'engager</p>
                             <p className="pt-4 text-wrap text-cadus-grey text-1xl">
@@ -53,7 +53,7 @@ export default function Help() {
                             </p>
                         </div>
 
-                        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 m-10">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 m-10">
                             <Card avatar={require("../assets/profile_pictures/avatar9.jpg")}
                                   name="Marie"
                                   status="Bénéficiaire"
@@ -67,8 +67,7 @@ export default function Help() {
                                   status="Bénéficiaire"
                                   quote="Je n'aurais pas réussi à obtenir justice sans Cadus"/>
                         </div>
-                        <Button className="m-auto block text-cadus-green">Demander une
-                            formation</Button>
+                        <Button className="m-auto block text-cadus-green">Demander une formation</Button>
                     </div>
                 </div>
 
