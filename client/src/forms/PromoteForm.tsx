@@ -32,8 +32,8 @@ export default function PromoteForm() {
     }
 
     return (
-        <form action="" method="POST" className="w-1/2 bg-white space-y-6 rounded-md shadow-lg p-6">
-            <ComboBox id={"cbx-help-type"} label="Type d'aide" onChange={onComboValueChanged}>
+        <form action="" method="POST" className="bg-white space-y-6 rounded-md shadow-lg p-6">
+            <ComboBox id={"cbx-help-type"} label="Type de promotion" onChange={onComboValueChanged}>
                 <ComboBoxOption value="printing">Impression</ComboBoxOption>
                 <ComboBoxOption value="design">Design</ComboBoxOption>
                 <ComboBoxOption value="ads">Publicité</ComboBoxOption>

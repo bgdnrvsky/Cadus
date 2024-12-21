@@ -20,7 +20,7 @@ export default function Card(props: CardProps) {
 
     return (
         <figure className="h-fit rounded-[30px] border bg-cadus-card shadow-md p-5">
-            <blockquote className="text-center text-3xl font-semibold">
+            <blockquote className="text-center text-base md:text-3xl font-semibold">
                 <p>«{quote}»</p>
             </blockquote>
 
