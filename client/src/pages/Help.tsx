@@ -106,25 +106,25 @@ export default function Help() {
             </div>
 
             <div id="donate-section" className="snap-start h-screen w-full flex">
-                <div className="flex items-center flex-row-reverse">
+                <div className="flex flex-col md:flex-row-reverse items-center">
                     <div className="font-display w-1/2">
-                        <p className="mr-32 inline-block mb-6 mt-4 font-bold text-cadus-black text-5xl brush-underline">Donner</p>
-                        <p className="mr-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Chez Cadus, nous nous
+                        <p className="text-center md:mr-32 md:inline-block mb-6 mt-4 font-bold text-cadus-black text-5xl brush-underline">Donner</p>
+                        <p className="text-center md:mr-32 pt-4 md:text-left text-wrap text-cadus-grey text-1xl">Chez Cadus, nous nous
                             engageons à soutenir les victimes d'injustice médicale, qui souffrent souvent en silence.
                             Grâce à votre don, nous pouvons offrir des consultations juridiques, un soutien
                             psychologique et des campagnes de sensibilisation pour faire entendre leur voix. Chaque euro
                             compte et peut transformer des vies.</p>
-                        <p className="mr-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Votre contribution permet
+                        <p className="hidden md:block mr-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Votre contribution permet
                             également de plaider pour des changements essentiels dans le système de santé. En nous
                             aidant, vous participez à la défense des droits des victimes et à l’amélioration des
                             pratiques médicales. Ensemble, nous pouvons apporter une aide concrète à ceux qui en ont
                             besoin.</p>
-                        <p className="mr-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Faites un don aujourd'hui
+                        <p className="hidden md:block mr-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Faites un don aujourd'hui
                             pour faire la différence. Votre générosité montre que chaque vie mérite d’être protégée et
                             respectée. Merci de votre soutien dans cette lutte pour la justice et l’espoir.</p>
                     </div>
 
-                    <div className="relative flex-1 flex justify-center">
+                    <div className="relative w-full mt-40 md:mt-0 md:flex-1 flex justify-center">
                         <div className="bg-cadus-green rounded-r-xl absolute -rotate-3 inset-x-0 top-1/2 transform -translate-y-1/2 -translate-x-16 w-[101%] h-[120%] -z-10"></div>
                         <DonationForm/>
                     </div>
