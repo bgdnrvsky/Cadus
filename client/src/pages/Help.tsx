@@ -15,25 +15,25 @@ export default function Help() {
                 <NavBar/>
                 <Carousel infinite={true}>
                     <CarouselSlide image={require("../assets/volunteer.jpg")}>
-                        <div className="flex flex-col items-start space-y-6">
-                            <h1 className="text-6xl text-white font-bold">Rejoindre Cadus.</h1>
-                            <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
+                        <div className="flex flex-col items-center md:items-start space-y-6">
+                            <h1 className="text-6xl text-white text-center font-bold">Rejoindre Cadus.</h1>
+                            <p className="text-lg text-white text-center md:text-left w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
                             <a href="#volunteer-section"><Button className="text-white">En savoir plus</Button></a>
                         </div>
                     </CarouselSlide>
 
                     <CarouselSlide image={require("../assets/promote.jpg")}>
-                        <div className="flex flex-col items-start space-y-6">
-                            <h1 className="text-6xl text-white font-bold">Promouvoir Cadus.</h1>
-                            <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
+                        <div className="flex flex-col items-center md:items-start space-y-6">
+                            <h1 className="text-6xl text-white text-center font-bold">Promouvoir Cadus.</h1>
+                            <p className="text-lg text-white text-center md:text-left w-2/3">Acme Outdoors is an outdoor and adventure shop located in the Boathouse District in Oklahoma City.</p>
                             <a href="#promote-section"><Button className="text-white">Comment faire ?</Button></a>
                         </div>
                     </CarouselSlide>
 
                     <CarouselSlide image={require("../assets/donate.jpg")}>
-                        <div className="flex flex-col items-start space-y-6">
-                            <h1 className="text-6xl text-white font-bold">Soutenir Cadus.</h1>
-                            <p className="text-lg text-white w-2/3">Acme Outdoors is an outdoor and adventure shop
+                        <div className="flex flex-col items-center md:items-start space-y-6">
+                            <h1 className="text-6xl text-white text-center font-bold">Soutenir Cadus.</h1>
+                            <p className="text-lg text-white text-center md:text-left w-2/3">Acme Outdoors is an outdoor and adventure shop
                                 located in the Boathouse District in Oklahoma City.</p>
                             <a href="#donate-section"><Button className="text-white">J'apporte mon soutien</Button></a>
                         </div>
