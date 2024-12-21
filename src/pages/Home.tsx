@@ -5,6 +5,7 @@ import img2 from "../assets/home/img2.jpg";
 import img3 from "../assets/home/img3.jpeg";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import LinkButton from "../components/LinkButton";
 
 export default function Home() {
   const assistanceList = [
@@ -49,22 +50,8 @@ export default function Home() {
       </div>
 
       <div className="flex justify-center gap-20">
-        <Link to="/nousaider">
-          <button
-            type="button"
-            className="btn1-custom w-36 py-2 px-4 text-white text-center font-semibold shadow-md rounded-lg"
-          >
-            Nous aider
-          </button>
-        </Link>
-        <Link to="/livredor">
-          <button
-            type="button"
-            className="btn2-custom w-36 py-2 px-4 text-white text-center font-semibold shadow-md rounded-lg"
-          >
-            Laissez un mot
-          </button>
-        </Link>
+          <LinkButton to="/nousaider" className="w-40">Nous aider</LinkButton>
+          <LinkButton to="/livredor" className="w-40">Laisser un mot</LinkButton>
       </div>
 
       <div className="flex justify-around mt-24">
