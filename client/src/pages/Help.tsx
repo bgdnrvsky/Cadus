@@ -75,28 +75,30 @@ export default function Help() {
             </div>
 
             <div id="promote-section" className="snap-start h-screen w-full flex flex-col justify-center">
-                <div className="flex flex-grow items-center">
+                <div className="flex flex-col md:flex-row flex-grow items-center">
                     <div className="font-display w-1/2">
-                        <p className="ml-32 mb-6 mt-4 inline-block font-bold text-cadus-black text-5xl brush-underline">Promouvoir</p>
-                        <p className="ml-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Êtes-vous artiste,
+                        <p className="text-center md:ml-32 mb-6 mt-4 md:inline-block font-bold text-cadus-black text-5xl brush-underline">Promouvoir</p>
+                        <p className="hidden md:block ml-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Êtes-vous artiste,
                             designer ou imprimeur ? Souhaitez-vous mettre votre talent au service d’une cause qui a du
                             sens ? Nous vous invitons à rejoindre Cadus, une initiative qui soutient les personnes
                             confrontées à des injustices médicales.</p>
-                        <p className="ml-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Votre créativité et votre
+                        <p className="hidden md:block ml-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Votre créativité et votre
                             expertise pourraient faire une réelle différence. Que vous souhaitiez collaborer directement
                             ou que vous ayez des idées pour promouvoir notre mission, chaque contribution compte. Que ce
                             soit par le biais de vos réseaux, de vos créations ou d'autres initiatives, votre aide
                             serait précieuse.</p>
-                        <p className="ml-32 pt-4 text-left text-wrap text-cadus-grey text-1xl">Si vous êtes intéressé(e)
+                        <p className="md:ml-32 pt-4 text-center md:text-left text-wrap text-cadus-grey text-1xl">Si vous êtes intéressé(e)
                             à offrir votre soutien pour la promotion de Cadus d’une manière ou d’une autre, n’hésitez
                             pas à nous contacter dès maintenant. Ensemble, nous pouvons créer un impact positif et faire
                             avancer cette cause importante !
                         </p>
                     </div>
 
-                    <div className="relative flex-1 flex justify-center">
+                    <div className="relative w-full mt-40 md:mt-0 md:flex-1 flex justify-center">
                         <div className="bg-cadus-green rounded-l-xl absolute inset-x-0 top-1/2 transform -translate-y-1/2 translate-x-16 rotate-3 w-[101%] h-[120%] -z-10"></div>
-                        <PromoteForm/>
+                        <div className="w-3/4 md:w-1/2">
+                            <PromoteForm/>
+                        </div>
                     </div>
                 </div>
 
