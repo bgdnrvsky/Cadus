@@ -20,6 +20,7 @@ export enum InputType {
     Email,
     Tel,
     Text,
+    Password,
 }
 
 export default function TextInput(props: TextInputProps) {

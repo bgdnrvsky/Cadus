@@ -22,6 +22,7 @@ export default function NavBar() {
                     <NavLinkItem path="/nousaider" name="Nous aider"/>
                     <NavLinkItem path="/livredor" name="Livre d'or"/>
                     <NavLinkItem path="/remerciements" name="Remerciements"/>
+                    <NavLinkItem path="/login" name="Connexion"/>
                 </div>
             </div>
         </nav>
