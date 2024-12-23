@@ -31,7 +31,7 @@ export default function Button(props: ButtonProps) {
                 disabled 
                     ? "cursor-not-allowed bg-gray-300"
                     : "bg-transparent hover:text-white hover:bg-cadus-green transition hover:shadow-2xl"
-            } text-cadus-green border-2 border-cadus-green  px-6 h-14 font-semibold rounded-full ${styles}`}
+            } text-cadus-green border-2 border-cadus-green px-6 h-14 font-semibold rounded-full ${styles}`}
         >
             {children}
         </button>

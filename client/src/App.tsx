@@ -9,6 +9,7 @@ import Book from "./pages/Book";
 import Thanks from "./pages/Thanks";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Survey from "./pages/Survey";
 
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
               <Route path="/remerciements" element={<Thanks/>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/register" element={<Register/>} />
+              <Route path="/survey" element={<Survey/>} />
           </Routes>
       </BrowserRouter>
   );
