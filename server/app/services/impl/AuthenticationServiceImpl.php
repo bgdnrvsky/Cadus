@@ -14,14 +14,20 @@ class AuthenticationServiceImpl implements IAuthenticationService
         $this->memberRepository = $memberRepository;
     }
 
-    public function register(MemberEntity $member)
-    {
-        // 1. Verify if the user does not already exist
+    /**
+     * @throws \Exception when the member already exists
+     */
+    public function register(MemberEntity $member): void {
+        // 1. Verify if the user already exists
         if ($this->memberRepository->memberExists($member)) {
-
+            throw new \Exception("Member already exists");
         }
 
         // 2. Delegate saving the user into the database
         $this->memberRepository->registerMember($member);
+    }
+
+    public function login(MemberEntity $member) {
+        return $this->memberRepository->credentialsMatch($member);
     }
 }

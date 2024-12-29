@@ -6,6 +6,13 @@ use Cadus\core\Router;
 use Cadus\repositories\impl\mariadb\MariaDBMemberRepository;
 use Cadus\services\impl\AuthenticationServiceImpl;
 
+require_once 'vendor/autoload.php';
+
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Methods: GET, POST, DELETE');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Content-Type: application/json');
+
 $injector = new DependencyInjection();
 
 //
@@ -28,17 +35,17 @@ $injector->set('auth-controller', function($d) {
 //
 $router = new Router();
 
-$router->addRoute('POST', '/signup', function() use ($injector) {
+$router->addRoute('POST', '/signup', function($data) use ($injector) {
     $controller = $injector->get('auth-controller');
-    $controller->register();
+    return $controller->register($data);
 });
 
-$router->addRoute('POST', '/signin', function() use ($injector) {
+$router->addRoute('POST', '/signin', function($data) use ($injector) {
     $controller = $injector->get('auth-controller');
-    $controller->login();
+    return $controller->login($data);
 });
 
 //
 // 3. Dispatch HTTP requests to controllers
 //
-$router->route($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+echo $router->route($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

@@ -94,9 +94,10 @@ export default function Survey() {
                     </div>
 
                     <div className="flex items-center justify-between w-full space-x-4">
-                        <CheckBox id="cb-status">
-                            Êtes-vous satisfait de votre status social ?
-                        </CheckBox>
+                        <ComboBox id="cb-status" label="Êtes-vous satisfait de votre status social ?">
+                            <ComboBoxOption value={"cb-status-no"}>Non</ComboBoxOption>
+                            <ComboBoxOption value={"cb-status-yes"}>Oui</ComboBoxOption>
+                        </ComboBox>
                         <SubmitOnceButton onSubmit={() => {
                         }}/>
                     </div>
