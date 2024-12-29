@@ -2,7 +2,7 @@
 
 namespace Cadus\models\dto;
 
-class MemberDto
+class CredentialsDto
 {
     private string $login;
     private string $password;

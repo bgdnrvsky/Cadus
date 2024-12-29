@@ -10,20 +10,21 @@ import Thanks from "./pages/Thanks";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Survey from "./pages/Survey";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 export default function App() {
-  return (
-      <BrowserRouter>
-          <Routes>
-              <Route path="/" element={<Home/>} />
-              <Route path="/nousaider" element={<Help/>} />
-              <Route path="/livredor" element={<Book/>} />
-              <Route path="/remerciements" element={<Thanks/>} />
-              <Route path="/login" element={<Login/>} />
-              <Route path="/register" element={<Register/>} />
-              <Route path="/survey" element={<Survey/>} />
-          </Routes>
-      </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home/>} />
+                <Route path="/nousaider" element={<Help/>} />
+                <Route path="/livredor" element={<Book/>} />
+                <Route path="/remerciements" element={<Thanks/>} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/register" element={<Register/>} />
+                <Route path="/survey" element={<ProtectedRoute><Survey/></ProtectedRoute>} />
+            </Routes>
+        </BrowserRouter>
+    );
 }

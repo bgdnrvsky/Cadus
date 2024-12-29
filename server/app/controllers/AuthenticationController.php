@@ -2,7 +2,7 @@
 
 namespace Cadus\controllers;
 
-use Cadus\models\entities\MemberEntity;
+use Cadus\models\dto\CredentialsDto;
 use Cadus\services\IAuthenticationService;
 use function Cadus\controllers\responses\error;
 use function Cadus\controllers\responses\success;
@@ -20,13 +20,14 @@ class AuthenticationController
             return error("Invalid data sent");
         }
 
-        $member = new MemberEntity(
+        $memberCreds = new CredentialsDto(
             $data['register-email'],
-            $data['register-password'],
+            $data['register-password']
         );
 
         // 2. Delegate user verification and registration
-        $this->authService->register($member);
+        $this->authService->register($memberCreds);
+
         return success("Member successfully registered");
     }
 
@@ -35,17 +36,24 @@ class AuthenticationController
             return error("Invalid data sent");
         }
 
-        $member = new MemberEntity(
+        $creds = new CredentialsDto(
             $data['login-email'],
             $data['login-password']
         );
 
         // 2. Delegate user & password verification  to the auth service
-        if ($this->authService->login($member)) {
-            return success("Login successful");
-        } else {
+        $member = $this->authService->login($creds);
+
+        if (!$member) {
             return error("Invalid credentials", 401);
         }
+
+        $additionalData = [
+            "memberId" => $member->getId(),
+            "memberEmail" => $member->getLogin()
+        ];
+
+        return success("Login successful", $additionalData);
     }
 
     private function verifyLoginData(array $data): bool {

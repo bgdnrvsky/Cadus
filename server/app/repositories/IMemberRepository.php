@@ -6,11 +6,11 @@ namespace Cadus\repositories;
 use Cadus\models\entities\MemberEntity;
 
 interface IMemberRepository {
-    public function registerMember(MemberEntity $member);
+    public function registerMember(string $email, string $password);
 
-    public function memberExists(MemberEntity $member) : bool;
+    public function memberExists(string $email) : bool;
 
-    public function credentialsMatch(MemberEntity $creds) : bool;
+    public function findMemberByEmail(string $email) : ?MemberEntity;
 
     public function isAdministrator(/* */);
 }

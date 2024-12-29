@@ -4,9 +4,8 @@ import ISignupData from "../dto/responses/ISignupData";
 import ISigninData from "../dto/responses/ISigninData";
 import ISigninCredentials from "../dto/sent/ISigninCredentials";
 import ISignupCredentials from "../dto/sent/ISignupCredentials";
+import {resolveEndpoint} from "./endpoints";
 
-
-const BASE_URI: string = "http://localhost:8080";
 
 
 /**
@@ -17,7 +16,7 @@ axios.defaults.validateStatus = status => status >= 200 && status <= 500;
 
 
 export async function signup(creds: ISignupCredentials): Promise<IApiResponse<ISignupData>> {
-    const endpoint: string = BASE_URI + "/signup";
+    const endpoint: string = resolveEndpoint("/signup");
 
     const response = await axios.post<IApiResponse<ISignupData>>(
         endpoint,
@@ -38,7 +37,7 @@ export async function signup(creds: ISignupCredentials): Promise<IApiResponse<IS
 }
 
 export async function signin(creds: ISigninCredentials): Promise<IApiResponse<ISigninData>> {
-    const endpoint: string = BASE_URI + "/signin";
+    const endpoint: string = resolveEndpoint("/signin");
 
     const response = await axios.post<IApiResponse<ISigninData>>(
         endpoint,
@@ -47,6 +46,7 @@ export async function signin(creds: ISigninCredentials): Promise<IApiResponse<IS
             "login-password": creds.passw
         }),
         {
+            withCredentials: true,
             headers: {
                 "Content-Type": "text/plain"
             }

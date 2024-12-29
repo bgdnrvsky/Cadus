@@ -1,7 +1,7 @@
 
 interface ISigninData {
-    userId: string;
-    email: string;
+    memberId: string;
+    memberEmail: string;
 }
 
 export default ISigninData;

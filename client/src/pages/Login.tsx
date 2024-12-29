@@ -4,29 +4,29 @@ import Button from "../components/Button";
 import cadusLogo from "../assets/cadus.svg";
 import {FormEvent, useState} from "react";
 import {isEmailValid} from "../utils/Email";
-import ISigninCredentials from "../api/dto/sent/ISigninCredentials";
 import IApiResponse from "../api/dto/responses/IApiResponse";
 import ISigninData from "../api/dto/responses/ISigninData";
-import {signin} from "../api/requests/auth";
 import Banner, {BannerType} from "../components/Banner";
+import {useAuth} from "../hooks/useAuth";
 
 
 export default function Login() {
+    const { login } = useAuth();
+
     const [email, setEmail] = useState("");
     const [passw, setPassw] = useState("");
-    const [signinResponse, setSigninResponse] = useState<IApiResponse<ISigninData>>();
+    const [signinError, setSigninError] = useState("");
 
     const submitLogin = async (e: FormEvent) => {
         e.preventDefault();
 
-        const creds: ISigninCredentials = {
-            email,
-            passw
-        };
+        const response: IApiResponse<ISigninData> = await login(email, passw);
 
-        const response: IApiResponse<ISigninData> = await signin(creds);
-
-        setSigninResponse(response);
+        if (response.status === 'success') {
+            window.location.href = "/survey";
+        } else {
+            setSigninError(response.message);
+        }
     }
 
     return (
@@ -38,9 +38,9 @@ export default function Login() {
                          alt="Logo Cadus"/>
 
                     {
-                        signinResponse &&
-                        <Banner type={signinResponse.status === 'success' ? BannerType.Success : BannerType.Error}>
-                            {signinResponse.message}
+                        signinError &&
+                        <Banner type={BannerType.Error}>
+                            {signinError}
                         </Banner>
                     }
 

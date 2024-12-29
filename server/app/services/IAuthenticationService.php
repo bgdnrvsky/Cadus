@@ -2,10 +2,11 @@
 
 namespace Cadus\services;
 
+use Cadus\models\dto\CredentialsDto;
 use Cadus\models\entities\MemberEntity;
 
 interface IAuthenticationService {
-    public function register(MemberEntity $member) : void;
+    public function register(CredentialsDto $memberCreds) : void;
 
-    public function login(MemberEntity $member);
+    public function login(CredentialsDto $creds) : ?MemberEntity;
 }

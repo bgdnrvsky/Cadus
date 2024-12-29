@@ -8,44 +8,39 @@ use Cadus\repositories\IMemberRepository;
 
 class MariaDBMemberRepository extends AbstractRepository implements IMemberRepository
 {
-
-    /**
-     * @param MemberEntity $member
-     * @return void
-     * @throws \PDOException
-     */
-    public function registerMember(MemberEntity $member): void
+    public function registerMember(string $email, string $password): void
     {
         $statement = $this->pdo->prepare("INSERT INTO MEMBERS (login, password, created_at) VALUES (:login, :password, NOW())");
-        $statement->bindValue(":login", $member->getLogin());
-        $statement->bindValue(":password", password_hash($member->getPassword(), PASSWORD_DEFAULT));
+        $statement->bindValue(":login", $email);
+        $statement->bindValue(":password", password_hash($password, PASSWORD_DEFAULT));
         $statement->execute();
     }
 
-    public function memberExists(MemberEntity $member) : bool
+    public function memberExists(string $email) : bool
     {
-        $statement = $this->memberByLoginStatement($member->getLogin());
-        return $statement->rowCount() > 0;
+        return $this->findMemberByEmail($email) != null;
     }
 
-    public function credentialsMatch(MemberEntity $creds) : bool
-    {
-        $statement = $this->memberByLoginStatement($creds->getLogin());
+    public function findMemberByEmail(string $email): ?MemberEntity {
+        $statement = $this->pdo->prepare("SELECT * FROM MEMBERS WHERE login = :login");
+        $statement->bindValue(":login", $email);
+        $statement->execute();
         $member = $statement->fetch();
 
-        return $member && password_verify($creds->getPassword(), $member['password']);
+        if (!$member) {
+            return null;
+        }
+
+        return new MemberEntity(
+            $member['member_id'],
+            $member['login'],
+            $member['password'],
+            $member['created_at']
+        );
     }
 
     public function isAdministrator()
     {
         // TODO: Implement isAdministrator() method.
-    }
-
-    private function memberByLoginStatement(string $login) : \PDOStatement {
-        $statement = $this->pdo->prepare("SELECT * FROM MEMBERS WHERE login = :login");
-        $statement->bindValue(":login", $login);
-        $statement->execute();
-
-        return $statement;
     }
 }

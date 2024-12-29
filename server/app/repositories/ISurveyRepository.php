@@ -2,7 +2,7 @@
 
 namespace Cadus\repositories;
 
-interface IQuestionRepository
+interface ISurveyRepository
 {
     public function getQuestions();
 
