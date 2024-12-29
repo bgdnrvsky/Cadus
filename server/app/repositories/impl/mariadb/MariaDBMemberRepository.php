@@ -24,19 +24,13 @@ class MariaDBMemberRepository extends AbstractRepository implements IMemberRepos
 
     public function memberExists(MemberEntity $member) : bool
     {
-        $statement = $this->pdo->prepare("SELECT * FROM MEMBERS WHERE login = :login");
-        $statement->bindValue(":login", $member->getLogin());
-        $statement->execute();
-
+        $statement = $this->memberByLoginStatement($member->getLogin());
         return $statement->rowCount() > 0;
     }
 
     public function credentialsMatch(MemberEntity $creds) : bool
     {
-        $statement = $this->pdo->prepare("SELECT * FROM MEMBERS WHERE login = :login");
-        $statement->bindValue(":login", $creds->getLogin());
-        $statement->execute();
-
+        $statement = $this->memberByLoginStatement($creds->getLogin());
         $member = $statement->fetch();
 
         return $member && password_verify($creds->getPassword(), $member['password']);
@@ -45,5 +39,13 @@ class MariaDBMemberRepository extends AbstractRepository implements IMemberRepos
     public function isAdministrator()
     {
         // TODO: Implement isAdministrator() method.
+    }
+
+    private function memberByLoginStatement(string $login) : \PDOStatement {
+        $statement = $this->pdo->prepare("SELECT * FROM MEMBERS WHERE login = :login");
+        $statement->bindValue(":login", $login);
+        $statement->execute();
+
+        return $statement;
     }
 }

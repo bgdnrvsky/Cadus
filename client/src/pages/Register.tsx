@@ -7,6 +7,10 @@ import {FormEvent, useState} from "react";
 import {isEmailValid} from "../utils/Email";
 import Banner, {BannerType} from "../components/Banner";
 import {useFormStatus} from "react-dom";
+import {signup} from "../api/requests/auth";
+import IApiResponse from "../api/dto/responses/IApiResponse";
+import ISignupData from "../api/dto/responses/ISignupData";
+import ISignupCredentials from "../api/dto/sent/ISignupCredentials";
 
 
 export default function Register() {
@@ -14,27 +18,23 @@ export default function Register() {
     const [passw, setPassw] = useState("");
     const [repassw, setRepassw] = useState("");
     const [acceptedTerms, setAcceptedTerms] = useState(false);
-    const [registerResponse, setRegisterResponse] = useState<{status: string, message: string}>();
+    const [signupResponse, setSignupResponse] = useState<IApiResponse<ISignupData>>();
 
     const { pending } = useFormStatus();
 
     const submitRegistration = async (e: FormEvent) => {
         e.preventDefault();
 
-        const response = await fetch("http://localhost:8080/signup", {
-            method: "POST",
-            headers: { "Content-Type": "text/plain" }, // use text/plain to prevent CORS protocol sending OPTIONS requests
-            body: JSON.stringify({
-                "register-email": email,
-                "register-password": passw,
-                "register-password-confirm": repassw,
-                "accept-terms": acceptedTerms
-            })
-        });
+        const creds: ISignupCredentials = {
+            email,
+            passw,
+            repassw,
+            acceptedTerms
+        };
 
-        response.json().then((json) => {
-            setRegisterResponse({status: json['status'], message: json['message']});
-        });
+        const response: IApiResponse<ISignupData> = await signup(creds);
+
+        setSignupResponse(response);
     }
 
     return (
@@ -46,9 +46,9 @@ export default function Register() {
                          alt="Logo Cadus"/>
 
                     {
-                        registerResponse &&
-                        <Banner type={registerResponse.status === 'success' ? BannerType.Success : BannerType.Error}>
-                            {registerResponse.message}
+                        signupResponse &&
+                        <Banner type={signupResponse.status === 'success' ? BannerType.Success : BannerType.Error}>
+                            {signupResponse.message}
                         </Banner>
                     }
 

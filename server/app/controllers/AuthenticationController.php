@@ -44,7 +44,7 @@ class AuthenticationController
         if ($this->authService->login($member)) {
             return success("Login successful");
         } else {
-            return error("Invalid credentials");
+            return error("Invalid credentials", 401);
         }
     }
 
