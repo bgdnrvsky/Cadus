@@ -25,7 +25,7 @@ class MariaDBSurveyRepository extends AbstractRepository implements ISurveyRepos
             ORDER BY q.question_id, aa.allowed_answer_id"
         );
 
-        $statement->bindValue(':member_id', $member->getId());
+        $statement->bindValue(':member_id', $member->getId(), PDO::PARAM_INT);
         $statement->execute();
 
         $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -56,16 +56,16 @@ class MariaDBSurveyRepository extends AbstractRepository implements ISurveyRepos
             "INSERT INTO ANSWER (allowed_answer_id, question_id) VALUES (:allowed_answer_id, :question_id)"
         );
 
-        $statement->bindValue(":allowed_answer_id", $answer->getAnswerId());
-        $statement->bindValue(":question_id", $answer->getQuestionId());
+        $statement->bindValue(":allowed_answer_id", $answer->getAnswerId(), PDO::PARAM_INT);
+        $statement->bindValue(":question_id", $answer->getQuestionId(), PDO::PARAM_INT);
         $statement->execute();
 
         $statement = $this->pdo->prepare(
             "INSERT INTO HAS_ANSWERED (member_id, question_id, answered_at) VALUES (:member_id, :question_id, NOW())"
         );
 
-        $statement->bindValue(":member_id", $member->getId());
-        $statement->bindValue(":question_id", $answer->getQuestionId());
+        $statement->bindValue(":member_id", $member->getId(), PDO::PARAM_INT);
+        $statement->bindValue(":question_id", $answer->getQuestionId(), PDO::PARAM_INT);
         $statement->execute();
     }
 
@@ -99,7 +99,7 @@ class MariaDBSurveyRepository extends AbstractRepository implements ISurveyRepos
             WHERE a.question_id = :questionId AND a.answer_text = :answerText"
         );
 
-        $statement->bindValue(':questionId', $question->getId());
+        $statement->bindValue(':questionId', $question->getId(), PDO::PARAM_INT);
         $statement->bindValue(':answerText', $answerText);
         $statement->execute();
 
@@ -124,8 +124,8 @@ class MariaDBSurveyRepository extends AbstractRepository implements ISurveyRepos
              WHERE member_id = :member_id AND question_id = :question_id"
         );
 
-        $statement->bindValue(':member_id', $member->getId());
-        $statement->bindValue(':question_id', $question->getId());
+        $statement->bindValue(':member_id', $member->getId(), PDO::PARAM_INT);
+        $statement->bindValue(':question_id', $question->getId(), PDO::PARAM_INT);
         $statement->execute();
 
         return $statement->rowCount() > 0;
