@@ -7,12 +7,17 @@ import ISignupCredentials from "../dto/sent/ISignupCredentials";
 import {resolveEndpoint} from "./endpoints";
 
 
+axios.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.status === axios.HttpStatusCode.Unauthorized) {
+            localStorage.removeItem("account");
+            window.location.reload();
+        }
 
-/**
- * Do not treat expected response codes from the server as exceptions
- * @param status
- */
-axios.defaults.validateStatus = status => status >= 200 && status <= 500;
+        return Promise.reject(error);
+    }
+);
 
 
 export async function signup(creds: ISignupCredentials): Promise<IApiResponse<ISignupData>> {

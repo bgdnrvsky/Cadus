@@ -12,19 +12,10 @@ import QuestionForm from "../forms/QuestionForm";
 export default function Survey() {
     const {account} = useAccount();
 
-    const [surveyQuestions, setSurveyQuestions] = useState<ISurveyQuestion[]>();
-    const [surveyFetchError, setSurveyFetchError] = useState("");
-
-    const handleResponse = (response: IApiResponse<ISurveyQuestion[]>) => {
-        if (response.status === 'success' && response.data) {
-            setSurveyQuestions(response.data)
-        } else {
-            setSurveyFetchError(response.message);
-        }
-    }
+    const [questionsResponse, setQuestionsResponse] = useState<IApiResponse<ISurveyQuestion[]>>();
 
     useEffect(() => {
-        fetchQuestions().then(handleResponse)
+        fetchQuestions().then(setQuestionsResponse)
     }, []);
 
     return (
@@ -36,16 +27,17 @@ export default function Survey() {
             <div className="h-screen flex justify-center items-center">
                 <div className="flex flex-col items-center w-1/2 space-y-10">
 
-                    {!surveyFetchError && !surveyQuestions && <Spinner/>}
+                    {!questionsResponse && <Spinner/>}
 
-                    {surveyFetchError && <Banner type={BannerType.Error}>{surveyFetchError}</Banner>}
-
-                    {
-                        !surveyFetchError && surveyQuestions && surveyQuestions.map((question, index) => {
-                                return <QuestionForm question={question} key={index}/>;
-                            }
+                    {questionsResponse && (
+                        questionsResponse.status === 'error' ? (
+                            <Banner type={BannerType.Error}>{questionsResponse.message}</Banner>
+                        ) : (
+                            questionsResponse.data?.map((question, index) => (
+                                <QuestionForm question={question} key={index} />
+                            ))
                         )
-                    }
+                    )}
 
                 </div>
             </div>
