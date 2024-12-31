@@ -2,7 +2,7 @@
 
 namespace Cadus\controllers\responses;
 
-function error($message, $code = 500, $additionalData = null): false|string {
+function error(string $message, int $code = 500, ?array $additionalData = null): false|string {
     $response = array(
         'status' => 'error',
         'message' => $message,

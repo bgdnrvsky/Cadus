@@ -10,7 +10,6 @@ export const useAccountStore = create(
             },
             (set) => ({
                 setAccount: (account: ISigninData | null) => {
-                    console.log(account);
                     set({ account });
                 },
             })

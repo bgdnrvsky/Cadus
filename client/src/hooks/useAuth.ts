@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import {useAccountStore} from "./useAccountStore";
-import {signin} from "../api/requests/auth";
+import {signin, signout} from "../api/requests/auth";
 import ISigninCredentials from "../api/dto/sent/ISigninCredentials";
 import IApiResponse from "../api/dto/responses/IApiResponse";
 import ISigninData from "../api/dto/responses/ISigninData";
@@ -38,8 +38,13 @@ export function useAuth() {
         return response;
     }, [setAccount]);
 
+    const logout = useCallback(async () => {
+        signout().then(() => setAccount(null));
+    }, [setAccount]);
+
     return {
         status,
         login,
+        logout
     };
 }

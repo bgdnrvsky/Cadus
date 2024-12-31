@@ -2,9 +2,13 @@
 
 namespace Cadus\controllers;
 
+use Cadus\core\attributes\RequestMapping;
+use Cadus\exceptions\DtoInvalidFieldValue;
 use Cadus\models\dto\CredentialsDto;
+use Cadus\models\dto\mappers\impl\LoginMapper;
+use Cadus\models\dto\mappers\impl\RegisterMapper;
+use Cadus\models\dto\RegisterDto;
 use Cadus\services\IAuthenticationService;
-use function Cadus\controllers\responses\error;
 use function Cadus\controllers\responses\success;
 
 class AuthenticationController
@@ -15,38 +19,25 @@ class AuthenticationController
         $this->authService = $authenticationService;
     }
 
-    public function register(array $data): string|false {
-        if (!$this->verifyRegisterData($data)) {
-            return error("Invalid data sent");
-        }
+    #[RequestMapping(path: "/signup", method: "POST", dtoMapper: RegisterMapper::class)]
+    public function register(RegisterDto $data): string|false {
+        $this->checkRegisterData($data);
 
         $memberCreds = new CredentialsDto(
-            $data['register-email'],
-            $data['register-password']
+            $data->getLogin(),
+            $data->getPassword()
         );
 
-        // 2. Delegate user verification and registration
         $this->authService->register($memberCreds);
 
         return success("Member successfully registered");
     }
 
-    public function login(array $data): string|false {
-        if (!$this->verifyLoginData($data)) {
-            return error("Invalid data sent");
-        }
+    #[RequestMapping(path: "/signin", method: "POST", dtoMapper: LoginMapper::class)]
+    public function login(CredentialsDto $creds): string|false {
+        $this->checkLoginData($creds);
 
-        $creds = new CredentialsDto(
-            $data['login-email'],
-            $data['login-password']
-        );
-
-        // 2. Delegate user & password verification  to the auth service
         $member = $this->authService->login($creds);
-
-        if (!$member) {
-            return error("Invalid credentials", 401);
-        }
 
         $additionalData = [
             "memberId" => $member->getId(),
@@ -56,26 +47,38 @@ class AuthenticationController
         return success("Login successful", $additionalData);
     }
 
-    private function verifyLoginData(array $data): bool {
-        $original_email = $data['login-email'] ?? '';
-        $sanitize_email = filter_var($original_email, FILTER_SANITIZE_EMAIL);
+    #[RequestMapping(path: "/logout", method: "DELETE")]
+    public function logout(): string|false {
+        $this->authService->logout();
 
-        if ($sanitize_email !== $original_email || !filter_var($original_email, FILTER_VALIDATE_EMAIL)) {
-            return false;
-        }
-
-        return $data['login-password'] && trim($data['login-password']) !== '';
+        return success("Logout successful");
     }
 
-    private function verifyRegisterData(array $data) : bool {
-        $original_email = $data['register-email'] ?? '';
-        $sanitize_email = filter_var($original_email, FILTER_SANITIZE_EMAIL);
+    private function checkLoginData(CredentialsDto $data): void {
+        $sanitize_email = filter_var($data->getLogin(), FILTER_SANITIZE_EMAIL);
 
-        if ($sanitize_email !== $original_email || !filter_var($original_email, FILTER_VALIDATE_EMAIL)) {
-            return false;
+        if ($sanitize_email !== $data->getLogin() || !filter_var($data->getLogin(), FILTER_VALIDATE_EMAIL)) {
+            throw new DtoInvalidFieldValue("login-email");
         }
 
-        return $data["register-password-confirm"] === $data["register-password"]
-            && $data["accept-terms"] === true;
+        if (trim($data->getPassword()) === "") {
+            throw new DtoInvalidFieldValue("login-password");
+        }
+    }
+
+    private function checkRegisterData(RegisterDto $data): void {
+        $sanitize_email = filter_var($data->getLogin(), FILTER_SANITIZE_EMAIL);
+
+        if ($sanitize_email !== $data->getLogin() || !filter_var($data->getLogin(), FILTER_VALIDATE_EMAIL)) {
+            throw new DtoInvalidFieldValue("register-email");
+        }
+
+        if (trim($data->getPassword()) === ""|| $data->getPassword() !== $data->getPasswordConfirm()) {
+            throw new DtoInvalidFieldValue("register-password-confirm");
+        }
+
+        if ($data->getAcceptTerms() !== true) {
+            throw new DtoInvalidFieldValue("accept-terms");
+        }
     }
 }

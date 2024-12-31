@@ -2,6 +2,10 @@
 
 namespace Cadus\controllers;
 
+use Cadus\core\attributes\RequestMapping;
+use Cadus\exceptions\NotAuthenticatedException;
+use Cadus\models\dto\AnswerDto;
+use Cadus\models\dto\mappers\impl\AnswerMapper;
 use Cadus\services\ISurveyService;
 use function Cadus\controllers\responses\success;
 
@@ -13,9 +17,33 @@ class SurveyController
         $this->surveyService = $surveyService;
     }
 
-    public function getQuestions() {
-        $questions = $this->surveyService->getQuestions();
+    #[RequestMapping(path: "/questions", method: "GET")]
+    public function getQuestions(): false|string
+    {
+        session_start();
+
+        if (!isset($_SESSION['authenticated_member'])) {
+            throw new NotAuthenticatedException();
+        }
+
+        $member = $_SESSION['authenticated_member'];
+
+        $questions = $this->surveyService->getQuestions($member);
 
         return success("", $questions);
+    }
+
+    #[RequestMapping(path: "/answer", method: "POST", dtoMapper: AnswerMapper::class)]
+    public function registerAnswer(AnswerDto $answer): false|string
+    {
+        session_start();
+
+        if (!isset($_SESSION['authenticated_member'])) {
+            throw new NotAuthenticatedException();
+        }
+
+        $this->surveyService->registerAnswer($answer);
+
+        return success("Answer successfully registered");
     }
 }

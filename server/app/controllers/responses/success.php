@@ -3,7 +3,7 @@
 namespace Cadus\controllers\responses;
 
 
-function success($message, $additionalData = null): false|string {
+function success(string $message, ?array $additionalData = null): false|string {
     $response = array(
         'status' => 'success',
         'message' => $message,

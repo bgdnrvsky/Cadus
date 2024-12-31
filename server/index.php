@@ -2,12 +2,17 @@
 
 use Cadus\controllers\AuthenticationController;
 use Cadus\controllers\SurveyController;
-use Cadus\core\DependencyInjection;
+use Cadus\core\DIContainer;
 use Cadus\core\Router;
+use Cadus\repositories\IMemberRepository;
 use Cadus\repositories\impl\mariadb\MariaDBMemberRepository;
 use Cadus\repositories\impl\mariadb\MariaDBSurveyRepository;
+use Cadus\repositories\ISurveyRepository;
+use Cadus\services\IAuthenticationService;
 use Cadus\services\impl\AuthenticationServiceImpl;
 use Cadus\services\impl\SurveyServiceImpl;
+use Cadus\services\ISurveyService;
+use function Cadus\controllers\responses\error;
 
 require_once 'vendor/autoload.php';
 
@@ -17,56 +22,32 @@ header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Access-Control-Allow-Credentials: true');
 header('Content-Type: application/json');
 
-$injector = new DependencyInjection();
-
 //
-// 1. Setup dependency injections
+// 1. Setup dependencies injection
 //
-$injector->set('member-repository', function () {
-    return new MariaDBMemberRepository();
-});
+$container = new DIContainer();
+$container->bind(IMemberRepository::class, fn() => new MariaDBMemberRepository());
+$container->bind(ISurveyRepository::class, fn() => new MariaDBSurveyRepository());
 
-$injector->set('auth-service', function($d) {
-    return new AuthenticationServiceImpl($d->get('member-repository'));
-});
+$container->bind(IAuthenticationService::class, fn($c) => new AuthenticationServiceImpl($c->get(IMemberRepository::class)));
+$container->bind(ISurveyService::class, fn($c) => new SurveyServiceImpl($c->get(ISurveyRepository::class)));
 
-$injector->set('auth-controller', function($d) {
-    return new AuthenticationController($d->get('auth-service'));
-});
-
-$injector->set('survey-repository', function () {
-    return new MariaDBSurveyRepository();
-});
-
-$injector->set('survey-service', function($d) {
-    return new SurveyServiceImpl($d->get('survey-repository'));
-});
-
-$injector->set('survey-controller', function($d) {
-    return new SurveyController($d->get('survey-service'));
-});
+$container->bind(AuthenticationController::class, fn($c) => new AuthenticationController($c->get(IAuthenticationService::class)));
+$container->bind(SurveyController::class, fn($c) => new SurveyController($c->get(ISurveyService::class)));
 
 //
 // 2. Setup routes to controllers
 //
-$router = new Router();
+$router = new Router($container);
 
-$router->addRoute('POST', '/signup', function($data) use ($injector) {
-    $controller = $injector->get('auth-controller');
-    return $controller->register($data);
-});
-
-$router->addRoute('POST', '/signin', function($data) use ($injector) {
-    $controller = $injector->get('auth-controller');
-    return $controller->login($data);
-});
-
-$router->addRoute('GET', '/questions', function($data) use ($injector) {
-    $controller = $injector->get('survey-controller');
-    return $controller->getQuestions($data);
-});
+$router->registerController(AuthenticationController::class);
+$router->registerController(SurveyController::class);
 
 //
-// 3. Dispatch HTTP requests to controllers
+// 3. Dispatch HTTP request
 //
-echo $router->route($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+try {
+    echo $router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+} catch (Exception $e) {
+    echo error($e->getMessage(), $e->getCode());
+}

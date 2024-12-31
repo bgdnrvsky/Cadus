@@ -2,6 +2,7 @@
 
 namespace Cadus\services\impl;
 
+use Cadus\exceptions\InvalidCredentialsException;
 use Cadus\models\dto\CredentialsDto;
 use Cadus\models\entities\MemberEntity;
 use Cadus\repositories\IMemberRepository;
@@ -15,31 +16,33 @@ class AuthenticationServiceImpl implements IAuthenticationService
         $this->memberRepository = $memberRepository;
     }
 
-    /**
-     * @throws \Exception when the member already exists
-     */
     public function register(CredentialsDto $memberCreds): void {
-        // 1. Verify if the user already exists
         if ($this->memberRepository->memberExists($memberCreds->getLogin())) {
-            throw new \Exception("Member already exists");
+            throw new \Exception("Member already exists", 409);
         }
 
-        // 2. Delegate saving the user into the database
         $this->memberRepository->registerMember(
             $memberCreds->getLogin(),
             $memberCreds->getPassword()
         );
     }
 
-    public function login(CredentialsDto $creds): ?MemberEntity {
+    public function login(CredentialsDto $creds): MemberEntity {
         $member = $this->memberRepository->findMemberByEmail($creds->getLogin());
 
         if (!$member || !password_verify($creds->getPassword(), $member->getPassword())) {
-            return null;
+            throw new InvalidCredentialsException();
         }
 
         session_start();
-        $_SESSION['user'] = $creds->getLogin();
+        $_SESSION['authenticated_member'] = $member;
         return $member;
+    }
+
+    public function logout(): void {
+        if (isset($_SESSION['authenticated_member'])) {
+            session_unset();
+            session_destroy();
+        }
     }
 }
