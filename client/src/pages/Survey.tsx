@@ -33,7 +33,7 @@ export default function Survey() {
                         questionsResponse.status === 'error' ? (
                             <Banner type={BannerType.Error}>{questionsResponse.message}</Banner>
                         ) : (
-                            questionsResponse.data?.map((question, index) => (
+                            questionsResponse.additionalData?.map((question, index) => (
                                 <QuestionForm question={question} key={index} />
                             ))
                         )

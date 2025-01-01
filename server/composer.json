@@ -3,11 +3,7 @@
     "autoload": {
         "psr-4": {
             "Cadus\\": "app/"
-        },
-        "files": [
-            "app/controllers/responses/error.php",
-            "app/controllers/responses/success.php"
-        ]
+        }
     },
     "require": {
       "ext-pdo": "*"

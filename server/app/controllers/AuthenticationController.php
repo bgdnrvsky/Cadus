@@ -4,13 +4,13 @@ namespace Cadus\controllers;
 
 use Cadus\core\attributes\RequestMapping;
 use Cadus\core\attributes\RestController;
+use Cadus\core\ResponseEntity;
 use Cadus\exceptions\DtoInvalidFieldValue;
 use Cadus\models\dto\CredentialsDto;
 use Cadus\models\dto\mappers\impl\LoginMapper;
 use Cadus\models\dto\mappers\impl\RegisterMapper;
 use Cadus\models\dto\RegisterDto;
 use Cadus\services\IAuthenticationService;
-use function Cadus\controllers\responses\success;
 
 #[RestController(path: "/api/auth")]
 class AuthenticationController
@@ -22,7 +22,7 @@ class AuthenticationController
     }
 
     #[RequestMapping(path: "/signup", method: "POST", dtoMapper: RegisterMapper::class)]
-    public function register(RegisterDto $data): string|false {
+    public function register(RegisterDto $data): ResponseEntity {
         $this->checkRegisterData($data);
 
         $memberCreds = new CredentialsDto(
@@ -32,11 +32,11 @@ class AuthenticationController
 
         $this->authService->register($memberCreds);
 
-        return success("Member successfully registered");
+        return ResponseEntity::success("Member successfully registered");
     }
 
     #[RequestMapping(path: "/signin", method: "POST", dtoMapper: LoginMapper::class)]
-    public function login(CredentialsDto $creds): string|false {
+    public function login(CredentialsDto $creds): ResponseEntity {
         $this->checkLoginData($creds);
 
         $member = $this->authService->login($creds);
@@ -46,7 +46,7 @@ class AuthenticationController
             "memberEmail" => $member->getLogin()
         ];
 
-        return success("Login successful", $additionalData);
+        return ResponseEntity::success("Login successful", $additionalData);
     }
 
     private function checkLoginData(CredentialsDto $data): void {

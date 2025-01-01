@@ -33,7 +33,7 @@ export function useAuth() {
         
         const response: IApiResponse<ISigninData> = await signin(creds);
 
-        setAccount(response.data);
+        setAccount(response.additionalData);
 
         return response;
     }, [setAccount]);

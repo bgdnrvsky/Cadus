@@ -24,7 +24,7 @@ export default function Login() {
             .then(() => {
                 window.location.href = "/survey";
             })
-            .catch((r) => {
+            .catch((r: IApiResponse<ISigninData>) => {
                 setSigninError(r.message);
             });
     }

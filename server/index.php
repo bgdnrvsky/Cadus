@@ -12,7 +12,6 @@ use Cadus\services\IAuthenticationService;
 use Cadus\services\impl\AuthenticationServiceImpl;
 use Cadus\services\impl\SurveyServiceImpl;
 use Cadus\services\ISurveyService;
-use function Cadus\controllers\responses\error;
 
 require_once 'vendor/autoload.php';
 
@@ -46,8 +45,5 @@ $router->registerController(SurveyController::class);
 //
 // 3. Dispatch HTTP request
 //
-try {
-    echo $router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
-} catch (Exception $e) {
-    echo error($e->getMessage(), $e->getCode());
-}
+$response = $router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+$response->send();

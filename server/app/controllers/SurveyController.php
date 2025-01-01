@@ -4,11 +4,11 @@ namespace Cadus\controllers;
 
 use Cadus\core\attributes\RequestMapping;
 use Cadus\core\attributes\RestController;
+use Cadus\core\ResponseEntity;
 use Cadus\exceptions\NotAuthenticatedException;
 use Cadus\models\dto\AnswerDto;
 use Cadus\models\dto\mappers\impl\AnswerMapper;
 use Cadus\services\ISurveyService;
-use function Cadus\controllers\responses\success;
 
 #[RestController("/api/survey")]
 class SurveyController
@@ -20,7 +20,7 @@ class SurveyController
     }
 
     #[RequestMapping(path: "/questions", method: "GET")]
-    public function getQuestions(): false|string
+    public function getQuestions(): ResponseEntity
     {
         session_start();
 
@@ -32,11 +32,11 @@ class SurveyController
 
         $questions = $this->surveyService->getQuestions($member);
 
-        return success("", $questions);
+        return ResponseEntity::success("", $questions);
     }
 
     #[RequestMapping(path: "/answer", method: "POST", dtoMapper: AnswerMapper::class)]
-    public function registerAnswer(AnswerDto $answer): false|string
+    public function registerAnswer(AnswerDto $answer): ResponseEntity
     {
         session_start();
 
@@ -46,6 +46,6 @@ class SurveyController
 
         $this->surveyService->registerAnswer($answer);
 
-        return success("Answer successfully registered");
+        return ResponseEntity::success("Answer successfully registered");
     }
 }
