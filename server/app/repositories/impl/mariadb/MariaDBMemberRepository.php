@@ -5,7 +5,17 @@ namespace Cadus\repositories\impl\mariadb;
 use Cadus\models\entities\MemberEntity;
 use Cadus\repositories\AbstractRepository;
 use Cadus\repositories\IMemberRepository;
+use PDO;
 
+/**
+ * Class MariaDBMemberRepository
+ *
+ * Implementation of the IMemberRepository interface for interacting with the database using MariaDB.
+ * This class provides methods for managing members in the system, including registration, checking
+ * if a member exists, retrieving a member by email, and verifying if a member is an administrator.
+ * It utilizes PDO for database operations and extends the AbstractRepository class to get access
+ * to the shared PDO connection.
+ */
 class MariaDBMemberRepository extends AbstractRepository implements IMemberRepository
 {
     public function registerMember(string $email, string $password): void
@@ -49,7 +59,7 @@ class MariaDBMemberRepository extends AbstractRepository implements IMemberRepos
             ) AS id_admin"
         );
 
-        $statement->bindValue(":member_id", $member->getId());
+        $statement->bindValue(":member_id", $member->getId(), PDO::PARAM_INT);
         $statement->execute();
 
         $row = $statement->fetch();

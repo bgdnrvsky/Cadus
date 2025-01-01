@@ -3,6 +3,7 @@
 use Cadus\controllers\AuthenticationController;
 use Cadus\controllers\SurveyController;
 use Cadus\core\DIContainer;
+use Cadus\core\ResponseEntity;
 use Cadus\core\Router;
 use Cadus\repositories\IMemberRepository;
 use Cadus\repositories\impl\mariadb\MariaDBMemberRepository;
@@ -39,8 +40,14 @@ $container->bind(SurveyController::class, fn($c) => new SurveyController($c->get
 //
 $router = new Router($container);
 
-$router->registerController(AuthenticationController::class);
-$router->registerController(SurveyController::class);
+try {
+    $router->registerController(AuthenticationController::class);
+    $router->registerController(SurveyController::class);
+} catch (ReflectionException $e) {
+    $response = ResponseEntity::error("Internal server error");
+    $response->send();
+    die;
+}
 
 //
 // 3. Dispatch HTTP request

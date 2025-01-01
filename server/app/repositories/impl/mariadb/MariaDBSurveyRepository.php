@@ -9,6 +9,14 @@ use Cadus\repositories\AbstractRepository;
 use Cadus\repositories\ISurveyRepository;
 use PDO;
 
+/**
+ * Class MariaDBSurveyRepository
+ *
+ * Implementation of the ISurveyRepository interface for interacting with the survey-related data in the database.
+ * This class provides methods for fetching survey questions, registering answers, and checking if a member has
+ * answered a question. It utilizes PDO for database operations and extends the AbstractRepository class to get access
+ * to a shared PDO connection.
+ */
 class MariaDBSurveyRepository extends AbstractRepository implements ISurveyRepository
 {
     public function getQuestions(MemberEntity $member): array
@@ -50,7 +58,7 @@ class MariaDBSurveyRepository extends AbstractRepository implements ISurveyRepos
         return array_values($grouped);
     }
 
-    public function registerAnswer(MemberEntity $member, AllowedAnswerEntity $answer)
+    public function registerAnswer(MemberEntity $member, AllowedAnswerEntity $answer): void
     {
         $statement = $this->pdo->prepare(
             "INSERT INTO ANSWER (allowed_answer_id, question_id) VALUES (:allowed_answer_id, :question_id)"
