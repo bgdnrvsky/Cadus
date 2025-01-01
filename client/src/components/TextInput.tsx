@@ -40,8 +40,10 @@ export default function TextInput(props: TextInputProps) {
     return (
         <div className="relative mt-3.5">
             <input id={id}
+                   name={id}
                    onInput={handleChange}
-                   onKeyUp={handleChange} type={InputType[type].toLowerCase()}
+                   onKeyUp={handleChange}
+                   type={InputType[type].toLowerCase()}
                    className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-cadus-green"
                    placeholder="placeholder"/>
             <label htmlFor={id}

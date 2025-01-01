@@ -3,28 +3,31 @@ import Button from "./Button";
 
 
 interface SubmitOnceButtonProps {
-    onSubmit: () => void;
+    onSubmit: () => Promise<boolean>;
+
+    submitted: boolean;
 }
 
 export default function SubmitOnceButton(props: SubmitOnceButtonProps) {
-    const [isClicked, setIsClicked] = useState(false);
+    const { onSubmit, submitted  } = props;
+    const [isSubmitted, setSubmitted] = useState(submitted);
 
-    const { onSubmit  } = props;
+    const handleClick = async () => {
+        if (!isSubmitted) {
+            const success: boolean = await onSubmit();
 
-    const handleClick = () => {
-        if (!isClicked) {
-            setIsClicked(true);
-            onSubmit();
+            if (success)
+                setSubmitted(true);
         }
     };
 
     return (
-        <div title={isClicked ? "Vous avez déjà répondu à cette question" : ""}>
+        <div title={isSubmitted ? "Vous avez déjà répondu à cette question" : ""}>
             <Button onClick={handleClick}
-                    disabled={isClicked}
-                    className={`flex justify-center items-center ${isClicked ? "" : "bg-cadus-green-hover"}`}>
+                    disabled={isSubmitted}
+                    className={`flex justify-center items-center ${isSubmitted ? "" : "bg-cadus-green-hover"}`}>
                 {
-                    isClicked ?
+                    isSubmitted ?
                         <img src={require("../assets/submitted.png")} alt="submitted" className="w-11 h-11"/> :
                         <img src={require("../assets/submit.png")} alt="submit" className="w-11 h-11"/>
                 }

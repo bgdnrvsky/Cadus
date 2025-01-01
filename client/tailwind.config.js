@@ -21,6 +21,8 @@ module.exports = {
       gray: colors.coolGray,
       slate: colors.blueGray,
       blue: colors.blue,
+      red: colors.red,
+      green: colors.green,
 
       'cadus-black': '#1E1E1E',
       'cadus-grey': '#757575',

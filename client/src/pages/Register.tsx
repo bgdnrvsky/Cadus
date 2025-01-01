@@ -3,20 +3,38 @@ import TextInput, {InputType} from "../components/TextInput";
 import Button from "../components/Button";
 import cadusLogo from "../assets/cadus.svg";
 import CheckBox from "../components/CheckBox";
+import {FormEvent, useState} from "react";
+import {isEmailValid} from "../utils/Email";
+import Banner, {BannerType} from "../components/Banner";
+import {useFormStatus} from "react-dom";
+import {signup} from "../api/requests/auth";
+import IApiResponse from "../api/dto/responses/IApiResponse";
+import ISignupData from "../api/dto/responses/ISignupData";
+import ISignupCredentials from "../api/dto/sent/ISignupCredentials";
 
 
 export default function Register() {
+    const [email, setEmail] = useState("");
+    const [passw, setPassw] = useState("");
+    const [repassw, setRepassw] = useState("");
+    const [acceptedTerms, setAcceptedTerms] = useState(false);
+    const [signupResponse, setSignupResponse] = useState<IApiResponse<ISignupData>>();
 
-    const onEmailChanged = (value: string) => {
+    const { pending } = useFormStatus();
 
-    }
+    const submitRegistration = async (e: FormEvent) => {
+        e.preventDefault();
 
-    const onPasswordChanged = (value: string) => {
+        const creds: ISignupCredentials = {
+            email,
+            passw,
+            repassw,
+            acceptedTerms
+        };
 
-    }
-
-    const onConfirmPasswordChanged = (value: string) => {
-
+        signup(creds)
+            .then(setSignupResponse)
+            .catch(setSignupResponse);
     }
 
     return (
@@ -27,15 +45,33 @@ export default function Register() {
                     <img src={cadusLogo} className="mb-12 rounded-full h-40 w-40 inline-block bg-white"
                          alt="Logo Cadus"/>
 
-                    <form>
+                    {
+                        signupResponse &&
+                        <Banner type={signupResponse.status === 'success' ? BannerType.Success : BannerType.Error}>
+                            {signupResponse.message}
+                        </Banner>
+                    }
+
+                    <form onSubmit={submitRegistration}>
                         <div className="space-y-10">
-                            <TextInput type={InputType.Email} id={"login-email"} label={"Adresse e-mail"} onChange={onEmailChanged}/>
-                            <TextInput type={InputType.Password} id={"login-password"} label={"Mot de passe"} onChange={onPasswordChanged}/>
-                            <TextInput type={InputType.Password} id={"login-password-confirm"} label={"Confirmer mot de passe"} onChange={onConfirmPasswordChanged}/>
-                            <CheckBox id="accept-terms">J'ai lu et j'accepte les <a className="text-blue-600 font-semibold hover:underline ml-1">conditions d'utilisation</a>.</CheckBox>
+                            <TextInput type={InputType.Email} id={"register-email"} label={"Adresse e-mail"} onChange={setEmail}/>
+                            <TextInput type={InputType.Password} id={"register-password"} label={"Mot de passe"} onChange={setPassw}/>
+                            <TextInput type={InputType.Password} id={"register-password-confirm"} label={"Confirmer mot de passe"} onChange={setRepassw}/>
+
+                            <CheckBox id="accept-terms"
+                                      checked={acceptedTerms}
+                                      onChange={setAcceptedTerms}
+                            >
+                                J'ai lu et j'accepte les <a className="text-blue-600 font-semibold hover:underline ml-1">conditions d'utilisation</a>.
+                            </CheckBox>
                         </div>
 
-                        <Button className="w-full mt-12 py-3 px-4 text-sm tracking-wider font-semibold">Créer compte</Button>
+                        <Button disabled={!isEmailValid(email) || passw !== repassw || !acceptedTerms || pending}
+                                submit={true}
+                                className="w-full mt-12 py-3 px-4 text-sm tracking-wider font-semibold">
+                            Créer compte
+                        </Button>
+
                         <p className="text-gray-800 text-sm mt-6 text-center">Vous êtes déjà adhérent ?<a
                             href="/login" className="text-blue-600 font-semibold hover:underline ml-1">Connectez-vous</a>
                         </p>

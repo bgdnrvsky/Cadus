@@ -11,6 +11,9 @@ interface ButtonProps {
     /* Additional css class' to apply on the button */
     className?: string;
 
+    /* Should it be the submit button in a form */
+    submit?: boolean
+
     /* Children HTML elements */
     children: React.ReactNode;
 
@@ -19,13 +22,14 @@ interface ButtonProps {
 
 
 export default function Button(props: ButtonProps) {
-    const { onClick, className, children, disabled } = props;
+    const { onClick, className, submit, children, disabled } = props;
 
     const styles = className ?? '';
 
     return (
         <button
             disabled={disabled}
+            type={(submit ?? false) ? "submit" : undefined}
             onClick={onClick}
             className={`${
                 disabled 
