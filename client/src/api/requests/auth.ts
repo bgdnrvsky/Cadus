@@ -60,16 +60,3 @@ export async function signin(creds: ISigninCredentials): Promise<IApiResponse<IS
 
     return response.data;
 }
-
-export async function signout(): Promise<IApiResponse<null>> {
-    const endpoint: string = resolveEndpoint("/logout");
-
-    const response = await axios.delete(
-        endpoint,
-        {
-            withCredentials: true
-        }
-    );
-
-    return response.data;
-}

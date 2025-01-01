@@ -47,13 +47,6 @@ class AuthenticationController
         return success("Login successful", $additionalData);
     }
 
-    #[RequestMapping(path: "/logout", method: "DELETE")]
-    public function logout(): string|false {
-        $this->authService->logout();
-
-        return success("Logout successful");
-    }
-
     private function checkLoginData(CredentialsDto $data): void {
         $sanitize_email = filter_var($data->getLogin(), FILTER_SANITIZE_EMAIL);
 

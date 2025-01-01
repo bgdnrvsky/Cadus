@@ -38,11 +38,4 @@ class AuthenticationServiceImpl implements IAuthenticationService
         $_SESSION['authenticated_member'] = $member;
         return $member;
     }
-
-    public function logout(): void {
-        if (isset($_SESSION['authenticated_member'])) {
-            session_unset();
-            session_destroy();
-        }
-    }
 }
