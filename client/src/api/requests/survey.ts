@@ -6,7 +6,7 @@ import IAnswer from "../dto/sent/IAnswer";
 
 
 export async function fetchQuestions(): Promise<IApiResponse<ISurveyQuestion[]>> {
-    const endpoint: string = resolveEndpoint("/questions");
+    const endpoint: string = resolveEndpoint("/api/survey/questions");
 
     const response = await axios.get<IApiResponse<ISurveyQuestion[]>>(
         endpoint,
@@ -19,7 +19,7 @@ export async function fetchQuestions(): Promise<IApiResponse<ISurveyQuestion[]>>
 }
 
 export async function sendAnswer(answer: IAnswer): Promise<IApiResponse<null>> {
-    const endpoint: string = resolveEndpoint("/answer");
+    const endpoint: string = resolveEndpoint("api/survey/answer");
 
     const response = await axios.post<IApiResponse<null>>(
         endpoint,

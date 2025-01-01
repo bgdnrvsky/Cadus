@@ -32,9 +32,9 @@ export default function Register() {
             acceptedTerms
         };
 
-        const response: IApiResponse<ISignupData> = await signup(creds);
-
-        setSignupResponse(response);
+        signup(creds)
+            .then(setSignupResponse)
+            .catch(setSignupResponse);
     }
 
     return (

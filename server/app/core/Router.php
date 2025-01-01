@@ -3,6 +3,7 @@
 namespace Cadus\core;
 
 use Cadus\core\attributes\RequestMapping;
+use Cadus\core\attributes\RestController;
 use Cadus\exceptions\RouteNotFoundException;
 
 class Router {
@@ -18,11 +19,19 @@ class Router {
     {
         $reflector = new \ReflectionClass($controllerClass);
 
+        $baseRoute = '';
+
+        $attributes = $reflector->getAttributes(RestController::class);
+
+        if (!empty($attributes)) {
+            $baseRoute = $attributes[0]->newInstance()->getPath();
+        }
+
         foreach ($reflector->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
             foreach ($method->getAttributes(RequestMapping::class) as $attribute) {
                 $mapping = $attribute->newInstance();
 
-                $this->routes[$mapping->getHttpMethod()][$mapping->getPath()] = [
+                $this->routes[$mapping->getHttpMethod()][$baseRoute . $mapping->getPath()] = [
                     $mapping->getDtoMapperName(),
                     $controllerClass,
                     $method->getName()

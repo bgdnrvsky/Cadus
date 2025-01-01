@@ -10,18 +10,18 @@ import {resolveEndpoint} from "./endpoints";
 axios.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.status === axios.HttpStatusCode.Unauthorized) {
+        if (error.status === axios.HttpStatusCode.Unauthorized && localStorage.getItem("account") != null) {
             localStorage.removeItem("account");
             window.location.reload();
         }
 
-        return Promise.reject(error);
+        return Promise.reject(error.response.data);
     }
 );
 
 
 export async function signup(creds: ISignupCredentials): Promise<IApiResponse<ISignupData>> {
-    const endpoint: string = resolveEndpoint("/signup");
+    const endpoint: string = resolveEndpoint("/api/auth/signup");
 
     const response = await axios.post<IApiResponse<ISignupData>>(
         endpoint,
@@ -42,7 +42,7 @@ export async function signup(creds: ISignupCredentials): Promise<IApiResponse<IS
 }
 
 export async function signin(creds: ISigninCredentials): Promise<IApiResponse<ISigninData>> {
-    const endpoint: string = resolveEndpoint("/signin");
+    const endpoint: string = resolveEndpoint("/api/auth/signin");
 
     const response = await axios.post<IApiResponse<ISigninData>>(
         endpoint,

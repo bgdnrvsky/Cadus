@@ -39,8 +39,21 @@ class MariaDBMemberRepository extends AbstractRepository implements IMemberRepos
         );
     }
 
-    public function isAdministrator()
+    public function isAdministrator(MemberEntity $member): bool
     {
-        // TODO: Implement isAdministrator() method.
+        $statement = $this->pdo->prepare(
+            "SELECT EXISTS(
+                SELECT 1
+                FROM ADMINISTRATORS
+                WHERE member_id = :member_id
+            ) AS id_admin"
+        );
+
+        $statement->bindValue(":member_id", $member->getId());
+        $statement->execute();
+
+        $row = $statement->fetch();
+
+        return $row['id_admin'];
     }
 }

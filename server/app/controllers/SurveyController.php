@@ -3,12 +3,14 @@
 namespace Cadus\controllers;
 
 use Cadus\core\attributes\RequestMapping;
+use Cadus\core\attributes\RestController;
 use Cadus\exceptions\NotAuthenticatedException;
 use Cadus\models\dto\AnswerDto;
 use Cadus\models\dto\mappers\impl\AnswerMapper;
 use Cadus\services\ISurveyService;
 use function Cadus\controllers\responses\success;
 
+#[RestController("/api/survey")]
 class SurveyController
 {
     private ISurveyService $surveyService;

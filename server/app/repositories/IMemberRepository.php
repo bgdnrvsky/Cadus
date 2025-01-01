@@ -12,5 +12,5 @@ interface IMemberRepository {
 
     public function findMemberByEmail(string $email) : ?MemberEntity;
 
-    public function isAdministrator(/* */);
+    public function isAdministrator(MemberEntity $member) : bool;
 }

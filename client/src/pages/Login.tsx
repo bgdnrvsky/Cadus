@@ -20,13 +20,13 @@ export default function Login() {
     const submitLogin = async (e: FormEvent) => {
         e.preventDefault();
 
-        const response: IApiResponse<ISigninData> = await login(email, passw);
-
-        if (response.status === 'success') {
-            window.location.href = "/survey";
-        } else {
-            setSigninError(response.message);
-        }
+        login(email, passw)
+            .then(() => {
+                window.location.href = "/survey";
+            })
+            .catch((r) => {
+                setSigninError(r.message);
+            });
     }
 
     return (

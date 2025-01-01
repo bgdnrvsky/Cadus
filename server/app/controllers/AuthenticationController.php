@@ -3,6 +3,7 @@
 namespace Cadus\controllers;
 
 use Cadus\core\attributes\RequestMapping;
+use Cadus\core\attributes\RestController;
 use Cadus\exceptions\DtoInvalidFieldValue;
 use Cadus\models\dto\CredentialsDto;
 use Cadus\models\dto\mappers\impl\LoginMapper;
@@ -11,6 +12,7 @@ use Cadus\models\dto\RegisterDto;
 use Cadus\services\IAuthenticationService;
 use function Cadus\controllers\responses\success;
 
+#[RestController(path: "/api/auth")]
 class AuthenticationController
 {
     private IAuthenticationService $authService;
