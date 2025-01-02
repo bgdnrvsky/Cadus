@@ -78,6 +78,7 @@ class AuthenticationController
     public function login(CredentialsDto $creds): ResponseEntity {
         $this->checkLoginData($creds);
 
+        // Todo: check if the user is already logged in
         $member = $this->authService->login($creds);
 
         $additionalData = [

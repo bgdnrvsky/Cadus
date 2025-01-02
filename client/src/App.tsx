@@ -10,6 +10,7 @@ import Thanks from "./pages/Thanks";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Survey from "./pages/Survey";
+import SurveyResults from "./pages/SurveyResults";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 
@@ -24,6 +25,7 @@ export default function App() {
                 <Route path="/login" element={<Login/>} />
                 <Route path="/register" element={<Register/>} />
                 <Route path="/survey" element={<ProtectedRoute><Survey/></ProtectedRoute>} />
+                <Route path="/results" element={<SurveyResults/>} />
             </Routes>
         </BrowserRouter>
     );

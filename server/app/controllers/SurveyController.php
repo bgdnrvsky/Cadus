@@ -7,7 +7,9 @@ use Cadus\core\attributes\RestController;
 use Cadus\core\ResponseEntity;
 use Cadus\exceptions\NotAuthenticatedException;
 use Cadus\models\dto\AnswerDto;
+use Cadus\models\dto\AnswersQueryDto;
 use Cadus\models\dto\mappers\impl\AnswerMapper;
+use Cadus\models\dto\mappers\impl\AnswersQueryMapper;
 use Cadus\services\ISurveyService;
 use Exception;
 
@@ -59,6 +61,14 @@ class SurveyController
         $questions = $this->surveyService->getQuestions($member);
 
         return ResponseEntity::success("", $questions);
+    }
+
+    #[RequestMapping(path: "/answers", method: "GET", dtoMapper: AnswersQueryMapper::class)]
+    public function getAnswers(AnswersQueryDto $query): ResponseEntity
+    {
+        $answers = $this->surveyService->getAnswers($query->getQuestionId());
+
+        return ResponseEntity::success("Answers repartition", ["entries" => $answers]);
     }
 
     /**

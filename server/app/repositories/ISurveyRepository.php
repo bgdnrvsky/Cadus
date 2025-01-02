@@ -72,4 +72,7 @@ interface ISurveyRepository
      * @return bool Returns true if the member has answered the question, false otherwise.
      */
     public function hasMemberAnsweredQuestion(MemberEntity $member, QuestionEntity $question) : bool;
+
+    // TODO: utiliser une clé de gestion pour identifier la question facilement
+    public function answersRepartition(int $questionId) : array;
 }

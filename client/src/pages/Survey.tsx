@@ -1,7 +1,7 @@
 import NavBar from "../components/NavBar";
 import {useAccount} from "../hooks/useAccount";
 import {useEffect, useState} from "react";
-import {ISurveyQuestion} from "../api/dto/responses/ISurveyQuestion";
+import ISurveyQuestion from "../api/dto/responses/ISurveyQuestion";
 import {fetchQuestions} from "../api/requests/survey";
 import IApiResponse from "../api/dto/responses/IApiResponse";
 import Banner, {BannerType} from "../components/Banner";

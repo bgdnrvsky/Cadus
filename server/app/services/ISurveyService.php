@@ -33,6 +33,8 @@ interface ISurveyService
      */
     public function getQuestions(MemberEntity $member): array;
 
+    public function getAnswers(int $questionId): array;
+
     /**
      * Registers a member's answer to a survey question, but does not associate the answer with the member.
      *
