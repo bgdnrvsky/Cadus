@@ -1,0 +1,11 @@
+{
+    "name": "grp2093/cadus",
+    "autoload": {
+        "psr-4": {
+            "Cadus\\": "app/"
+        }
+    },
+    "require": {
+      "ext-pdo": "*"
+    }
+}
