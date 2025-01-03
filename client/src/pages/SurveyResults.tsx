@@ -1,10 +1,10 @@
-import MapComponent from "../components/d3/DisplayerMapData";
+import GraphicMap from "../components/d3/GraphicMap";
 
 
 export default function SurveyResults() {
     return (
         <div>
-            <MapComponent/>
+            <GraphicMap/>
         </div>
     );
 }
