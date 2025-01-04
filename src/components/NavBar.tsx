@@ -1,10 +1,10 @@
 import {NavLink} from "react-router-dom";
+import {useState} from 'react';
 import cadusLogo from "../assets/cadus.svg"
 
 function NavLinkItem({path, name}: { path: string; name: string }) {
     return (
-        <NavLink to={path}
-                 style={({isActive}) => ({textDecoration: isActive ? "underline" : "",})}
+        <NavLink to={path} style={({isActive}) => ({textDecoration: isActive ? "underline" : "",})}
                  className="font-medium p-4 text-white hover:underline underline-offset-8">
             {name}
         </NavLink>
@@ -12,6 +12,11 @@ function NavLinkItem({path, name}: { path: string; name: string }) {
 }
 
 export default function NavBar() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    // Toggle mobile menu
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
     const navLinkItems = (
         <>
             <NavLinkItem path="/" name="L'association"/>
@@ -21,20 +26,23 @@ export default function NavBar() {
         </>
     );
 
-    const svgColor = "white"
+    const svgColor = "white";
 
     return (
         <nav className="bg-cadus-green p-4">
             <div className="flex justify-between">
+                {/* Logo */}
                 <img src={cadusLogo} className="rounded-full h-14 bg-white" alt="Logo Cadus"/>
 
                 <ul className="flex justify-between max-sm:hidden">
-                    {
-                        navLinkItems
-                    }
+                    {/* Navigation Links (Desktop) */}
+                    {navLinkItems}
                 </ul>
 
-                <div className="flex items-center justify-center sm:hidden">
+                {/* Mobile Menu Toggle Button */}
+                <button aria-expanded={isMenuOpen} onClick={toggleMenu}
+                        className="flex items-center justify-center sm:hidden">
+                    {/* Menu icon (hamburger) */}
                     <svg className="sm:hidden w-9 h-9" fill="none" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 24 24">
                         <g stroke-width="0"></g>
@@ -45,8 +53,14 @@ export default function NavBar() {
                             <path d="M4 6L20 6" stroke={svgColor} stroke-width="2" stroke-linecap="round"></path>
                         </g>
                     </svg>
-                </div>
+                </button>
             </div>
+
+            {/* Mobile Navigation Links (Hidden by default) */}
+            <ul aria-hidden={!isMenuOpen}
+                className={`flex flex-col sm:hidden mt-4 ${isMenuOpen ? '' : 'hidden'} ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
+                {navLinkItems}
+            </ul>
         </nav>
     );
 }
