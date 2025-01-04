@@ -1,5 +1,5 @@
 
-interface IAnswerEntry {
+export interface IAnswerEntry {
     answerId: number;
     answerText: string;
     answerCount: number;

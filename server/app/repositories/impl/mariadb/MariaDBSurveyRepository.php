@@ -142,10 +142,10 @@ class MariaDBSurveyRepository extends AbstractRepository implements ISurveyRepos
     public function answersRepartition(int $questionId): array
     {
         $statement = $this->pdo->prepare(
-            "SELECT a.allowed_answer_id AS answerId, aa.answer_text AS answerText, COUNT(a.allowed_answer_id) AS answerCount 
+            "SELECT aa.answer_text AS answerText, COUNT(*) AS answerCount
             FROM ANSWER a, ALLOWED_ANSWER aa
-            WHERE a.question_id = :question_id AND a.allowed_answer_id = aa.allowed_answer_id
-            GROUP BY a.allowed_answer_id"
+            WHERE a.allowed_answer_id = aa.allowed_answer_id AND aa.question_id = :question_id AND a.question_id = :question_id
+            GROUP BY aa.answer_text"
         );
 
         $statement->bindValue(':question_id', $questionId, PDO::PARAM_INT);

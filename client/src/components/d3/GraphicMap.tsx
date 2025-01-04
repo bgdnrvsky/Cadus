@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import * as d3 from "d3";
 import {fetchAnswers} from "../../api/requests/survey";
 import IApiResponse from "../../api/dto/responses/IApiResponse";
 import IAnswersRepartition from "../../api/dto/responses/IAnswersRepartition";
+import Spinner from "../Spinner";
 
 
 // Define the structure of GeoJSON data
@@ -24,6 +25,8 @@ interface GeoJSON {
 }
 
 export default function MapComponent() {
+    const [graphicDone, setGraphicDone] = useState(false);
+
     const svgRef = useRef<SVGSVGElement | null>(null);
 
     useEffect(() => {
@@ -106,7 +109,13 @@ export default function MapComponent() {
                         .duration(200)
                         .style("opacity", 0.9);
 
-                    tooltip.html(`Département : ${d.properties.CODE_DEPT} - ${d.properties.NOM_DEPT}`);
+                    const departementEntry = entries.find((entry) => {
+                        return entry.answerText.startsWith(String(d.properties.CODE_DEPT));
+                    });
+
+                    const count = departementEntry ? departementEntry.answerCount : 0;
+
+                    tooltip.html(`Département : ${d.properties.CODE_DEPT} - ${d.properties.NOM_DEPT} - ${count}`);
                 })
                 .on("mouseout", function () {
                     d3.select(this)
@@ -121,10 +130,14 @@ export default function MapComponent() {
         }).catch((error) => {
             console.error("Error loading GeoJSON data:", error);
         });
+
+        setGraphicDone(true);
     }, []);
 
     return (
         <div>
+            {!graphicDone && <Spinner/>}
+
             <svg ref={svgRef}></svg>
             <div id="tooltip"></div>
         </div>
