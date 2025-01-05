@@ -55,12 +55,12 @@ export default function NavBar() {
                     {/* Menu icon (hamburger) */}
                     <svg className="sm:hidden w-9 h-9" fill="none" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 24 24">
-                        <g stroke-width="0"></g>
-                        <g stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g strokeWidth="0"></g>
+                        <g strokeLinecap="round" strokeLinejoin="round"></g>
                         <g>
-                            <path d="M4 18L20 18" stroke={svgColor} stroke-width="2" stroke-linecap="round"></path>
-                            <path d="M4 12L20 12" stroke={svgColor} stroke-width="2" stroke-linecap="round"></path>
-                            <path d="M4 6L20 6" stroke={svgColor} stroke-width="2" stroke-linecap="round"></path>
+                            <path d="M4 18L20 18" stroke={svgColor} strokeWidth="2" strokeLinecap="round"></path>
+                            <path d="M4 12L20 12" stroke={svgColor} strokeWidth="2" strokeLinecap="round"></path>
+                            <path d="M4 6L20 6" stroke={svgColor} strokeWidth="2" strokeLinecap="round"></path>
                         </g>
                     </svg>
                 </button>
