@@ -29,7 +29,11 @@ export default function GraphicAnswersCount() {
     }, [question]);
 
     useEffect(() => {
-        if (!svgRef.current) return;
+        const totalAnswerCount: number = data.reduce((sum, curr) => sum + curr.answerCount, 0);
+
+        if (!svgRef.current) {
+            return;
+        }
 
         // Define chart dimensions and margins.
         const width = svgRef.current.parentElement?.getBoundingClientRect().width || 930;
@@ -79,7 +83,7 @@ export default function GraphicAnswersCount() {
                     .attr("y", y(d.answerCount) - 5)
                     .attr("text-anchor", "middle")
                     .attr("fill", "black")
-                    .text(d.answerText + " " + d.answerCount);
+                    .text(d.answerText + " " + d.answerCount + "/" + totalAnswerCount);
             })
             .on("mouseout", function () {
                 d3.select(this)

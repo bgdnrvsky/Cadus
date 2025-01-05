@@ -11,7 +11,7 @@ export default function DashBoard() {
     const [activeTab, setActiveTab] = useState<"Compte" | "Sondage" | "Résultats">("Compte");
 
     return (
-        <>
+        <div className="h-screen overflow-y-hidden">
 
         <NavBar/>
 
@@ -54,12 +54,12 @@ export default function DashBoard() {
                 </nav>
             </aside>
 
-            <main className="flex-1 bg-gray-100 p-6">
+            <main className="flex-1 bg-gray-100">
                 {activeTab === "Compte" && <Account/>}
                 {activeTab === "Sondage" && <Survey/>}
                 {activeTab === "Résultats" && <SurveyResults/>}
             </main>
         </div>
-        </>
+        </div>
     );
 }

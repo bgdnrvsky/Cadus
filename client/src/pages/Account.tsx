@@ -1,4 +1,3 @@
-import Button from "../components/Button";
 import {useAccount} from "../hooks/useAccount";
 import {useAuth} from "../hooks/useAuth";
 
@@ -19,7 +18,7 @@ export default function Account() {
     }
 
     return (
-        <div className="flex flex-col space-y-10">
+        <div className="flex flex-col space-y-10 p-10">
             <button
                 onClick={onDisconnectClicked}
                 className="w-full bg-yellow-500 text-white py-2 px-4 rounded-md flex items-center justify-center gap-2 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
