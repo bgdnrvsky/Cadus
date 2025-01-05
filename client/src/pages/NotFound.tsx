@@ -10,7 +10,7 @@ export default function NotFound() {
                     <div className="text-5xl font-dark font-bold">404</div>
                     <p
                         className="text-2xl md:text-3xl font-light leading-normal"
-                    >Oups, nous n'avons pas vu trouver ce que vous recherchez.</p>
+                    >Oups, nous n'avons pas pu trouver ce que vous recherchez.</p>
                     <p className="mb-8">Vous trouverez peut-être sur la page d'accueil ?</p>
 
                     <LinkButton to="/">Retour à la page d'acceuil</LinkButton>
