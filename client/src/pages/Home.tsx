@@ -1,5 +1,4 @@
 import Footer from "../components/Footer";
-import cadusLogo from "../assets/cadus.svg";
 import img1 from "../assets/home/img1.png";
 import img2 from "../assets/home/img2.jpg";
 import img3 from "../assets/home/img3.jpeg";
@@ -32,7 +31,7 @@ export default function Home() {
         <div>
             <NavBar/>
             <div className="flex items-center justify-around p-1">
-                <img src={cadusLogo} className="h-96 w-72 bg-white" alt="Logo Cadus"/>
+                <img src={"cadus.svg"} className="h-96 w-72 bg-white" alt="Logo Cadus"/>
                 <div className="text-center w-1/2 ">
                     <h3 className="text-2xl font-bold">
                         Vous êtes victime d'erreurs médicales ?

@@ -1,7 +1,6 @@
 import {NavLink} from "react-router-dom";
 import {useState} from 'react';
 import {useAuth} from "../hooks/useAuth";
-import cadusLogo from "../assets/cadus.svg"
 
 function NavLinkItem({path, children}: { path: string; children: React.ReactNode }) {
     return (
@@ -42,7 +41,7 @@ export default function NavBar() {
         <nav className="bg-cadus-green p-4">
             <div className="flex justify-between">
                 {/* Logo */}
-                <NavLink to="/"><img src={cadusLogo} className="rounded-full h-14 bg-white" alt="Logo Cadus"/></NavLink>
+                <NavLink to="/"><img src={"cadus.svg"} className="rounded-full h-14 bg-white" alt="Logo Cadus"/></NavLink>
 
                 <ul className="flex justify-between max-sm:hidden">
                     {/* Navigation Links (Desktop) */}

@@ -1,7 +1,6 @@
 import NavBar from "../components/NavBar";
 import TextInput, {InputType} from "../components/TextInput";
 import Button from "../components/Button";
-import cadusLogo from "../assets/cadus.svg";
 import CheckBox from "../components/CheckBox";
 import {FormEvent, useState} from "react";
 import {isEmailValid} from "../utils/Email";
@@ -42,7 +41,7 @@ export default function Register() {
             <NavBar/>
             <div className="flex flex-col justify-center font-[sans-serif] sm:h-screen p-4 bg-[url('assets/login-background.jpg')] bg-center bg-cover">
                 <div className="max-w-md w-full mx-auto border text-center bg-white border-gray-300 rounded-2xl p-8">
-                    <img src={cadusLogo} className="mb-12 rounded-full h-40 w-40 inline-block bg-white"
+                    <img src={"cadus.svg"} className="mb-12 rounded-full h-40 w-40 inline-block bg-white"
                          alt="Logo Cadus"/>
 
                     {
