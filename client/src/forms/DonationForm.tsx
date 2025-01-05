@@ -16,7 +16,7 @@ export default function DonationForm() {
             <div className="flex-none w-48 relative">
                 <img src={require("../assets/patient.jpg")} alt="patient" className="absolute rounded-l-md inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
             </div>
-            <form className="flex-auto p-6">
+            <div className="flex-auto p-6">
                 <div className="flex justify-between mt-4 mb-6 pb-6 border-b border-slate-200 text-sm">
                     {
                         amounts.map((amount) => <AmountRadioButton key={amount} amount={amount}/>)
@@ -36,7 +36,7 @@ export default function DonationForm() {
                 <p className="text-sm text-slate-700">
                     Une question ? <a href="#" className="text-blue-600 hover:underline">Contactez nous</a>
                 </p>
-            </form>
+            </div>
         </div>
     );
 }
