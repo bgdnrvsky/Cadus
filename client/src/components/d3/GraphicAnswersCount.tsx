@@ -1,35 +1,38 @@
 import * as d3 from "d3";
 import {useEffect, useRef, useState} from "react";
 import {IAnswerEntry} from "../../api/dto/responses/IAnswersRepartition";
-import {fetchAnswers} from "../../api/requests/survey";
-import Spinner from "../Spinner";
+import {fetchAnswers, fetchQuestions} from "../../api/requests/survey";
+import ComboBox, {ComboBoxOption} from "../ComboBox";
+import ISurveyQuestion from "../../api/dto/responses/ISurveyQuestion";
 
-interface GraphicsAnswersFrequencyProps {
-    questionId: number;
-}
-
-export default function GraphicAnswersCount(props: GraphicsAnswersFrequencyProps) {
-    const {questionId} = props
+export default function GraphicAnswersCount() {
     const svgRef = useRef<SVGSVGElement | null>(null);
     const [data, setData] = useState<IAnswerEntry[]>([]);
-
-    const [graphicDone, setGraphicDone] = useState(false);
+    const [questions, setQuestions] = useState<ISurveyQuestion[]>();
+    const [question, setQuestion] = useState<string>("1");
 
     useEffect(() => {
-        // Fetch data from an external API.
-        fetchAnswers({questionId})
+        fetchQuestions()
+            .then((response) => {
+                if (response.additionalData)
+                    setQuestions(response.additionalData);
+            });
+    }, []);
+
+    useEffect(() => {
+        fetchAnswers({questionId: parseInt(question)})
             .then((r) => {
                 if (r.additionalData != null) {
                     setData(r.additionalData.entries);
                 }
             });
-    }, [questionId]);
+    }, [question]);
 
     useEffect(() => {
         if (!svgRef.current) return;
 
         // Define chart dimensions and margins.
-        const width = 928;
+        const width = svgRef.current.parentElement?.getBoundingClientRect().width || 930;
         const height = 500;
         const marginTop = 30;
         const marginRight = 0;
@@ -76,7 +79,7 @@ export default function GraphicAnswersCount(props: GraphicsAnswersFrequencyProps
                     .attr("y", y(d.answerCount) - 5)
                     .attr("text-anchor", "middle")
                     .attr("fill", "black")
-                    .text(d.answerText);
+                    .text(d.answerText + " " + d.answerCount);
             })
             .on("mouseout", function () {
                 d3.select(this)
@@ -88,7 +91,7 @@ export default function GraphicAnswersCount(props: GraphicsAnswersFrequencyProps
         // Add x-axis.
         svg.append("g")
             .attr("transform", `translate(0,${height - marginBottom})`)
-            .call(d3.axisBottom(x).tickSizeOuter(0));
+            .call(d3.axisBottom(x).tickValues([]));
 
         // Add y-axis.
         svg.append("g")
@@ -101,13 +104,25 @@ export default function GraphicAnswersCount(props: GraphicsAnswersFrequencyProps
                 .attr("fill", "currentColor")
                 .attr("text-anchor", "start")
                 .text("↑ Nombre de personnes ayant répondu"));
-
-        setGraphicDone(true);
     }, [data]);
 
     return (
         <>
-            {!graphicDone && <Spinner/>}
+            {
+                questions && (
+                    <ComboBox label="Choisissez la question pour laquelle visualiser les réponses"
+                              id="cb-choose-question"
+                              onChange={setQuestion}>
+                        {
+                            questions.map((q, i) => (
+                                <ComboBoxOption key={i} value={String(i + 1)}>
+                                    {q.questionText}
+                                </ComboBoxOption>
+                            ))
+                        }
+                    </ComboBox>
+                )
+            }
 
             <svg ref={svgRef}></svg>
         </>

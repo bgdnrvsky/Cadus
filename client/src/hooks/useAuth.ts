@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import {useAccountStore} from "./useAccountStore";
-import {signin} from "../api/requests/auth";
+import {signin, signout} from "../api/requests/auth";
 import ISigninCredentials from "../api/dto/sent/ISigninCredentials";
 import IApiResponse from "../api/dto/responses/IApiResponse";
 import ISigninData from "../api/dto/responses/ISigninData";
@@ -8,13 +8,14 @@ import ISigninData from "../api/dto/responses/ISigninData";
 export enum AuthStatus {
     UNKNOWN,
     UNAUTHENTICATED,
-    AUTHENTICATED
+    AUTHENTICATED_MEMBER,
+    AUTHENTICATED_ADMIN
 }
 
 export function useAuth() {
     const { account, setAccount } = useAccountStore();
     
-    let status;
+    let status: AuthStatus;
     
     switch (account) {
         case null:
@@ -24,22 +25,38 @@ export function useAuth() {
             status = AuthStatus.UNKNOWN;
             break;
         default:
-            status = AuthStatus.AUTHENTICATED;
+            status = account.admin ? AuthStatus.AUTHENTICATED_ADMIN : AuthStatus.AUTHENTICATED_MEMBER;
             break;
     }
+
+    let isLoggedIn = status === AuthStatus.AUTHENTICATED_ADMIN || status === AuthStatus.AUTHENTICATED_MEMBER;
 
     const login = useCallback(async (email: string, passw: string): Promise<IApiResponse<ISigninData>> => {
         const creds: ISigninCredentials = { email, passw };
         
         const response: IApiResponse<ISigninData> = await signin(creds);
 
-        setAccount(response.additionalData);
+        if (response.status === 'success') {
+            setAccount(response.additionalData);
+        }
+
+        return response;
+    }, [setAccount]);
+
+    const logout = useCallback(async () => {
+        const response = await signout();
+
+        if (response.status === 'success') {
+            setAccount(null);
+        }
 
         return response;
     }, [setAccount]);
 
     return {
         status,
+        isLoggedIn,
         login,
+        logout
     };
 }

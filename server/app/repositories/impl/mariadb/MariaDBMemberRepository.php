@@ -26,6 +26,13 @@ class MariaDBMemberRepository extends AbstractRepository implements IMemberRepos
         $statement->execute();
     }
 
+    public function deleteMember(MemberEntity $member): void
+    {
+        $statement = $this->pdo->prepare("DELETE FROM MEMBERS WHERE member_id = :member_id");
+        $statement->bindValue(":member_id", $member->getId());
+        $statement->execute();
+    }
+
     public function memberExists(string $email) : bool
     {
         return $this->findMemberByEmail($email) != null;

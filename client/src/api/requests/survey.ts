@@ -33,8 +33,6 @@ export async function fetchAnswers(query: IAnswersQuery): Promise<IApiResponse<I
         }
     );
 
-    console.log(response.data);
-
     return response.data;
 }
 

@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import cadusLogo from "../assets/cadus.svg"
+import {useAuth} from "../hooks/useAuth";
+import Button from "./Button";
 
 function NavLinkItem({ path, children }: {path: string; children: React.ReactNode } ) {
     return (
@@ -12,6 +14,8 @@ function NavLinkItem({ path, children }: {path: string; children: React.ReactNod
 }
 
 export default function NavBar() {
+    const {isLoggedIn, logout} = useAuth();
+
     return (
         <nav className="bg-cadus-green p-4">
             <div className="flex flex-wrap justify-between max-sm:justify-center">
@@ -22,7 +26,14 @@ export default function NavBar() {
                     <NavLinkItem path="/nousaider">Nous aider</NavLinkItem>
                     <NavLinkItem path="/livredor">Livre d'or</NavLinkItem>
                     <NavLinkItem path="/remerciements">Remerciements</NavLinkItem>
-                    <NavLinkItem path="/survey">Sondage</NavLinkItem>
+
+                    {
+                        isLoggedIn ? (
+                            <NavLinkItem path="/dashboard">Dashboard</NavLinkItem>
+                        ) : (
+                            <NavLinkItem path="/login">Connexion</NavLinkItem>
+                        )
+                    }
                 </div>
             </div>
         </nav>

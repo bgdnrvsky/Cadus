@@ -23,6 +23,8 @@ interface IMemberRepository {
      */
     public function registerMember(string $email, string $password): void;
 
+    public function deleteMember(MemberEntity $member): void;
+
     /**
      * Checks if a member already exists based on their email address.
      *

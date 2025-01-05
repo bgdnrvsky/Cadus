@@ -1,50 +1,21 @@
 import GraphicMap from "../components/d3/GraphicMap";
-import GraphicSatisfaction from "../components/d3/GraphicAnswersCount";
-import {useEffect, useState} from "react";
-import {fetchQuestions} from "../api/requests/survey";
-import ISurveyQuestion from "../api/dto/responses/ISurveyQuestion";
-import ComboBox, {ComboBoxOption} from "../components/ComboBox";
 import GraphicAnswersCount from "../components/d3/GraphicAnswersCount";
+import NavBar from "../components/NavBar";
 
 
 export default function SurveyResults() {
-    const [question, setQuestion] = useState<string>("1");
-    const [questions, setQuestions] = useState<ISurveyQuestion[]>();
-
-    useEffect(() => {
-        fetchQuestions()
-            .then((response) => {
-                if (response.additionalData)
-                    setQuestions(response.additionalData);
-            });
-    }, []);
-
-
     return (
-        <div className="flex flex-col items-center space-y-20">
-            <GraphicMap/>
+        <div className="h-screen overflow-y-scroll overflow-x-hidden snap-y snap-mandatory scroll-smooth">
+            <div className="snap-start h-full w-full flex flex-col">
+                <div className="flex-1 flex flex-col items-center justify-center">
+                    <h2 className="text-3xl">I - Répartition des personnes interrogées dans la France métropolitaine</h2>
+                    <GraphicMap/>
+                </div>
+            </div>
 
-            <div>
-            {
-                questions && (
-                    <div className="p-10">
-                        <ComboBox label="Choisissez la question pour laquelle visualiser les réponses"
-                                  id="cb-choose-question"
-                                  onChange={setQuestion}
-                        >
-                            {
-                                questions.map((q, i) => (
-                                    <ComboBoxOption key={i} value={String(i + 1)}>
-                                        {q.questionText}
-                                    </ComboBoxOption>
-                                ))
-                            }
-                        </ComboBox>
-
-                        <GraphicAnswersCount questionId={parseInt(question)}/>
-                    </div>
-                )
-            }
+            <div className="snap-start h-screen w-full flex flex-col items-center justify-center space-y-10">
+                <h2 className="text-3xl">II - Répartition des réponses par question</h2>
+                <GraphicAnswersCount/>
             </div>
         </div>
     );

@@ -1,12 +1,9 @@
 import React, {useEffect, useRef, useState} from "react";
 import * as d3 from "d3";
 import {fetchAnswers} from "../../api/requests/survey";
-import IApiResponse from "../../api/dto/responses/IApiResponse";
-import IAnswersRepartition from "../../api/dto/responses/IAnswersRepartition";
 import Spinner from "../Spinner";
 
 
-// Define the structure of GeoJSON data
 interface GeoJSONFeature {
     type: string;
     properties: {
