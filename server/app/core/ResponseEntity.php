@@ -78,7 +78,7 @@ class ResponseEntity
      * @return void
      */
     public function send(): void {
-        http_response_code($this->code);
+        http_response_code(min($this->code, 500));
 
         echo json_encode($this->toArray());
     }

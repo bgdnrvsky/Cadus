@@ -21,9 +21,7 @@ export default function Login() {
         e.preventDefault();
 
         login(email, passw)
-            .then(() => {
-                window.location.href = "/survey";
-            })
+            .then(() => window.location.href = "/dashboard")
             .catch((r: IApiResponse<ISigninData>) => {
                 setSigninError(r.message);
             });

@@ -44,4 +44,27 @@ interface IAuthenticationService
      * @throws InvalidCredentialsException If the login attempt fails due to incorrect credentials.
      */
     public function login(CredentialsDto $creds) : MemberEntity;
+
+    /**
+     * Logs out the currently authenticated user.
+     *
+     * This method ends the user's session and clears any authentication-related data,
+     * effectively logging the user out of the system.
+     *
+     * @return void This method does not return any value.
+     *
+     * @throws Exception If the logout attempt fails due to no logged-in user.
+     */
+    public function logout() : void;
+
+    /**
+     * Checks if the given member has admin privileges.
+     *
+     * This method verifies whether the specified member entity has administrative rights.
+     *
+     * @param MemberEntity $member The member entity to be checked.
+     *
+     * @return bool Returns true if the member has admin privileges; otherwise, false.
+     */
+    public function isAdmin(MemberEntity $member): bool;
 }

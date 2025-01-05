@@ -9,8 +9,8 @@ import Book from "./pages/Book";
 import Thanks from "./pages/Thanks";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Survey from "./pages/Survey";
 import ProtectedRoute from "./components/ProtectedRoute";
+import DashBoard from "./pages/DashBoard";
 
 
 export default function App() {
@@ -23,7 +23,7 @@ export default function App() {
                 <Route path="/remerciements" element={<Thanks/>} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/register" element={<Register/>} />
-                <Route path="/survey" element={<ProtectedRoute><Survey/></ProtectedRoute>} />
+                <Route path="/dashboard" element={<ProtectedRoute><DashBoard/></ProtectedRoute> } />
             </Routes>
         </BrowserRouter>
     );

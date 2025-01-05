@@ -1,7 +1,7 @@
 import ComboBox, {ComboBoxOption} from "../components/ComboBox";
 import SubmitOnceButton from "../components/SubmitOnceButton";
 import {useState} from "react";
-import {ISurveyQuestion} from "../api/dto/responses/ISurveyQuestion";
+import ISurveyQuestion from "../api/dto/responses/ISurveyQuestion";
 import {sendAnswer} from "../api/requests/survey";
 import IAnswer from "../api/dto/sent/IAnswer";
 import IApiResponse from "../api/dto/responses/IApiResponse";

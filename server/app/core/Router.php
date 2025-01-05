@@ -93,6 +93,7 @@ class Router {
     public function dispatch(string $httpMethod, string $path): ResponseEntity {
         try {
             $httpMethod = strtoupper($httpMethod);
+            $path = strtok($path, '?');
 
             if (isset($this->routes[$httpMethod][$path])) {
                 [$mapperClass, $controllerClass, $method] = $this->routes[$httpMethod][$path];
@@ -104,8 +105,14 @@ class Router {
                     return $controller->{$method}();
                 }
 
-                $json = file_get_contents('php://input');
-                $data = json_decode($json, true);
+                $data = [];
+
+                if ($httpMethod === 'POST') {
+                    $json = file_get_contents('php://input');
+                    $data = json_decode($json, true);
+                } else if ($httpMethod === 'GET') {
+                    $data = $_GET;
+                }
 
                 // The endpoint does accept data, map them to the correct object before continuing
                 $mapper = new $mapperClass();

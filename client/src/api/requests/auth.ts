@@ -60,3 +60,33 @@ export async function signin(creds: ISigninCredentials): Promise<IApiResponse<IS
 
     return response.data;
 }
+
+export async function signout() {
+    const endpoint: string = resolveEndpoint("/api/auth/signout");
+
+    const response = await axios.post<IApiResponse<null>>(
+        endpoint,
+        {},
+        {
+            withCredentials: true,
+            headers: {
+                "Content-Type": "text/plain"
+            }
+        }
+    );
+
+    return response.data;
+}
+
+export async function deleteAccount() {
+    const endpoint: string = resolveEndpoint("/api/account/delete");
+
+    const response = await axios.delete<IApiResponse<null>>(
+        endpoint,
+        {
+            withCredentials: true,
+        }
+    );
+
+    return response.data;
+}

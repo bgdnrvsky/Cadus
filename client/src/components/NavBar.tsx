@@ -1,5 +1,6 @@
 import {NavLink} from "react-router-dom";
 import {useState} from 'react';
+import {useAuth} from "../hooks/useAuth";
 import cadusLogo from "../assets/cadus.svg"
 
 function NavLinkItem({path, children}: { path: string; children: React.ReactNode }) {
@@ -13,6 +14,7 @@ function NavLinkItem({path, children}: { path: string; children: React.ReactNode
 
 export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const {isLoggedIn} = useAuth();
 
     // Toggle mobile menu
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -23,11 +25,18 @@ export default function NavBar() {
             <NavLinkItem path="/nousaider">Nous aider</NavLinkItem>
             <NavLinkItem path="/livredor">Livre d'or</NavLinkItem>
             <NavLinkItem path="/remerciements">Remerciements</NavLinkItem>
-            <NavLinkItem path="/survey">Sondage</NavLinkItem>
+            {
+                isLoggedIn ? (
+                    <NavLinkItem path="/dashboard">Dashboard</NavLinkItem>
+                ) : (
+                    <NavLinkItem path="/login">Connexion</NavLinkItem>
+                )
+            }
         </>
     );
 
     const svgColor = "white";
+
 
     return (
         <nav className="bg-cadus-green p-4">
