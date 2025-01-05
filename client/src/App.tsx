@@ -11,12 +11,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashBoard from "./pages/DashBoard";
+import NotFound from "./pages/NotFound";
 
 
 export default function App() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="*" element={<NotFound/>}/>
                 <Route path="/" element={<Home/>} />
                 <Route path="/nousaider" element={<Help/>} />
                 <Route path="/livredor" element={<Book/>} />
