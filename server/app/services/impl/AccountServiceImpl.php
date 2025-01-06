@@ -2,6 +2,7 @@
 
 namespace Cadus\services\impl;
 
+use Cadus\core\Session;
 use Cadus\models\dto\mappers\AccountUpdateDto;
 use Cadus\models\entities\MemberEntity;
 use Cadus\repositories\IMemberRepository;
@@ -20,10 +21,7 @@ class AccountServiceImpl implements IAccountService
     {
         $this->memberRepository->deleteMember($member);
 
-        // Destroy the SESSION
-        unset($_SESSION['authenticated_member']);
-        session_unset();
-        session_destroy();
+        Session::destroy();
     }
 
     public function updateAccount(MemberEntity $member, AccountUpdateDto $update): MemberEntity
@@ -44,8 +42,6 @@ class AccountServiceImpl implements IAccountService
         }
 
         // Update authenticated member's data
-        $_SESSION['authenticated_member'] = $member;
-
-        return $member;
+        return Session::save("authenticated_member", $member);
     }
 }

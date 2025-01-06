@@ -3,6 +3,7 @@
 namespace Cadus\controllers;
 
 use Cadus\core\attributes\RequestMapping;
+use Cadus\core\attributes\RequireAuthentication;
 use Cadus\core\attributes\RestController;
 use Cadus\core\ResponseEntity;
 use Cadus\exceptions\DtoInvalidFieldValue;
@@ -105,6 +106,7 @@ class AuthenticationController
      *     "data": null
      * }
      */
+    #[RequireAuthentication]
     #[RequestMapping(path: "/signout", method: "POST")]
     public function logout(): ResponseEntity {
         $this->authService->logout();

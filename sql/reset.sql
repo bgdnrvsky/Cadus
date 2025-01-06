@@ -53,7 +53,7 @@ CREATE TABLE HAS_ANSWERED(
     answered_at DATETIME,
 
     PRIMARY KEY(member_id, question_id),
-    FOREIGN KEY(member_id) REFERENCES MEMBERS(member_id),
+    FOREIGN KEY(member_id) REFERENCES MEMBERS(member_id) ON DELETE CASCADE,
     FOREIGN KEY(question_id) REFERENCES QUESTION(question_id)
 );
 

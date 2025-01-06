@@ -3,8 +3,10 @@
 namespace Cadus\controllers;
 
 use Cadus\core\attributes\RequestMapping;
+use Cadus\core\attributes\RequireAuthentication;
 use Cadus\core\attributes\RestController;
 use Cadus\core\ResponseEntity;
+use Cadus\core\Session;
 use Cadus\exceptions\NotAuthenticatedException;
 use Cadus\exceptions\NotAuthorizedException;
 use Cadus\models\dto\AnswerDto;
@@ -53,16 +55,11 @@ class SurveyController
      * @throws NotAuthorizedException If the user is not authenticated.
      * @throws Exception for other exceptions.
      */
+    #[RequireAuthentication]
     #[RequestMapping(path: "/questions", method: "GET")]
     public function getQuestions(): ResponseEntity
     {
-        session_start();
-
-        if (!isset($_SESSION['authenticated_member'])) {
-            throw new NotAuthenticatedException();
-        }
-
-        $member = $_SESSION['authenticated_member'];
+        $member = Session::authenticatedMember();
 
         $questions = $this->surveyService->getQuestions($member);
 
@@ -106,16 +103,11 @@ class SurveyController
      *     }
      * }
      */
+    #[RequireAuthentication]
     #[RequestMapping(path: "/answers", method: "GET", dtoMapper: AnswersQueryMapper::class)]
     public function getAnswers(AnswersQueryDto $query): ResponseEntity
     {
-        session_start();
-
-        if (!isset($_SESSION['authenticated_member'])) {
-            throw new NotAuthenticatedException();
-        }
-
-        $member = $_SESSION['authenticated_member'];
+        $member = Session::authenticatedMember();
 
         if (!$this->authenticationService->isAdmin($member)) {
             throw new NotAuthorizedException();
@@ -140,16 +132,11 @@ class SurveyController
      * @throws NotAuthorizedException If the user is not authenticated (no session or invalid session).
      * @throws Exception for other exceptions.
      */
+    #[RequireAuthentication]
     #[RequestMapping(path: "/answer", method: "POST", dtoMapper: AnswerMapper::class)]
     public function registerAnswer(AnswerDto $answer): ResponseEntity
     {
-        session_start();
-
-        if (!isset($_SESSION['authenticated_member'])) {
-            throw new NotAuthenticatedException();
-        }
-
-        $member = $_SESSION['authenticated_member'];
+        $member = Session::authenticatedMember();
 
         $this->surveyService->registerAnswer($member, $answer);
 

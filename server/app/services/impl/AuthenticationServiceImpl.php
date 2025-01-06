@@ -2,6 +2,7 @@
 
 namespace Cadus\services\impl;
 
+use Cadus\core\Session;
 use Cadus\exceptions\InvalidCredentialsException;
 use Cadus\models\dto\CredentialsDto;
 use Cadus\models\entities\MemberEntity;
@@ -48,21 +49,13 @@ class AuthenticationServiceImpl implements IAuthenticationService
             throw new InvalidCredentialsException();
         }
 
-        session_start();
-        $_SESSION['authenticated_member'] = $member;
-        return $member;
+        Session::start();
+
+        return Session::setAuthenticatedMember($member);
     }
 
     public function logout(): void {
-        session_start();
-
-        if (!isset($_SESSION['authenticated_member'])) {
-            throw new Exception("Cannot log out because member is not authenticated", 401);
-        }
-
-        unset($_SESSION['authenticated_member']);
-        session_unset();
-        session_destroy();
+        Session::destroy();
     }
 
     public function isAdmin(MemberEntity $member): bool
