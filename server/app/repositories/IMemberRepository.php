@@ -23,6 +23,10 @@ interface IMemberRepository {
      */
     public function registerMember(string $email, string $password): void;
 
+    public function updateLogin(int $memberId, string $email): MemberEntity;
+
+    public function updatePassword(int $memberId, string $password): MemberEntity;
+
     public function deleteMember(MemberEntity $member): void;
 
     /**

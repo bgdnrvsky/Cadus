@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import {useAccountStore} from "./useAccountStore";
-import {signin, signout} from "../api/requests/auth";
+import {requests} from "../api/requests/auth";
 import ISigninCredentials from "../api/dto/sent/ISigninCredentials";
 import IApiResponse from "../api/dto/responses/IApiResponse";
 import ISigninData from "../api/dto/responses/ISigninData";
@@ -34,7 +34,7 @@ export function useAuth() {
     const login = useCallback(async (email: string, passw: string): Promise<IApiResponse<ISigninData>> => {
         const creds: ISigninCredentials = { email, passw };
         
-        const response: IApiResponse<ISigninData> = await signin(creds);
+        const response: IApiResponse<ISigninData> = await requests.auth.signin(creds);
 
         if (response.status === 'success') {
             setAccount(response.additionalData);
@@ -44,7 +44,7 @@ export function useAuth() {
     }, [setAccount]);
 
     const logout = useCallback(async () => {
-        const response = await signout();
+        const response = await requests.auth.signout();
 
         if (response.status === 'success') {
             setAccount(null);
@@ -57,6 +57,6 @@ export function useAuth() {
         status,
         isLoggedIn,
         login,
-        logout
+        logout,
     };
 }

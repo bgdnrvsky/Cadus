@@ -54,7 +54,7 @@ export default function DashBoard() {
                 </nav>
             </aside>
 
-            <main className="flex-1 bg-gray-100">
+            <main className="flex-1 bg-white">
                 {activeTab === "Compte" && <Account/>}
                 {activeTab === "Sondage" && <Survey/>}
                 {activeTab === "Résultats" && <SurveyResults/>}

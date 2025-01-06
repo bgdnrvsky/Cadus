@@ -6,10 +6,10 @@ import {FormEvent, useState} from "react";
 import {isEmailValid} from "../utils/Email";
 import Banner, {BannerType} from "../components/Banner";
 import {useFormStatus} from "react-dom";
-import {signup} from "../api/requests/auth";
 import IApiResponse from "../api/dto/responses/IApiResponse";
 import ISignupData from "../api/dto/responses/ISignupData";
 import ISignupCredentials from "../api/dto/sent/ISignupCredentials";
+import {requests} from "../api/requests/auth";
 
 
 export default function Register() {
@@ -31,7 +31,7 @@ export default function Register() {
             acceptedTerms
         };
 
-        signup(creds)
+        requests.auth.signup(creds)
             .then(setSignupResponse)
             .catch(setSignupResponse);
     }

@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import * as d3 from "d3";
-import {fetchAnswers} from "../../api/requests/survey";
+import {requests} from "../../api/requests/survey";
 import Spinner from "../Spinner";
 
 
@@ -56,7 +56,7 @@ export default function MapComponent() {
                 return;
             }
 
-            const response = await fetchAnswers({questionId: 1});
+            const response = await requests.survey.fetchAnswers({questionId: 1});
 
             if (response.status !== 'success' || response.additionalData === null) {
                 return;

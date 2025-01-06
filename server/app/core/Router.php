@@ -105,14 +105,8 @@ class Router {
                     return $controller->{$method}();
                 }
 
-                $data = [];
+                $data = $this->mapMethodData($httpMethod);
 
-                if ($httpMethod === 'POST') {
-                    $json = file_get_contents('php://input');
-                    $data = json_decode($json, true);
-                } else if ($httpMethod === 'GET') {
-                    $data = $_GET;
-                }
 
                 // The endpoint does accept data, map them to the correct object before continuing
                 $mapper = new $mapperClass();
@@ -125,5 +119,24 @@ class Router {
         } catch (Exception $e) {
             return ResponseEntity::error($e->getMessage(), $e->getCode());
         }
+    }
+
+    private function mapMethodData(string $method): array {
+        if ($method === 'GET') {
+            return $_GET;
+        }
+
+        if ($method === 'POST' || $method === 'PUT' || $method === 'DELETE') {
+            $json = file_get_contents('php://input');
+            $data = json_decode($json, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new Exception("Expected body stream to be JSON encoded");
+            }
+
+            return $data;
+        }
+
+        throw new Exception("Unknown HTTP method $method");
     }
 }
