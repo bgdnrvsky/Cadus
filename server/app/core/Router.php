@@ -3,7 +3,9 @@
 namespace Cadus\core;
 
 use Cadus\core\attributes\RequestMapping;
+use Cadus\core\attributes\RequireAuthentication;
 use Cadus\core\attributes\RestController;
+use Cadus\exceptions\NotAuthenticatedException;
 use Cadus\exceptions\RouteNotFoundException;
 use Exception;
 use ReflectionClass;
@@ -22,7 +24,7 @@ class Router {
 
     /**
      * @var array An associative array holding the routes.
-     *            The structure is: [$httpMethod => [$path => [dtoMapperClass, controllerClass, methodName]]].
+     *            The structure is: [$httpMethod => [$path => [dtoMapperClass, controllerClass, methodName, secured]]].
      */
     private array $routes = [];
 
@@ -67,13 +69,17 @@ class Router {
 
         // Register methods annotated with RequestMapping
         foreach ($reflector->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
-            foreach ($method->getAttributes(RequestMapping::class) as $attribute) {
-                $mapping = $attribute->newInstance();
+            $attributes = $method->getAttributes(RequestMapping::class);
+
+            if (!empty($attributes)) {
+                $mapping = $attributes[0]->newInstance();
+                $secured = !empty($method->getAttributes(RequireAuthentication::class));
 
                 $this->routes[$mapping->getHttpMethod()][$baseRoute . $mapping->getPath()] = [
                     $mapping->getDtoMapperName(),
                     $controllerClass,
-                    $method->getName()
+                    $method->getName(),
+                    $secured
                 ];
             }
         }
@@ -95,35 +101,56 @@ class Router {
             $httpMethod = strtoupper($httpMethod);
             $path = strtok($path, '?');
 
-            if (isset($this->routes[$httpMethod][$path])) {
-                [$mapperClass, $controllerClass, $method] = $this->routes[$httpMethod][$path];
-
-                $controller = $this->container->get($controllerClass);
-
-                // The endpoint does not accept data, call it directly
-                if ($mapperClass === null) {
-                    return $controller->{$method}();
-                }
-
-                $data = [];
-
-                if ($httpMethod === 'POST') {
-                    $json = file_get_contents('php://input');
-                    $data = json_decode($json, true);
-                } else if ($httpMethod === 'GET') {
-                    $data = $_GET;
-                }
-
-                // The endpoint does accept data, map them to the correct object before continuing
-                $mapper = new $mapperClass();
-                $dto = $mapper->map($data);
-
-                return $controller->{$method}($dto);
+            if (!isset($this->routes[$httpMethod][$path])) {
+                throw new RouteNotFoundException($httpMethod, $path);
             }
 
-            throw new RouteNotFoundException($httpMethod, $path);
+            [$mapperClass, $controllerClass, $method, $secured] = $this->routes[$httpMethod][$path];
+
+            if ($secured) {
+                Session::start();
+
+                if (!Session::isAuthenticated()) {
+                    throw new NotAuthenticatedException();
+                }
+            }
+
+            $controller = $this->container->get($controllerClass);
+
+            // The endpoint does not accept data, call it directly
+            if ($mapperClass === null) {
+                return $controller->{$method}();
+            }
+
+            $data = $this->mapMethodData($httpMethod);
+
+            // The endpoint does accept data, map them to the correct object before continuing
+            $mapper = new $mapperClass();
+            $dto = $mapper->map($data);
+
+            return $controller->{$method}($dto);
+
         } catch (Exception $e) {
             return ResponseEntity::error($e->getMessage(), $e->getCode());
         }
+    }
+
+    private function mapMethodData(string $method): array {
+        if ($method === 'GET') {
+            return $_GET;
+        }
+
+        if ($method === 'POST' || $method === 'PUT' || $method === 'DELETE') {
+            $json = file_get_contents('php://input');
+            $data = json_decode($json, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new Exception("Expected body stream to be JSON encoded");
+            }
+
+            return $data;
+        }
+
+        throw new Exception("Unknown HTTP method $method");
     }
 }

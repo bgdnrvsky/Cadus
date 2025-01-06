@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import {useEffect, useRef, useState} from "react";
 import {IAnswerEntry} from "../../api/dto/responses/IAnswersRepartition";
-import {fetchAnswers, fetchQuestions} from "../../api/requests/survey";
+import {requests} from "../../api/requests/survey";
 import ComboBox, {ComboBoxOption} from "../ComboBox";
 import ISurveyQuestion from "../../api/dto/responses/ISurveyQuestion";
 
@@ -12,7 +12,7 @@ export default function GraphicAnswersCount() {
     const [question, setQuestion] = useState<string>("1");
 
     useEffect(() => {
-        fetchQuestions()
+        requests.survey.fetchQuestions()
             .then((response) => {
                 if (response.additionalData)
                     setQuestions(response.additionalData);
@@ -20,7 +20,7 @@ export default function GraphicAnswersCount() {
     }, []);
 
     useEffect(() => {
-        fetchAnswers({questionId: parseInt(question)})
+        requests.survey.fetchAnswers({questionId: parseInt(question)})
             .then((r) => {
                 if (r.additionalData != null) {
                     setData(r.additionalData.entries);

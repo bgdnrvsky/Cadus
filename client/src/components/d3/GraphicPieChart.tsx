@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import * as d3 from "d3";
 import {IAnswerEntry} from "../../api/dto/responses/IAnswersRepartition";
-import {fetchAnswers} from "../../api/requests/survey";
+import {requests} from "../../api/requests/survey";
 
 
 export default function GraphicPieChart() {
@@ -38,7 +38,7 @@ export default function GraphicPieChart() {
     };
 
     useEffect(() => {
-        fetchAnswers({questionId: 6})
+        requests.survey.fetchAnswers({questionId: 6})
             .then((r) => setData(r.additionalData?.entries || []));
     }, []);
 

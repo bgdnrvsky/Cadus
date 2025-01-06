@@ -20,73 +20,64 @@ axios.interceptors.response.use(
 );
 
 
-export async function signup(creds: ISignupCredentials): Promise<IApiResponse<ISignupData>> {
-    const endpoint: string = resolveEndpoint("/api/auth/signup");
+export namespace requests {
+    export namespace auth {
+        export async function signup(creds: ISignupCredentials): Promise<IApiResponse<ISignupData>> {
+            const endpoint: string = resolveEndpoint("/api/auth/signup");
 
-    const response = await axios.post<IApiResponse<ISignupData>>(
-        endpoint,
-        JSON.stringify({
-            "register-email": creds.email,
-            "register-password": creds.passw,
-            "register-password-confirm": creds.repassw,
-            "accept-terms": creds.acceptedTerms
-        }),
-        {
-            headers: {
-                "Content-Type": "text/plain"
-            }
+            const response = await axios.post<IApiResponse<ISignupData>>(
+                endpoint,
+                JSON.stringify({
+                    "register-email": creds.email,
+                    "register-password": creds.passw,
+                    "register-password-confirm": creds.repassw,
+                    "accept-terms": creds.acceptedTerms
+                }),
+                {
+                    headers: {
+                        "Content-Type": "text/plain"
+                    }
+                }
+            );
+
+            return response.data;
         }
-    );
 
-    return response.data;
-}
+        export async function signin(creds: ISigninCredentials): Promise<IApiResponse<ISigninData>> {
+            const endpoint: string = resolveEndpoint("/api/auth/signin");
 
-export async function signin(creds: ISigninCredentials): Promise<IApiResponse<ISigninData>> {
-    const endpoint: string = resolveEndpoint("/api/auth/signin");
+            const response = await axios.post<IApiResponse<ISigninData>>(
+                endpoint,
+                JSON.stringify({
+                    "login-email": creds.email,
+                    "login-password": creds.passw
+                }),
+                {
+                    withCredentials: true,
+                    headers: {
+                        "Content-Type": "text/plain"
+                    }
+                }
+            );
 
-    const response = await axios.post<IApiResponse<ISigninData>>(
-        endpoint,
-        JSON.stringify({
-            "login-email": creds.email,
-            "login-password": creds.passw
-        }),
-        {
-            withCredentials: true,
-            headers: {
-                "Content-Type": "text/plain"
-            }
+            return response.data;
         }
-    );
 
-    return response.data;
-}
+        export async function signout() {
+            const endpoint: string = resolveEndpoint("/api/auth/signout");
 
-export async function signout() {
-    const endpoint: string = resolveEndpoint("/api/auth/signout");
+            const response = await axios.post<IApiResponse<null>>(
+                endpoint,
+                {},
+                {
+                    withCredentials: true,
+                    headers: {
+                        "Content-Type": "text/plain"
+                    }
+                }
+            );
 
-    const response = await axios.post<IApiResponse<null>>(
-        endpoint,
-        {},
-        {
-            withCredentials: true,
-            headers: {
-                "Content-Type": "text/plain"
-            }
+            return response.data;
         }
-    );
-
-    return response.data;
-}
-
-export async function deleteAccount() {
-    const endpoint: string = resolveEndpoint("/api/account/delete");
-
-    const response = await axios.delete<IApiResponse<null>>(
-        endpoint,
-        {
-            withCredentials: true,
-        }
-    );
-
-    return response.data;
+    }
 }

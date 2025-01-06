@@ -52,8 +52,6 @@ interface IAuthenticationService
      * effectively logging the user out of the system.
      *
      * @return void This method does not return any value.
-     *
-     * @throws Exception If the logout attempt fails due to no logged-in user.
      */
     public function logout() : void;
 

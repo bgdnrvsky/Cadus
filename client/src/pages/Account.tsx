@@ -1,12 +1,32 @@
 import {useAccount} from "../hooks/useAccount";
 import {useAuth} from "../hooks/useAuth";
+import TextInput, {InputType} from "../components/TextInput";
+import Button from "../components/Button";
+import {useState} from "react";
+import {isEmailValid} from "../utils/Email";
+import IApiResponse from "../api/dto/responses/IApiResponse";
+import IUpdatedData from "../api/dto/responses/IUpdatedData";
+import Banner, {BannerType} from "../components/Banner";
 
 export default function Account() {
-    const { accountDelete } = useAccount();
+    const { accountUpdate, accountDelete, email } = useAccount();
     const {logout} = useAuth();
 
+    const [newEmail, setNewEmail] = useState("");
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+
+    const [updateResponseData, setUpdateResponseData] = useState<IApiResponse<IUpdatedData>>();
+
     const onDisconnectClicked = () => {
-        logout().then(() => window.location.href = "/login");
+        logout().then(() => {
+            window.location.href = "/login";
+        });
+    }
+
+    const onUpdateAccount = () => {
+        accountUpdate({newEmail, newPassword, oldPassword})
+            .then(r => setUpdateResponseData(r));
     }
 
     const onDeleteAccountClicked = () => {
@@ -18,7 +38,19 @@ export default function Account() {
     }
 
     return (
+        <div className="space-y-20 max-w-4xl justify-center mx-auto">
         <div className="flex flex-col space-y-10 p-10">
+            { updateResponseData && <Banner type={updateResponseData.status === 'success' ? BannerType.Success : BannerType.Error}>{updateResponseData.message}</Banner> }
+            <TextInput id="new-mail" onChange={setNewEmail} type={InputType.Email} label="Nouvel email"/>
+            <TextInput id="old-pass" onChange={setOldPassword} type={InputType.Password} label="Mot de passe actuel"/>
+            <TextInput id="new-pass" onChange={setNewPassword} type={InputType.Password} label="Nouveau mot de passe"/>
+            <Button
+                disabled={!isEmailValid(newEmail) || (newEmail === email && newPassword === oldPassword) || newPassword.trim() === '' }
+                onClick={onUpdateAccount}>Sauvegarder les changements</Button>
+        </div>
+
+        <div className="flex flex-col space-y-10 p-10">
+
             <button
                 onClick={onDisconnectClicked}
                 className="w-full bg-yellow-500 text-white py-2 px-4 rounded-md flex items-center justify-center gap-2 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
@@ -60,6 +92,7 @@ export default function Account() {
                 </svg>
                 Supprimer mon compte
             </button>
+        </div>
         </div>
     );
 }
