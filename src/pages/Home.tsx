@@ -8,9 +8,6 @@ import img3 from '../assets/home/img3.jpeg';
 import {Link} from "react-router-dom";
 
 
-
-
-
 export default function Home() {
 
     const assistanceList = [

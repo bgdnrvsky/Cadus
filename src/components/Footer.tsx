@@ -1,5 +1,5 @@
 import React from 'react';
-import mail from "../assets/home/mail.png";
+import mail from "../assets/home/courrier.png";
 import localisation from "../assets/home/localisation.png";
 
 const Footer = () => {
