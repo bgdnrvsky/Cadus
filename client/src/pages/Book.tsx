@@ -1,5 +1,6 @@
 import {Card, CardAvatar, CardQuote} from "../components/Card";
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 export default function Book() {
     return (
@@ -56,6 +57,8 @@ export default function Book() {
                                 status="Patiente"/>
                 </Card>
             </div>
+
+            <Footer/>
         </>
     );
 }
