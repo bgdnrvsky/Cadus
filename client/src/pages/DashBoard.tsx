@@ -29,6 +29,15 @@ export default function DashBoard() {
                         Compte
                     </button>
 
+                    <button
+                        onClick={() => setActiveTab("Comments")}
+                        className={`block w-full px-4 py-2 text-left hover:bg-gray-700 ${
+                            activeTab === "Comments" ? "bg-gray-700" : ""
+                        }`}
+                    >
+                        Commentaires
+                    </button>
+
                     {
                         isAdministrator ? (
                             <button

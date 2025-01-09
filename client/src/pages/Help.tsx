@@ -1,5 +1,5 @@
 import Carousel, {CarouselSlide} from "../components/Carousel";
-import {Card, CardAvatar, CardQuote} from "../components/Card";
+import {Card, CardStatus, CardQuote, CardPhoto, CardFigure} from "../components/Card";
 import Button from "../components/Button";
 import ScrollIndicator from "../components/ScrollIndicator";
 import NavBar from "../components/NavBar";
@@ -54,22 +54,36 @@ export default function Help() {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 m-10">
                             <Card>
-                                <CardQuote>Je ne me sentais plus seule et sans défense grâce à Cadus</CardQuote>
-                                <CardAvatar avatar={require("../assets/profile_pictures/avatar9.jpg")}
-                                            name="Marie"
-                                            status="Bénéficiaire"/>
+                                <CardQuote>Je ne me sentais plus seule et sans défense grâce à
+                                    Cadus</CardQuote>
+                                <CardFigure>
+                                    <CardPhoto
+                                        avatar={require("../assets/profile_pictures/avatar9.jpg")}/>
+                                    <CardStatus
+                                        name="Marie"
+                                        status="Bénéficiaire"/>
+                                </CardFigure>
                             </Card>
                             <Card>
-                                <CardQuote>Soutenir un bénéficiaire était une expérience très enrichissante</CardQuote>
-                                <CardAvatar avatar={require("../assets/profile_pictures/avatar10.jpg")}
-                                            name="Sylvain"
-                                            status="Bénévole"/>
+                                <CardQuote>Soutenir un bénéficiaire était une expérience très
+                                    enrichissante</CardQuote>
+                                <CardFigure>
+                                    <CardPhoto
+                                        avatar={require("../assets/profile_pictures/avatar10.jpg")}/>
+                                    <CardStatus
+                                        name="Sylvain"
+                                        status="Bénévole"/>
+                                </CardFigure>
                             </Card>
                             <Card>
                                 <CardQuote>Je n'aurais pas réussi à obtenir justice sans Cadus"</CardQuote>
-                                <CardAvatar avatar={require("../assets/profile_pictures/avatar8.jpg")}
-                                            name="Joe"
-                                            status="Bénéficiaire"/>
+                                <CardFigure>
+                                    <CardPhoto
+                                        avatar={require("../assets/profile_pictures/avatar8.jpg")}/>
+                                    <CardStatus
+                                        name="Joe"
+                                        status="Bénéficiaire"/>
+                                </CardFigure>
                             </Card>
                         </div>
                         <Button className="m-auto block text-cadus-green">Demander une formation</Button>
