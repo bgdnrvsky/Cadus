@@ -1,7 +1,6 @@
 import NavBar from "../components/NavBar";
 import Carousel, {CarouselSlide} from "../components/Carousel";
 import Button from "../components/Button";
-import Footer from "../components/Footer";
 import {Card, CardAvatar, CardQuote} from "../components/Card";
 import ScrollIndicator from "../components/ScrollIndicator";
 
@@ -45,44 +44,44 @@ export default function Thanks() {
                         <div className="font-display text-center">
                             <p className="mt-4 text-cadus-black font-bold text-5xl inline-block brush-underline">Merci !</p>
                             <p className="pt-4 text-wrap text-cadus-grey text-1xl">
-                                "Ensemble, grâce à vous tous bénévoles, donateurs et partenaires, nous offrons un peu
-                                de lumière et de chaleur à ceux qui en ont le plus besoin. Merci infiniment pour votre engagement à nos côtés."
+                                Ensemble, grâce à vous tous bénévoles, donateurs et partenaires, nous offrons un peu
+                                de lumière et de chaleur à ceux qui en ont le plus besoin. Merci infiniment pour votre engagement à nos côtés.
                             </p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 m-10">
                             <Card>
-                                <CardQuote>"Votre générosité nous permet d’offrir un soutien indispensable à ceux qui en ont le plus besoin."</CardQuote>
+                                <CardQuote>Votre générosité nous permet d’offrir un soutien indispensable à ceux qui en ont le plus besoin.</CardQuote>
                                 <CardAvatar avatar={require("../assets/thanks_img/claire_martin.jpg")}
                                             name="Claire Martin"
                                             status="Donatrice"/>
                             </Card>
                             <Card>
-                                <CardQuote>"Participer à cette mission est une manière concrète de redonner à la communauté et de faire une réelle différence."</CardQuote>
+                                <CardQuote>Participer à cette mission est une manière concrète de redonner à la communauté et de faire une réelle différence.</CardQuote>
                                 <CardAvatar avatar={require("../assets/thanks_img/RIVIERE_Antoine.jpg")}
                                             name="Antoine Rivière"
                                             status="Bénévole"/>
                             </Card>
                             <Card>
-                                <CardQuote>"Votre soutien financier a permis à notre association de financer des projets essentiels pour les patients hospitalisés."</CardQuote>
+                                <CardQuote>Votre soutien financier a permis à notre association de financer des projets essentiels pour les patients hospitalisés.</CardQuote>
                                 <CardAvatar avatar={require("../assets/thanks_img/solidarites_international.jpg")}
                                             name="Solidarités International"
                                             status="Donateur"/>
                             </Card>
                             <Card>
-                                <CardQuote>"Grâce à vos dons, nous avons pu équiper les services hospitaliers avec des outils pour améliorer le bien-être des patients."</CardQuote>
+                                <CardQuote>Grâce à vos dons, nous avons pu équiper les services hospitaliers avec des outils pour améliorer le bien-être des patients.</CardQuote>
                                 <CardAvatar avatar={require("../assets/thanks_img/fondation_sante.jpg")}
                                             name="Fondation Santé+"
                                             status="Donateur"/>
                             </Card>
                             <Card>
-                                <CardQuote>"Votre générosité nous aide à offrir un meilleur quotidien aux personnes hospitalisées."</CardQuote>
+                                <CardQuote>Votre générosité nous aide à offrir un meilleur quotidien aux personnes hospitalisées.</CardQuote>
                                 <CardAvatar avatar={require("../assets/thanks_img/mains_solidaires.jpg")}
                                             name="Entreprise Main Solidaire"
                                             status="Donateur"/>
                             </Card>
                             <Card>
-                                <CardQuote>"Participer à cette mission m'a enrichi humainement et m'a montré l'importance de la solidarité."</CardQuote>
+                                <CardQuote>Participer à cette mission m'a enrichi humainement et m'a montré l'importance de la solidarité.</CardQuote>
                                 <CardAvatar avatar={require("../assets/thanks_img/sophie_bernard.jpg")}
                                             name="Sophie Bernard"
                                             status="Bénévole"/>
@@ -137,7 +136,6 @@ export default function Thanks() {
                     </div>
                 </div>
             </div>
-            <Footer/>
         </div>
     );
 }
