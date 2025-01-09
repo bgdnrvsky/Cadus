@@ -9,6 +9,12 @@ import Spinner from "../components/Spinner";
 import Banner, {BannerType} from "../components/Banner";
 
 export default function Book() {
+    const [response, setResponse] = useState<IApiResponse<IComment[]>>();
+
+    useEffect(() => {
+        requests.comments.fetchComments().then(setResponse)
+    }, []);
+
     return (
         <>
             <NavBar/>
@@ -80,6 +86,19 @@ export default function Book() {
                             status="Patiente"/>
                     </CardFigure>
                 </Card>
+                { !response && <Spinner/> }
+
+                {
+                    response && response.status === 'success' && response.additionalData && (
+                    response.additionalData.map((comment: IComment, index: number) => (
+                        <Card key={index}>
+                            <CardQuote>
+                                {comment.commentText}
+                            </CardQuote>
+                            <CardStatus name={comment.authorLogin} status={"Utilisateur de Cadus"}/>
+                        </Card>
+                    )))
+                }
             </div>
 
             <Footer/>

@@ -3,12 +3,12 @@ import {useAccount} from "../hooks/useAccount";
 import {useState} from "react";
 import Survey from "./Survey";
 import Account from "./Account";
+import Comments from "./Comments";
 import SurveyResults from "./SurveyResults";
-
 
 export default function DashBoard() {
     const { email, isAdministrator } = useAccount();
-    const [activeTab, setActiveTab] = useState<"Compte" | "Sondage" | "Résultats">("Compte");
+    const [activeTab, setActiveTab] = useState<"Compte" | "Sondage" | "Résultats" | "Comments">("Compte");
 
     return (
         <div className="h-screen overflow-y-hidden">
@@ -67,6 +67,7 @@ export default function DashBoard() {
                 {activeTab === "Compte" && <Account/>}
                 {activeTab === "Sondage" && <Survey/>}
                 {activeTab === "Résultats" && <SurveyResults/>}
+                {activeTab === "Comments" && <Comments/>}
             </main>
         </div>
         </div>

@@ -1,9 +1,6 @@
 import React from "react";
 
-interface CardAvatarProps {
-    /* Path to quoted person's avatar */
-    avatar: string;
-
+interface CardStatusProps {
     /* Quoted person's name */
     name: string;
 
@@ -11,17 +8,41 @@ interface CardAvatarProps {
     status: string;
 }
 
-export function CardAvatar(props: CardAvatarProps) {
-    const {avatar, name, status} = props;
+export function CardStatus(props: CardStatusProps) {
+    const {name, status} = props;
+
+    return (
+        <div className="flex-auto">
+            <p className="text-slate-600 font-semibold">{name}</p>
+            <p className="text-slate-400">{status}</p>
+        </div>
+    );
+}
+
+interface CardFigureProps {
+    children: React.ReactNode;
+}
+
+export function CardFigure(props: CardFigureProps) {
+    const {children} = props;
 
     return (
         <figcaption className="flex items-center space-x-4 mt-6">
-            <img className="flex-none size-10 rounded-full object-cover" src={avatar} alt=""/>
-            <div className="flex-auto">
-                <p className="text-slate-600 font-semibold">{name}</p>
-                <p className="text-slate-400">{status}</p>
-            </div>
+            {children}
         </figcaption>
+    );
+}
+
+interface CardPhotoProps {
+    /* Path to quoted person's avatar */
+    avatar: string;
+}
+
+export function CardPhoto(props: CardPhotoProps) {
+    const {avatar} = props;
+
+    return (
+        <img className="flex-none size-10 rounded-full object-cover" src={avatar} alt="Avatar"/>
     );
 }
 

@@ -17,7 +17,8 @@ export default function Help() {
                     <CarouselSlide image={require("../assets/volunteer.jpg")}>
                         <div className="flex flex-col items-center md:items-start space-y-6">
                             <h1 className="text-6xl text-white text-center font-bold">Rejoindre Cadus.</h1>
-                            <p className="text-lg text-white text-center md:text-left w-2/3">Nous vous attendons pour construire un avenir solidaire et plein d'espoir.</p>
+                            <p className="text-lg text-white text-center md:text-left w-2/3">Nous vous attendons pour
+                                construire un avenir solidaire et plein d'espoir.</p>
                             <a href="#volunteer-section"><Button className="text-white">En savoir plus</Button></a>
                         </div>
                     </CarouselSlide>
@@ -25,7 +26,8 @@ export default function Help() {
                     <CarouselSlide image={require("../assets/promote.jpg")}>
                         <div className="flex flex-col items-center md:items-start space-y-6">
                             <h1 className="text-6xl text-white text-center font-bold">Promouvoir Cadus.</h1>
-                            <p className="text-lg text-white text-center md:text-left w-2/3">Parlez de notre association autour de vous : chaque mot partagé, c'est un pas de plus vers notre mission.</p>
+                            <p className="text-lg text-white text-center md:text-left w-2/3">Parlez de notre association
+                                autour de vous : chaque mot partagé, c'est un pas de plus vers notre mission.</p>
                             <a href="#promote-section"><Button className="text-white">Comment faire ?</Button></a>
                         </div>
                     </CarouselSlide>
@@ -33,7 +35,8 @@ export default function Help() {
                     <CarouselSlide image={require("../assets/donate.jpg")}>
                         <div className="flex flex-col items-center md:items-start space-y-6">
                             <h1 className="text-6xl text-white text-center font-bold">Soutenir Cadus.</h1>
-                            <p className="text-lg text-white text-center md:text-left w-2/3">Soutenez notre association : chaque geste compte pour faire une grande différence.</p>
+                            <p className="text-lg text-white text-center md:text-left w-2/3">Soutenez notre association
+                                : chaque geste compte pour faire une grande différence.</p>
                             <a href="#donate-section"><Button className="text-white">J'apporte mon soutien</Button></a>
                         </div>
                     </CarouselSlide>
