@@ -1,7 +1,5 @@
 import Footer from "../components/Footer";
 import img1 from "../assets/home/img1.png";
-import img2 from "../assets/home/img2.jpg";
-import img3 from "../assets/home/img3.jpeg";
 import NavBar from "../components/NavBar";
 import LinkButton from "../components/LinkButton";
 import {Card, CardQuote} from "../components/Card";
@@ -30,7 +28,7 @@ export default function Home() {
     return (
         <div>
             <NavBar/>
-            <div className="flex items-center justify-around p-1">
+            <div className="flex flex-col-reverse md:flex-row items-center justify-around p-4">
                 <img src={"cadus.svg"} className="h-96 w-72 bg-white" alt="Logo Cadus"/>
                 <div className="text-center w-1/2 ">
                     <h3 className="text-2xl font-bold">
@@ -44,19 +42,19 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className="flex justify-center gap-20">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-8">
                 <LinkButton to="/nousaider" className="w-40">Nous aider</LinkButton>
                 <LinkButton to="/livredor" className="w-40">Laisser un mot</LinkButton>
             </div>
 
             <div className="flex justify-around mt-24">
-                <img src={img1} className="w-1/3 h-[450px]" alt="Image 1"/>
-                <img src={img3} className="w-1/3 h-[450px]" alt="Image 3"/>
-                <img src={img2} className="w-1/3 h-[450px]" alt="Image 2"/>
+                <img src={img1} className="w-full h-[450px] object-cover" alt="Image 1"/>
+
+
             </div>
 
             <div className="text-center p-8">
-                <h2 className="text-2xl font-bold mt-16 mb-4 inline-block brush-underline">Notre But</h2>
+                <h2 className="text-2xl font-bold mt-16 mb-4 inline-block brush-underline ">Notre But</h2>
 
                 {assistanceList.map((item, index) => (
                     <p key={index} className="mb-2">
