@@ -29,7 +29,7 @@ export default function Home() {
         <div>
             <NavBar/>
             <div className="flex flex-col-reverse md:flex-row items-center justify-around p-4">
-                <img src={"cadus.svg"} className="h-96 w-72 bg-white" alt="Logo Cadus"/>
+                <img src={"cadus.svg"} className="h-96 w-72 bg-white hidden md:block" alt="Logo Cadus"/>
                 <div className="text-center w-1/2 ">
                     <h3 className="text-2xl font-bold">
                         Vous êtes victime d'erreurs médicales ?
