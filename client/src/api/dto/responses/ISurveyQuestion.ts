@@ -6,13 +6,11 @@
  *         "answered": true
  *     }
  * ]
- *
- *
- *
- *
  */
-export interface ISurveyQuestion {
+interface ISurveyQuestion {
     questionText: string;
     answers: string[];
     answered: boolean;
 }
+
+export default ISurveyQuestion;

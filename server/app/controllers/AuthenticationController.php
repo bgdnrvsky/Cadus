@@ -3,6 +3,7 @@
 namespace Cadus\controllers;
 
 use Cadus\core\attributes\RequestMapping;
+use Cadus\core\attributes\RequireAuthentication;
 use Cadus\core\attributes\RestController;
 use Cadus\core\ResponseEntity;
 use Cadus\exceptions\DtoInvalidFieldValue;
@@ -78,14 +79,39 @@ class AuthenticationController
     public function login(CredentialsDto $creds): ResponseEntity {
         $this->checkLoginData($creds);
 
+        // TODO: if the user tries to connect on another account, log him out first
         $member = $this->authService->login($creds);
 
         $additionalData = [
             "memberId" => $member->getId(),
-            "memberEmail" => $member->getLogin()
+            "memberEmail" => $member->getLogin(),
+            "admin" => $this->authService->isAdmin($member)
         ];
 
         return ResponseEntity::success("Login successful", $additionalData);
+    }
+
+    /**
+     * Logs out a user.
+     *
+     * This method is mapped to the `/signout` endpoint and processes POST requests
+     * to log out the currently authenticated user. It delegates the logout operation
+     * to the authentication service and returns a success response upon completion.
+     *
+     * @return ResponseEntity Returns a success response with the message "Logout successful".
+     *
+     * Example response:
+     * {
+     *     "message": "Logout successful",
+     *     "data": null
+     * }
+     */
+    #[RequireAuthentication]
+    #[RequestMapping(path: "/signout", method: "POST")]
+    public function logout(): ResponseEntity {
+        $this->authService->logout();
+
+        return ResponseEntity::success("Logout successful");
     }
 
     /**

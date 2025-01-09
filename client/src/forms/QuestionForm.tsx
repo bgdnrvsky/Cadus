@@ -1,8 +1,8 @@
 import ComboBox, {ComboBoxOption} from "../components/ComboBox";
 import SubmitOnceButton from "../components/SubmitOnceButton";
 import {useState} from "react";
-import {ISurveyQuestion} from "../api/dto/responses/ISurveyQuestion";
-import {sendAnswer} from "../api/requests/survey";
+import ISurveyQuestion from "../api/dto/responses/ISurveyQuestion";
+import {requests} from "../api/requests/survey";
 import IAnswer from "../api/dto/sent/IAnswer";
 import IApiResponse from "../api/dto/responses/IApiResponse";
 import Banner, {BannerType} from "../components/Banner";
@@ -24,7 +24,7 @@ export default function QuestionForm(props: QuestionFormProps) {
             answerText: selectedAnswer
         };
 
-        const response: IApiResponse<null> = await sendAnswer(answer);
+        const response: IApiResponse<null> = await requests.survey.sendAnswer(answer);
 
         const success: boolean = response.status === 'success';
 

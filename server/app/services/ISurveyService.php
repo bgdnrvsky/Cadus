@@ -33,6 +33,36 @@ interface ISurveyService
      */
     public function getQuestions(MemberEntity $member): array;
 
+
+    /**
+     * Retrieves the answers associated with a specific survey question.
+     *
+     * This method is responsible for returning an array of answers for the given question ID.
+     * Each answer includes its ID, text, and the count of responses.
+     *
+     * @param int $questionId The ID of the question for which answers are to be retrieved.
+     *
+     * @return array An array of answers, where each answer is represented as an associative array with the following keys:
+     *               - "answerId" (int): The unique identifier of the answer.
+     *               - "answerText" (string): The text of the answer.
+     *               - "answerCount" (int): The count of responses for this answer.
+     *
+     * Example return value:
+     * [
+     *     [
+     *         "answerId" => 1,
+     *         "answerText" => "Option A",
+     *         "answerCount" => 42
+     *     ],
+     *     [
+     *         "answerId" => 2,
+     *         "answerText" => "Option B",
+     *         "answerCount" => 15
+     *     ]
+     * ]
+     */
+    public function getAnswers(int $questionId): array;
+
     /**
      * Registers a member's answer to a survey question, but does not associate the answer with the member.
      *

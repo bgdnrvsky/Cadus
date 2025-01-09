@@ -1,7 +1,6 @@
 import NavBar from "../components/NavBar";
 import TextInput, {InputType} from "../components/TextInput";
 import Button from "../components/Button";
-import cadusLogo from "../assets/cadus.svg";
 import {FormEvent, useState} from "react";
 import {isEmailValid} from "../utils/Email";
 import IApiResponse from "../api/dto/responses/IApiResponse";
@@ -21,21 +20,18 @@ export default function Login() {
         e.preventDefault();
 
         login(email, passw)
-            .then(() => {
-                window.location.href = "/survey";
-            })
+            .then(() => window.location.href = "/dashboard")
             .catch((r: IApiResponse<ISigninData>) => {
                 setSigninError(r.message);
             });
     }
 
     return (
-        <div className="h-screen flex flex-col justify-center overflow-y-hidden">
+        <div className="h-screen justify-center overflow-y-hidden">
             <NavBar/>
-            <div className="flex flex-col justify-center font-[sans-serif] sm:h-screen p-4 bg-[url('assets/login-background.jpg')] bg-center bg-cover">
-                <div className="max-w-md w-full mx-auto border text-center bg-white border-gray-300 rounded-2xl p-8">
-                    <img src={cadusLogo} className="mb-12 rounded-full h-40 w-40 inline-block bg-white"
-                         alt="Logo Cadus"/>
+            <div className="flex flex-col items-center justify-center font-[sans-serif] h-full bg-[url('assets/login-background.jpg')] bg-center bg-cover">
+                <div className="overflow-y-scroll max-w-md w-full mx-auto border text-center bg-white border-gray-300 rounded-2xl p-8">
+                    <img src={"cadus.svg"} className="inline-block mb-12 rounded-full h-40 w-40 bg-white" alt="Logo Cadus"/>
 
                     {
                         signinError &&

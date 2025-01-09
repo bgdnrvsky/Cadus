@@ -1,6 +1,6 @@
 import {NavLink} from "react-router-dom";
 import {useState} from 'react';
-import cadusLogo from "../assets/cadus.svg"
+import {useAuth} from "../hooks/useAuth";
 
 function NavLinkItem({path, children}: { path: string; children: React.ReactNode }) {
     return (
@@ -13,6 +13,7 @@ function NavLinkItem({path, children}: { path: string; children: React.ReactNode
 
 export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const {isLoggedIn} = useAuth();
 
     // Toggle mobile menu
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -23,17 +24,24 @@ export default function NavBar() {
             <NavLinkItem path="/nousaider">Nous aider</NavLinkItem>
             <NavLinkItem path="/livredor">Livre d'or</NavLinkItem>
             <NavLinkItem path="/remerciements">Remerciements</NavLinkItem>
-            <NavLinkItem path="/survey">Sondage</NavLinkItem>
+            {
+                isLoggedIn ? (
+                    <NavLinkItem path="/dashboard">Dashboard</NavLinkItem>
+                ) : (
+                    <NavLinkItem path="/login">Connexion</NavLinkItem>
+                )
+            }
         </>
     );
 
     const svgColor = "white";
 
+
     return (
         <nav className="bg-cadus-green p-4">
             <div className="flex justify-between">
                 {/* Logo */}
-                <NavLink to="/"><img src={cadusLogo} className="rounded-full h-14 bg-white" alt="Logo Cadus"/></NavLink>
+                <NavLink to="/"><img src={"cadus.svg"} className="rounded-full h-14 bg-white" alt="Logo Cadus"/></NavLink>
 
                 <ul className="flex justify-between max-sm:hidden">
                     {/* Navigation Links (Desktop) */}
@@ -46,12 +54,12 @@ export default function NavBar() {
                     {/* Menu icon (hamburger) */}
                     <svg className="sm:hidden w-9 h-9" fill="none" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 24 24">
-                        <g stroke-width="0"></g>
-                        <g stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g strokeWidth="0"></g>
+                        <g strokeLinecap="round" strokeLinejoin="round"></g>
                         <g>
-                            <path d="M4 18L20 18" stroke={svgColor} stroke-width="2" stroke-linecap="round"></path>
-                            <path d="M4 12L20 12" stroke={svgColor} stroke-width="2" stroke-linecap="round"></path>
-                            <path d="M4 6L20 6" stroke={svgColor} stroke-width="2" stroke-linecap="round"></path>
+                            <path d="M4 18L20 18" stroke={svgColor} strokeWidth="2" strokeLinecap="round"></path>
+                            <path d="M4 12L20 12" stroke={svgColor} strokeWidth="2" strokeLinecap="round"></path>
+                            <path d="M4 6L20 6" stroke={svgColor} strokeWidth="2" strokeLinecap="round"></path>
                         </g>
                     </svg>
                 </button>

@@ -33,6 +33,11 @@ class SurveyServiceImpl implements ISurveyService
         return $this->surveyRepository->getQuestions($member);
     }
 
+    public function getAnswers(int $questionId): array
+    {
+        return $this->surveyRepository->answersRepartition($questionId);
+    }
+
     public function registerAnswer(MemberEntity $member, AnswerDto $answerDto): void {
         $question = $this->surveyRepository->findQuestionByText($answerDto->getQuestion());
 

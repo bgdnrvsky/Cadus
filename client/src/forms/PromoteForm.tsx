@@ -1,7 +1,7 @@
 import ComboBox, {ComboBoxOption} from "../components/ComboBox";
 import TextInput, {InputType} from "../components/TextInput";
 import Button from "../components/Button";
-import {ChangeEvent, useState} from "react";
+import {useState} from "react";
 import {isEmailValid} from "../utils/Email";
 
 
@@ -27,7 +27,7 @@ export default function PromoteForm() {
     }
 
     return (
-        <form action="" method="POST" className="bg-white space-y-6 rounded-md shadow-lg p-6">
+        <div className="bg-white space-y-6 rounded-md shadow-lg p-6">
             <ComboBox id={"cbx-help-type"} label="Type de promotion" onChange={onComboValueChanged}>
                 <ComboBoxOption value="printing">Impression</ComboBoxOption>
                 <ComboBoxOption value="design">Design</ComboBoxOption>
@@ -44,6 +44,6 @@ export default function PromoteForm() {
             <TextInput type={InputType.Text} id="promote-message" label="Message"/>
 
             <Button disabled={!isEmailValid(email) || !otherHelpValid} className="mx-auto block">Proposer mon aide</Button>
-        </form>
+        </div>
     );
 }

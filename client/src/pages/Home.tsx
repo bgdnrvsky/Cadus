@@ -1,5 +1,4 @@
 import Footer from "../components/Footer";
-import cadusLogo from "../assets/cadus.svg";
 import img1 from "../assets/home/img1.png";
 import img2 from "../assets/home/img2.jpg";
 import img3 from "../assets/home/img3.jpeg";
@@ -32,7 +31,7 @@ export default function Home() {
         <div>
             <NavBar/>
             <div className="flex items-center justify-around p-1">
-                <img src={cadusLogo} className="h-96 w-72 bg-white" alt="Logo Cadus"/>
+                <img src={"cadus.svg"} className="h-96 w-72 bg-white" alt="Logo Cadus"/>
                 <div className="text-center w-1/2 ">
                     <h3 className="text-2xl font-bold">
                         Vous êtes victime d'erreurs médicales ?
@@ -57,7 +56,7 @@ export default function Home() {
             </div>
 
             <div className="text-center p-8">
-                <h2 className="text-2xl font-bold mt-16 mb-4">Notre But</h2>
+                <h2 className="text-2xl font-bold mt-16 mb-4 inline-block brush-underline">Notre But</h2>
 
                 {assistanceList.map((item, index) => (
                     <p key={index} className="mb-2">
@@ -67,12 +66,12 @@ export default function Home() {
             </div>
 
             <div className="text-center mt-14">
-                <h2 className="text-2xl font-bold mb-4">L'aide apportée</h2>
+                <h2 className="text-2xl font-bold mb-4 inline-block brush-underline">L'aide apportée</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center mt-8 p-8">
                 {
                     aideList.map((item, index) => (
-                        <Card>
+                        <Card key={index}>
                             <CardQuote>{item}</CardQuote>
                         </Card>
                     ))
