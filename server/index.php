@@ -2,18 +2,23 @@
 
 use Cadus\controllers\AccountController;
 use Cadus\controllers\AuthenticationController;
+use Cadus\controllers\CommentController;
 use Cadus\controllers\SurveyController;
 use Cadus\core\DIContainer;
 use Cadus\core\ResponseEntity;
 use Cadus\core\Router;
+use Cadus\repositories\ICommentRepository;
 use Cadus\repositories\IMemberRepository;
+use Cadus\repositories\impl\mariadb\MariaDBCommentRepository;
 use Cadus\repositories\impl\mariadb\MariaDBMemberRepository;
 use Cadus\repositories\impl\mariadb\MariaDBSurveyRepository;
 use Cadus\repositories\ISurveyRepository;
 use Cadus\services\IAccountService;
 use Cadus\services\IAuthenticationService;
+use Cadus\services\ICommentService;
 use Cadus\services\impl\AccountServiceImpl;
 use Cadus\services\impl\AuthenticationServiceImpl;
+use Cadus\services\impl\CommentServiceImpl;
 use Cadus\services\impl\SurveyServiceImpl;
 use Cadus\services\ISurveyService;
 
@@ -37,14 +42,17 @@ if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
 $container = new DIContainer();
 $container->bind(IMemberRepository::class, fn() => new MariaDBMemberRepository());
 $container->bind(ISurveyRepository::class, fn() => new MariaDBSurveyRepository());
+$container->bind(ICommentRepository::class, fn() => new MariaDBCommentRepository());
 
 $container->bind(IAuthenticationService::class, fn($c) => new AuthenticationServiceImpl($c->get(IMemberRepository::class)));
 $container->bind(ISurveyService::class, fn($c) => new SurveyServiceImpl($c->get(ISurveyRepository::class)));
 $container->bind(IAccountService::class, fn($c) => new AccountServiceImpl($c->get(IMemberRepository::class)));
+$container->bind(ICommentService::class, fn($c) => new CommentServiceImpl($c->get(ICommentRepository::class)));
 
 $container->bind(AuthenticationController::class, fn($c) => new AuthenticationController($c->get(IAuthenticationService::class)));
 $container->bind(SurveyController::class, fn($c) => new SurveyController($c->get(ISurveyService::class), $c->get(IAuthenticationService::class)));
 $container->bind(AccountController::class, fn($c) => new AccountController($c->get(IAccountService::class)));
+$container->bind(CommentController::class, fn($c) => new CommentController($c->get(ICommentService::class)));
 
 //
 // 2. Setup routes to controllers
@@ -55,6 +63,7 @@ try {
     $router->registerController(AuthenticationController::class);
     $router->registerController(SurveyController::class);
     $router->registerController(AccountController::class);
+    $router->registerController(CommentController::class);
 } catch (ReflectionException $e) {
     $response = ResponseEntity::error("Internal server error");
     $response->send();

@@ -1,5 +1,5 @@
 import Carousel, {CarouselSlide} from "../components/Carousel";
-import {Card, CardAvatar, CardQuote} from "../components/Card";
+import {Card, CardStatus, CardQuote, CardPhoto, CardFigure} from "../components/Card";
 import Button from "../components/Button";
 import ScrollIndicator from "../components/ScrollIndicator";
 import NavBar from "../components/NavBar";
@@ -17,7 +17,8 @@ export default function Help() {
                     <CarouselSlide image={require("../assets/volunteer.jpg")}>
                         <div className="flex flex-col items-center md:items-start space-y-6">
                             <h1 className="text-6xl text-white text-center font-bold">Rejoindre Cadus.</h1>
-                            <p className="text-lg text-white text-center md:text-left w-2/3">Nous vous attendons pour construire un avenir solidaire et plein d'espoir.</p>
+                            <p className="text-lg text-white text-center md:text-left w-2/3">Nous vous attendons pour
+                                construire un avenir solidaire et plein d'espoir.</p>
                             <a href="#volunteer-section"><Button className="text-white">En savoir plus</Button></a>
                         </div>
                     </CarouselSlide>
@@ -25,7 +26,8 @@ export default function Help() {
                     <CarouselSlide image={require("../assets/promote.jpg")}>
                         <div className="flex flex-col items-center md:items-start space-y-6">
                             <h1 className="text-6xl text-white text-center font-bold">Promouvoir Cadus.</h1>
-                            <p className="text-lg text-white text-center md:text-left w-2/3">Parlez de notre association autour de vous : chaque mot partagé, c'est un pas de plus vers notre mission.</p>
+                            <p className="text-lg text-white text-center md:text-left w-2/3">Parlez de notre association
+                                autour de vous : chaque mot partagé, c'est un pas de plus vers notre mission.</p>
                             <a href="#promote-section"><Button className="text-white">Comment faire ?</Button></a>
                         </div>
                     </CarouselSlide>
@@ -33,7 +35,8 @@ export default function Help() {
                     <CarouselSlide image={require("../assets/donate.jpg")}>
                         <div className="flex flex-col items-center md:items-start space-y-6">
                             <h1 className="text-6xl text-white text-center font-bold">Soutenir Cadus.</h1>
-                            <p className="text-lg text-white text-center md:text-left w-2/3">Soutenez notre association : chaque geste compte pour faire une grande différence.</p>
+                            <p className="text-lg text-white text-center md:text-left w-2/3">Soutenez notre association
+                                : chaque geste compte pour faire une grande différence.</p>
                             <a href="#donate-section"><Button className="text-white">J'apporte mon soutien</Button></a>
                         </div>
                     </CarouselSlide>
@@ -54,22 +57,36 @@ export default function Help() {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 m-10">
                             <Card>
-                                <CardQuote>Je ne me sentais plus seule et sans défense grâce à Cadus</CardQuote>
-                                <CardAvatar avatar={require("../assets/profile_pictures/avatar9.jpg")}
-                                            name="Marie"
-                                            status="Bénéficiaire"/>
+                                <CardQuote>Je ne me sentais plus seule et sans défense grâce à
+                                    Cadus</CardQuote>
+                                <CardFigure>
+                                    <CardPhoto
+                                        avatar={require("../assets/profile_pictures/avatar9.jpg")}/>
+                                    <CardStatus
+                                        name="Marie"
+                                        status="Bénéficiaire"/>
+                                </CardFigure>
                             </Card>
                             <Card>
-                                <CardQuote>Soutenir un bénéficiaire était une expérience très enrichissante</CardQuote>
-                                <CardAvatar avatar={require("../assets/profile_pictures/avatar10.jpg")}
-                                            name="Sylvain"
-                                            status="Bénévole"/>
+                                <CardQuote>Soutenir un bénéficiaire était une expérience très
+                                    enrichissante</CardQuote>
+                                <CardFigure>
+                                    <CardPhoto
+                                        avatar={require("../assets/profile_pictures/avatar10.jpg")}/>
+                                    <CardStatus
+                                        name="Sylvain"
+                                        status="Bénévole"/>
+                                </CardFigure>
                             </Card>
                             <Card>
                                 <CardQuote>Je n'aurais pas réussi à obtenir justice sans Cadus"</CardQuote>
-                                <CardAvatar avatar={require("../assets/profile_pictures/avatar8.jpg")}
-                                            name="Joe"
-                                            status="Bénéficiaire"/>
+                                <CardFigure>
+                                    <CardPhoto
+                                        avatar={require("../assets/profile_pictures/avatar8.jpg")}/>
+                                    <CardStatus
+                                        name="Joe"
+                                        status="Bénéficiaire"/>
+                                </CardFigure>
                             </Card>
                         </div>
                         <Button className="m-auto block text-cadus-green">Demander une formation</Button>

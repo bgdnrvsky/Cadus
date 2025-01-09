@@ -6,7 +6,6 @@ import IAnswer from "../dto/sent/IAnswer";
 import IAnswersQuery from "../dto/sent/IAnswersQuery";
 import IAnswersRepartition from "../dto/responses/IAnswersRepartition";
 
-
 export namespace requests {
     export namespace survey {
         export async function fetchQuestions(): Promise<IApiResponse<ISurveyQuestion[]>> {
