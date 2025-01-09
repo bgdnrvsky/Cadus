@@ -1,18 +1,20 @@
 import React from 'react';
 import mail from "../assets/home/mail.png";
-import localisation from "../assets/home/localisation.png";
+import localisation from "../assets/localisation.png";
+import email from "../assets/e-mail.png";
+
 
 export default function Footer() {
     const mailAdress = "Association@cadus.fr";
 
     return (
-        <footer className="p-8 bg-cadus-green">
+        <footer className="p-8 bg-cadus-green text-white">
             <div className="flex flex-row flex-wrap">
-                <h2 className="text-3xl font-bold mb-4">Nous contacter</h2>
+                <h2 className="text-3xl font-bold mb-4 ">Nous contacter</h2>
 
                 <div className="flex flex-row flex-wrap mt-2">
                     <div className="flex ml-5">
-                        <img src={mail} alt="Icone mail" className="h-6 w-6 mr-2"/>
+                        <img src={email} alt="Icone mail" className="h-6 w-6 mr-2"/>
                         <a href={"mailto:" + mailAdress} className="text-lg">{mailAdress}</a>
                     </div>
 
