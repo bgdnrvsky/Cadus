@@ -6,7 +6,6 @@ import IComment from "../api/dto/responses/IComment";
 import {requests} from "../api/requests/comments";
 import IApiResponse from "../api/dto/responses/IApiResponse";
 import Spinner from "../components/Spinner";
-import Banner, {BannerType} from "../components/Banner";
 
 export default function Book() {
     const [response, setResponse] = useState<IApiResponse<IComment[]>>();

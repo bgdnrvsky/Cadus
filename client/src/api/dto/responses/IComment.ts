@@ -7,6 +7,7 @@
  * ]
  */
 interface IComment {
+    commentId: number;
     commentText: string;
     authorLogin: string;
 }
