@@ -3,6 +3,7 @@
 namespace Cadus\services\impl;
 
 use Cadus\core\Session;
+use Cadus\models\entities\CommentEntity;
 use Cadus\repositories\ICommentRepository;
 use Cadus\services\ICommentService;
 
@@ -14,14 +15,25 @@ class CommentServiceImpl implements ICommentService
         $this->repository = $repository;
     }
 
+    public function listCommentsByMember(): array
+    {
+        $member = Session::authenticatedMember();
+        return $this->repository->getAllByMember($member);
+    }
+
     public function listComments(): array
     {
         return $this->repository->getAll();
     }
 
-    public function saveComment(string $comment): void
+    public function saveComment(string $comment): int
     {
         $member = Session::authenticatedMember();
-        $this->repository->save($member, $comment);
+        return $this->repository->save($member, $comment);
+    }
+
+    public function deleteComment(int $commentId): void
+    {
+        $this->repository->deleteCommentById($commentId);
     }
 }

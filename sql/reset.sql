@@ -61,7 +61,7 @@ CREATE TABLE HAS_ANSWERED(
 CREATE TABLE COMMENT(
     comment_id INT AUTO_INCREMENT,
     member_id INT,
-    comment_text VARCHAR(128),
+    comment_text VARCHAR(128) NOT NULL,
 
     PRIMARY KEY(comment_id),
     FOREIGN KEY(member_id) REFERENCES MEMBERS(member_id) ON DELETE CASCADE

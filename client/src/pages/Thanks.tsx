@@ -12,7 +12,7 @@ export default function Thanks() {
                 <Carousel infinite={true}>
                     <CarouselSlide image={require("../assets/thanks_img/mains.jpg")}>
                         <div className="flex flex-col items-center md:items-start space-y-6">
-                            <h1 className="text-6xl text-white text-center font-bold">Un grande merci</h1>
+                            <h1 className="text-6xl text-white text-center font-bold">Un grand merci</h1>
                             <p className="text-lg text-white text-center md:text-left w-2/3">Découvrez toutes ces âmes
                                 charitables qui ne font pas parties de l'association mais qui n'ont pas hésité à nous
                                 apporter leur soutien.</p>

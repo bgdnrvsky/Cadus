@@ -2,6 +2,7 @@ import IApiResponse from "../dto/responses/IApiResponse";
 import IComment from "../dto/responses/IComment";
 import {resolveEndpoint} from "./endpoints";
 import axios from "axios";
+import ICommentId from "../dto/responses/ICommentId";
 
 export namespace requests {
     export namespace comments {
@@ -15,10 +16,10 @@ export namespace requests {
             return response.data;
         }
 
-        export async function sendComment(comment: string): Promise<IApiResponse<null>> {
+        export async function sendComment(comment: string): Promise<IApiResponse<ICommentId>> {
             const endpoint: string = resolveEndpoint("/api/comment/save");
 
-            const response = await axios.post<IApiResponse<null>>(
+            const response = await axios.post<IApiResponse<ICommentId>>(
                 endpoint,
                 JSON.stringify({
                     "comment-text": comment
