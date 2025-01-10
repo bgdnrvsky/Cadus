@@ -8,7 +8,7 @@ use Cadus\repositories\ICommentRepository;
 
 class MariaDBCommentRepository extends AbstractRepository implements ICommentRepository
 {
-    public function save(MemberEntity $member, string $text): void
+    public function save(MemberEntity $member, string $text): int
     {
         $statement = $this->pdo->prepare(
             "INSERT INTO COMMENT(member_id, comment_text) VALUES (:member_id, :text)"
